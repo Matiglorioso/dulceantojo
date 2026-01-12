@@ -1,0 +1,187 @@
+/* Dulce Antojo — paleta pastel (rosa/crema/marrón) */
+:root {
+  --bg: #fbf7f3; /* crema suave */
+  --surface: #ffffff; /* tarjetas/modales */
+
+  --text: #4b3a2f; /* marrón suave */
+  --muted: #8a7a70;
+
+  --primary: #e7a9b5; /* rosa pastel */
+  --primaryHover: #de9aa7;
+  --primaryText: #4b3a2f;
+
+  --border: #efe3da;
+  --radius: 16px;
+  --shadow: 0 10px 24px rgba(75, 58, 47, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(251, 247, 243, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.brand__name {
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.3px;
+}
+
+.container {
+  padding: 14px 16px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.site-footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: var(--bg);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background: #f6f6f6;
+}
+
+.card .p {
+  padding: 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: var(--primaryText);
+}
+
+.btn.primary:hover {
+  background: var(--primaryHover);
+}
+
+.btn.ghost {
+  background: #f3f3f3;
+}
+
+.dialog {
+  border: 0;
+  border-radius: var(--radius);
+  width: min(560px, 94vw);
+  padding: 0;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal {
+  padding: 14px;
+}
+
+.modal h3 {
+  margin: 6px 0 10px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-size: 13px;
+  color: #5b4b42;
+  display: grid;
+  gap: 6px;
+}
+
+input,
+select,
+textarea {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font: inherit;
+  background: #fff;
+}
+
+textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .card img {
+    height: 160px;
+  }
+  .dialog {
+    width: 96vw;
+    border-radius: 18px;
+  }
+}

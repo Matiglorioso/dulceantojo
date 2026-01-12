@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dulce Antojo - Pedidos</title>
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <strong class="brand__name">Dulce Antojo</strong>
+        <div class="muted">Pastelería artesanal • Retiro y envíos</div>
+      </div>
+    </header>
+
+    <main class="container">
+      <p class="muted">
+        Elegí tu antojo y tocá <b>Pedir</b>. Te lleva a WhatsApp con el pedido
+        listo 💕
+      </p>
+
+      <section class="grid" id="grid"></section>
+    </main>
+
+    <footer class="site-footer muted">
+      Pedidos con al menos 48 hs de anticipación • Transferencia o efectivo
+    </footer>
+
+    <dialog id="dlg" class="dialog">
+      <div class="modal">
+        <div class="row">
+          <h3 id="dlgTitle">Tu pedido</h3>
+          <button class="btn ghost" id="closeBtn" type="button">Cerrar</button>
+        </div>
+
+        <form id="orderForm" class="form">
+          <div class="two">
+            <label>
+              Producto
+              <input id="product" name="product" readonly />
+            </label>
+            <label>
+              Cantidad
+              <input
+                id="qty"
+                name="qty"
+                type="number"
+                min="1"
+                value="1"
+                required
+              />
+            </label>
+          </div>
+
+          <div class="two">
+            <label>
+              Fecha deseada
+              <input id="date" name="date" type="date" required />
+            </label>
+            <label>
+              Entrega
+              <select id="delivery" name="delivery" required>
+                <option value="Retiro">Retiro</option>
+                <option value="Envío">Envío</option>
+              </select>
+            </label>
+          </div>
+
+          <label id="addrWrap" class="hide">
+            Dirección (solo si es envío)
+            <input
+              id="address"
+              name="address"
+              placeholder="Calle, número, barrio, referencias"
+            />
+          </label>
+
+          <div class="two">
+            <label>
+              Tu nombre
+              <input
+                id="name"
+                name="name"
+                placeholder="Nombre y apellido"
+                required
+              />
+            </label>
+            <label>
+              Tu WhatsApp
+              <input
+                id="phone"
+                name="phone"
+                placeholder="Ej: 351xxxxxxx"
+                required
+              />
+            </label>
+          </div>
+
+          <label>
+            Aclaraciones (opcional)
+            <textarea
+              id="notes"
+              name="notes"
+              placeholder="Sin azúcar, dedicatoria, timbre, etc."
+            ></textarea>
+          </label>
+
+          <button class="btn primary" type="submit">
+            Enviar pedido por WhatsApp
+          </button>
+          <div class="muted" id="hint"></div>
+        </form>
+      </div>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
