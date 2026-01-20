@@ -507,8 +507,7 @@ textarea {
   left: 0;
   right: 0;
   background: #fff;
-  border: 1px solid #ddd;
-  border-top: none;
+  border: none;
   border-radius: 0 0 14px 14px;
   max-height: 0;
   overflow: hidden;
@@ -518,6 +517,8 @@ textarea {
 
 .custom-select-options.active {
   max-height: 200px;
+  border: 1px solid #ddd;
+  border-top: none;
   overflow-y: auto;
 }
 
