@@ -66,6 +66,43 @@ body {
   font-size: 14px;
 }
 
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(150%);
+  transition: transform 0.3s ease-out;
+  z-index: 1000;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-content {
+  background: var(--primary);
+  color: var(--primaryText);
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(75, 58, 47, 0.15);
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.toast-content div:first-child {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.toast-qty {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -204,6 +241,16 @@ body {
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
+}
+
+.cart-total {
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: 12px;
+  text-align: right;
+  font-size: 16px;
+  margin-bottom: 16px;
+  border: 2px solid var(--border);
 }
 
 .cart-item {

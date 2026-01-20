@@ -12,6 +12,8 @@ const orderForm = document.getElementById("orderForm");
 const cartItemsEl = document.getElementById("cartItems");
 const cartSummaryEl = document.getElementById("cartSummary");
 const checkoutBtn = document.getElementById("checkoutBtn");
+const toastEl = document.getElementById("toast");
+const totalAmountEl = document.getElementById("totalAmount");
 
 const dateEl = document.getElementById("date");
 const deliveryEl = document.getElementById("delivery");
@@ -21,6 +23,7 @@ const hintEl = document.getElementById("hint");
 
 let PRODUCTS = [];
 let CART = []; // Carrito de compras
+let toastTimeout = null;
 
 // Helpers
 const money = (n) => new Intl.NumberFormat("es-AR").format(n);
@@ -103,7 +106,29 @@ function addToCart(productId, quantity) {
     });
   }
 
+  // Mostrar notificación
+  showToast(product.name, quantity, product.price);
+
   updateCartUI();
+}
+
+function showToast(productName, quantity, price) {
+  // Limpiar timeout anterior
+  if (toastTimeout) clearTimeout(toastTimeout);
+
+  const total = price * quantity;
+  toastEl.innerHTML = `
+    <div class="toast-content">
+      <div>✓ Agregado al carrito</div>
+      <strong>${productName}</strong>
+      <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
+    </div>
+  `;
+  toastEl.classList.add("show");
+
+  toastTimeout = setTimeout(() => {
+    toastEl.classList.remove("show");
+  }, 3000);
 }
 
 function updateCartUI() {
@@ -116,7 +141,10 @@ function updateCartUI() {
 
 function renderCart() {
   cartItemsEl.innerHTML = "";
+  let totalPrice = 0;
+
   CART.forEach((item) => {
+    totalPrice += item.price * item.qty;
     const itemEl = document.createElement("div");
     itemEl.className = "cart-item";
     itemEl.innerHTML = `
@@ -133,6 +161,9 @@ function renderCart() {
     `;
     cartItemsEl.appendChild(itemEl);
   });
+
+  // Actualizar total
+  totalAmountEl.textContent = money(totalPrice);
 
   // Eventos para modificar cantidad
   cartItemsEl.querySelectorAll(".btn-qty").forEach((btn) => {

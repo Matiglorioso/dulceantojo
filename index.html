@@ -31,11 +31,12 @@
 
       <section class="menu" id="grid"></section>
       <div id="cartSummary" class="cart-summary hide">
-        <button class="btn primary" id="checkoutBtn">
-          Ver carrito y Pedir
-        </button>
+        <button class="btn primary" id="checkoutBtn">Ir al carrito</button>
       </div>
     </main>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
 
     <footer class="site-footer muted">
       Pedidos con al menos 48 hs de anticipación • Transferencia o efectivo
@@ -57,6 +58,10 @@
 
         <form id="orderForm" class="form">
           <div id="cartItems" class="cart-items"></div>
+
+          <div id="cartTotal" class="cart-total">
+            <strong>Total: $ <span id="totalAmount">0</span></strong>
+          </div>
 
           <div class="two">
             <label>
