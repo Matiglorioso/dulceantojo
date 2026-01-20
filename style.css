@@ -23,7 +23,13 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family:
+    "Nunito",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
 }
 
 .site-header {
@@ -64,6 +70,114 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.menu-title-desc {
+  flex: 1;
+}
+
+.menu-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.menu-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.menu-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.menu-footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.counter-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.counter-btn:hover {
+  background: var(--border);
+}
+
+.counter-input {
+  width: 50px;
+  border: none;
+  text-align: center;
+  font-weight: 700;
+  background: transparent;
+  padding: 0;
+}
+
+.counter-input::-webkit-outer-spin-button,
+.counter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counter-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.btn-add {
+  flex: 1;
+  min-width: 100px;
 }
 
 .card {

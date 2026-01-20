@@ -28,7 +28,7 @@ function setMinDate() {
   const minDate = new Date(
     today.getFullYear(),
     today.getMonth(),
-    today.getDate() + minLeadDays
+    today.getDate() + minLeadDays,
   );
   dateEl.min = minDate.toISOString().slice(0, 10);
   hintEl.textContent = `Pedidos con al menos ${minLeadDays} días de anticipación (ajustable).`;
@@ -37,34 +37,58 @@ function setMinDate() {
 function render() {
   grid.innerHTML = "";
   PRODUCTS.forEach((p) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="${p.img}" alt="${p.name}">
-      <div class="p">
-        <div class="row">
-          <strong>${p.name}</strong>
-          <span>$ ${money(p.price)}</span>
+    const item = document.createElement("div");
+    item.className = "menu-item";
+    item.innerHTML = `
+      <div class="menu-header">
+        <div class="menu-title-desc">
+          <strong class="menu-title">${p.name}</strong>
+          <div class="menu-desc">${p.desc}</div>
         </div>
-        <div class="muted">${p.desc}</div>
-        <div style="height:10px"></div>
-        <button class="btn primary" data-id="${p.id}">Pedir</button>
+        <div class="menu-price">$ ${money(p.price)}</div>
+      </div>
+      <div class="menu-footer">
+        <div class="counter">
+          <button class="counter-btn" type="button" data-action="minus" data-id="${p.id}">−</button>
+          <input class="counter-input" type="number" min="1" value="1" data-id="${p.id}" readonly />
+          <button class="counter-btn" type="button" data-action="plus" data-id="${p.id}">+</button>
+        </div>
+        <button class="btn primary btn-add" data-id="${p.id}">Agregar</button>
       </div>
     `;
-    grid.appendChild(card);
+    grid.appendChild(item);
   });
 
-  grid.querySelectorAll("button[data-id]").forEach((btn) => {
-    btn.addEventListener("click", () => openOrder(btn.dataset.id));
+  // Eventos para los contadores
+  grid.querySelectorAll(".counter-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const input = e.target.parentElement.querySelector(".counter-input");
+      const action = e.target.dataset.action;
+      let val = parseInt(input.value) || 1;
+      if (action === "plus") val++;
+      if (action === "minus" && val > 1) val--;
+      input.value = val;
+    });
+  });
+
+  // Eventos para agregar al pedido
+  grid.querySelectorAll("button.btn-add").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const qty = parseInt(
+        btn.closest(".menu-item").querySelector(".counter-input").value,
+      );
+      openOrder(id, qty);
+    });
   });
 }
 
-function openOrder(id) {
+function openOrder(id, qty = 1) {
   const p = PRODUCTS.find((x) => x.id === id);
   if (!p) return;
 
   productEl.value = p.name;
-  qtyEl.value = 1;
+  qtyEl.value = qty;
 
   deliveryEl.value = "Retiro";
   addressEl.value = "";
