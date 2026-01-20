@@ -204,13 +204,6 @@ function renderCart() {
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 
-deliveryEl.addEventListener("change", () => {
-  const isShip = deliveryEl.value === "Envío";
-  addrWrap.classList.toggle("hide", !isShip);
-  addressEl.required = isShip;
-  if (!isShip) addressEl.value = "";
-});
-
 checkoutBtn.addEventListener("click", () => {
   renderCart();
   dlg.showModal();
