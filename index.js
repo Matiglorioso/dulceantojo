@@ -15,7 +15,6 @@ const checkoutBtn = document.getElementById("checkoutBtn");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 
-const dateEl = document.getElementById("date");
 const deliveryEl = document.getElementById("delivery");
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
@@ -27,17 +26,6 @@ let toastTimeout = null;
 
 // Helpers
 const money = (n) => new Intl.NumberFormat("es-AR").format(n);
-
-function setMinDate() {
-  const today = new Date();
-  const minDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + minLeadDays,
-  );
-  dateEl.min = minDate.toISOString().slice(0, 10);
-  hintEl.textContent = `Pedidos con al menos ${minLeadDays} días de anticipación (ajustable).`;
-}
 
 function render() {
   grid.innerHTML = "";
@@ -249,8 +237,6 @@ orderForm.addEventListener("submit", (e) => {
 
 // Load products
 async function init() {
-  setMinDate();
-
   try {
     const res = await fetch("./products.json", { cache: "no-store" });
     if (!res.ok)
