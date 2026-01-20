@@ -283,10 +283,23 @@ body {
 }
 
 .cart-item-actions input {
-  width: 40px;
+  width: 50px;
   text-align: center;
   padding: 6px;
   font-weight: 700;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.qty-input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .btn-qty {
@@ -460,6 +473,15 @@ textarea {
   border: 1px solid #ddd;
   font: inherit;
   background: #fff;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%234b3a2f' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
 }
 
 textarea {

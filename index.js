@@ -142,7 +142,7 @@ function renderCart() {
       </div>
       <div class="cart-item-actions">
         <button type="button" class="btn-qty" data-id="${item.id}" data-action="minus">−</button>
-        <input type="number" value="${item.qty}" readonly />
+        <input type="number" class="qty-input" value="${item.qty}" data-id="${item.id}" min="1" />
         <button type="button" class="btn-qty" data-id="${item.id}" data-action="plus">+</button>
         <button type="button" class="btn-remove" data-id="${item.id}">✕</button>
       </div>
@@ -163,6 +163,25 @@ function renderCart() {
 
       if (action === "plus") item.qty++;
       if (action === "minus" && item.qty > 1) item.qty--;
+
+      renderCart();
+    });
+  });
+
+  // Eventos para cambio directo en el input
+  cartItemsEl.querySelectorAll(".qty-input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const id = input.dataset.id;
+      const qty = parseInt(input.value) || 1;
+      const item = CART.find((x) => x.id === id);
+      if (!item) return;
+
+      if (qty < 1) {
+        input.value = 1;
+        item.qty = 1;
+      } else {
+        item.qty = qty;
+      }
 
       renderCart();
     });
