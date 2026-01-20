@@ -30,6 +30,11 @@
       </p>
 
       <section class="menu" id="grid"></section>
+      <div id="cartSummary" class="cart-summary hide">
+        <button class="btn primary" id="checkoutBtn">
+          Ver carrito y Pedir
+        </button>
+      </div>
     </main>
 
     <footer class="site-footer muted">
@@ -38,29 +43,20 @@
 
     <dialog id="dlg" class="dialog">
       <div class="modal">
-        <div class="row">
+        <div class="modal-header">
           <h3 id="dlgTitle">Tu pedido</h3>
-          <button class="btn ghost" id="closeBtn" type="button">Cerrar</button>
+          <button
+            class="close-btn"
+            id="closeBtn"
+            type="button"
+            aria-label="Cerrar"
+          >
+            ✕
+          </button>
         </div>
 
         <form id="orderForm" class="form">
-          <div class="two">
-            <label>
-              Producto
-              <input id="product" name="product" readonly />
-            </label>
-            <label>
-              Cantidad
-              <input
-                id="qty"
-                name="qty"
-                type="number"
-                min="1"
-                value="1"
-                required
-              />
-            </label>
-          </div>
+          <div id="cartItems" class="cart-items"></div>
 
           <div class="two">
             <label>
