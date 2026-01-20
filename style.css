@@ -482,6 +482,22 @@ select {
   background-position: right 12px center;
   padding-right: 36px;
   cursor: pointer;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.select-wrapper {
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.select-wrapper select {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 14px;
 }
 
 textarea {
