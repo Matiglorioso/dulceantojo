@@ -44,7 +44,7 @@
 
     <dialog id="dlg" class="dialog">
       <div class="modal">
-        <div class="modal-header">
+        <div class="modal-header center">
           <h3 id="dlgTitle">Tu pedido</h3>
           <button
             class="close-btn"
@@ -63,26 +63,21 @@
             <strong>Total: $ <span id="totalAmount">0</span></strong>
           </div>
 
-          <div class="two">
-            <label>
-              Fecha deseada
-              <input id="date" name="date" type="date" required />
-            </label>
-            <label>
-              Entrega
-              <select id="delivery" name="delivery" required>
-                <option value="Retiro">Retiro</option>
-                <option value="Envío">Envío</option>
-              </select>
-            </label>
-          </div>
+          <label>
+            Entrega
+            <select id="delivery" name="delivery" required>
+              <option value="Retiro">Retiro</option>
+              <option value="Envío">Envío</option>
+            </select>
+          </label>
 
           <label id="addrWrap" class="hide">
-            Dirección (solo si es envío)
+            Dirección
             <input
               id="address"
               name="address"
               placeholder="Calle, número, barrio, referencias"
+              required
             />
           </label>
 
@@ -106,6 +101,14 @@
               />
             </label>
           </div>
+
+          <label>
+            Forma de pago
+            <select id="payment" name="payment" required>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Transferencia">Transferencia</option>
+            </select>
+          </label>
 
           <label>
             Aclaraciones (opcional)

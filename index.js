@@ -198,11 +198,6 @@ function renderCart() {
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 
-checkoutBtn.addEventListener("click", () => {
-  renderCart();
-  dlg.showModal();
-});
-
 deliveryEl.addEventListener("change", () => {
   const isShip = deliveryEl.value === "Envío";
   addrWrap.classList.toggle("hide", !isShip);
@@ -210,18 +205,21 @@ deliveryEl.addEventListener("change", () => {
   if (!isShip) addressEl.value = "";
 });
 
+checkoutBtn.addEventListener("click", () => {
+  renderCart();
+  dlg.showModal();
+});
+
 orderForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const data = new FormData(orderForm);
-  const date = data.get("date");
   const delivery = data.get("delivery");
   const address = data.get("address") || "";
   const name = data.get("name");
   const phone = data.get("phone");
+  const payment = data.get("payment");
   const notes = data.get("notes") || "";
-
-  const formattedDate = date ? date.split("-").reverse().join("/") : "";
 
   // Crear líneas de productos
   const productLines = CART.map(
@@ -231,11 +229,11 @@ orderForm.addEventListener("submit", (e) => {
   const lines = [
     "Hola! Quiero hacer un pedido en *Dulce Antojo* 💕",
     ...productLines,
-    `• Fecha: ${formattedDate}`,
     `• Entrega: ${delivery}`,
     delivery === "Envío" ? `• Dirección: ${address}` : null,
     `• Nombre: ${name}`,
     `• Mi WhatsApp: ${phone}`,
+    `• Forma de pago: ${payment}`,
     notes.trim() ? `• Notas: ${notes.trim()}` : null,
   ].filter(Boolean);
 
