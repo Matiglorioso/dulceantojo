@@ -3,42 +3,36 @@
     "id": "budin-limon",
     "name": "Budín de limón con glaseado",
     "price": 5200,
-    "desc": "Húmedo, cítrico y con glasé.",
-    "img": "https://picsum.photos/seed/lemoncake/900/600"
+    "desc": "Húmedo, cítrico y con glasé."
   },
   {
     "id": "budin-marmol",
     "name": "Budín marmolado",
     "price": 5400,
-    "desc": "Vainilla + chocolate, bien casero.",
-    "img": "https://picsum.photos/seed/marblecake/900/600"
+    "desc": "Vainilla + chocolate, bien casero."
   },
   {
     "id": "torta-brownie",
     "name": "Torta brownie",
     "price": 12500,
-    "desc": "Intensa, chocolatosísima.",
-    "img": "https://picsum.photos/seed/browniecake/900/600"
+    "desc": "Intensa, chocolatosísima."
   },
   {
     "id": "carrot-cake",
     "name": "Carrot cake",
     "price": 11500,
-    "desc": "Con frosting suave de queso.",
-    "img": "https://picsum.photos/seed/carrotcake/900/600"
+    "desc": "Con frosting suave de queso."
   },
   {
     "id": "rogel",
     "name": "Rogel",
     "price": 13500,
-    "desc": "Capas finitas + dulce de leche.",
-    "img": "https://picsum.photos/seed/rogelcake/900/600"
+    "desc": "Capas finitas + dulce de leche."
   },
   {
     "id": "cheesecake",
     "name": "Cheesecake",
     "price": 14500,
-    "desc": "Base crocante + crema, clásico.",
-    "img": "https://picsum.photos/seed/cheesecake/900/600"
+    "desc": "Base crocante + crema, clásico."
   }
 ]
