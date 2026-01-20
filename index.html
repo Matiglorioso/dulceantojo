@@ -65,11 +65,14 @@
 
           <label>
             Entrega
-            <div class="select-wrapper">
-              <select id="delivery" name="delivery" required>
-                <option value="Retiro">Retiro</option>
-                <option value="Envío">Envío</option>
-              </select>
+            <div class="custom-select" data-name="delivery" data-value="Retiro">
+              <div class="custom-select-trigger">Retiro</div>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="Retiro">
+                  Retiro
+                </div>
+                <div class="custom-select-option" data-value="Envío">Envío</div>
+              </div>
             </div>
           </label>
 
@@ -106,11 +109,20 @@
 
           <label>
             Forma de pago
-            <div class="select-wrapper">
-              <select id="payment" name="payment" required>
-                <option value="Efectivo">Efectivo</option>
-                <option value="Transferencia">Transferencia</option>
-              </select>
+            <div
+              class="custom-select"
+              data-name="payment"
+              data-value="Efectivo"
+            >
+              <div class="custom-select-trigger">Efectivo</div>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="Efectivo">
+                  Efectivo
+                </div>
+                <div class="custom-select-option" data-value="Transferencia">
+                  Transferencia
+                </div>
+              </div>
             </div>
           </label>
 

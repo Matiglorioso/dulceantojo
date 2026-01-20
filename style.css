@@ -466,7 +466,6 @@ label {
 }
 
 input,
-select,
 textarea {
   padding: 12px;
   border-radius: 14px;
@@ -475,16 +474,65 @@ textarea {
   background: #fff;
 }
 
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%234b3a2f' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 36px;
-  cursor: pointer;
+.custom-select {
+  position: relative;
+}
+
+.custom-select-trigger {
+  padding: 12px;
   border-radius: 14px;
   border: 1px solid #ddd;
-  width: 100%;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.custom-select-trigger::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #4b3a2f;
+  border-bottom: 2px solid #4b3a2f;
+  transform: rotate(45deg) translateY(-2px);
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.custom-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  z-index: 100;
+}
+
+.custom-select-options.active {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.custom-select-option {
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.custom-select-option:hover {
+  background: var(--bg);
+}
+
+.custom-select-option:first-child {
+  border-top: none;
 }
 
 .select-wrapper {
@@ -492,12 +540,6 @@ select {
   display: block;
   border-radius: 14px;
   overflow: hidden;
-}
-
-.select-wrapper select {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 14px;
 }
 
 textarea {

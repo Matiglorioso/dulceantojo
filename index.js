@@ -15,7 +15,6 @@ const checkoutBtn = document.getElementById("checkoutBtn");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 
-const deliveryEl = document.getElementById("delivery");
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
 const hintEl = document.getElementById("hint");
@@ -254,8 +253,50 @@ orderForm.addEventListener("submit", (e) => {
   dlg.close();
 });
 
+// Custom Select Handler
+function initCustomSelects() {
+  const customSelects = document.querySelectorAll(".custom-select");
+
+  customSelects.forEach((select) => {
+    const trigger = select.querySelector(".custom-select-trigger");
+    const optionsList = select.querySelector(".custom-select-options");
+    const options = select.querySelectorAll(".custom-select-option");
+
+    trigger.addEventListener("click", () => {
+      optionsList.classList.toggle("active");
+    });
+
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        trigger.textContent = option.textContent;
+        select.dataset.value = option.dataset.value;
+        optionsList.classList.remove("active");
+
+        // Si es delivery, mostrar/ocultar dirección
+        if (select.dataset.name === "delivery") {
+          const isShip = option.dataset.value === "Envío";
+          addrWrap.classList.toggle("hide", !isShip);
+          addressEl.required = isShip;
+          if (!isShip) addressEl.value = "";
+        }
+      });
+    });
+  });
+
+  // Cerrar dropdown al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".custom-select")) {
+      document
+        .querySelectorAll(".custom-select-options.active")
+        .forEach((opt) => opt.classList.remove("active"));
+    }
+  });
+}
+
 // Load products
 async function init() {
+  initCustomSelects();
+
   try {
     const res = await fetch("./products.json", { cache: "no-store" });
     if (!res.ok)
