@@ -7,6 +7,9 @@ const minLeadDays = 2;
 // DOM
 const gridTartas = document.getElementById("grid-tartas");
 const gridBudines = document.getElementById("grid-budines");
+const tabBtns = document.querySelectorAll(".tab-btn");
+const sectionTartas = document.getElementById("section-tartas");
+const sectionBudines = document.getElementById("section-budines");
 const dlg = document.getElementById("dlg");
 const closeBtn = document.getElementById("closeBtn");
 const orderForm = document.getElementById("orderForm");
@@ -259,6 +262,31 @@ orderForm.addEventListener("submit", (e) => {
   dlg.close();
 });
 
+// Tab Handler
+function initTabs() {
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tabName = btn.dataset.tab;
+
+      // Remover clase active de todos los botones
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      // Agregar clase active al botón clickeado
+      btn.classList.add("active");
+
+      // Ocultar todas las secciones
+      sectionTartas.classList.remove("active");
+      sectionBudines.classList.remove("active");
+
+      // Mostrar la sección correspondiente
+      if (tabName === "tartas") {
+        sectionTartas.classList.add("active");
+      } else if (tabName === "budines") {
+        sectionBudines.classList.add("active");
+      }
+    });
+  });
+}
+
 // Custom Select Handler
 function initCustomSelects() {
   const customSelects = document.querySelectorAll(".custom-select");
@@ -301,6 +329,7 @@ function initCustomSelects() {
 
 // Load products
 async function init() {
+  initTabs();
   initCustomSelects();
 
   try {
