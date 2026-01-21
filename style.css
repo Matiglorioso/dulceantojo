@@ -270,27 +270,29 @@ body {
 
 .menu-footer {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .counter {
   display: flex;
   align-items: center;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--surface);
+  height: 36px;
 }
 
 .counter-btn {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 36px;
   border: none;
   background: var(--bg);
   color: var(--text);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   padding: 0;
   display: flex;
@@ -304,10 +306,11 @@ body {
 }
 
 .counter-input {
-  width: 50px;
+  width: 40px;
   border: none;
   text-align: center;
   font-weight: 700;
+  font-size: 13px;
   background: transparent;
   padding: 0;
 }
@@ -323,8 +326,9 @@ body {
 }
 
 .btn-add {
-  flex: 1;
-  min-width: 100px;
+  padding: 8px 16px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .cart-summary {
