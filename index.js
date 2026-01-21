@@ -122,12 +122,24 @@ function showToast(productName, quantity, price) {
   tempToast.className = "toast";
   tempToast.innerHTML = `
     <div class="toast-content">
+      <button class="toast-close" aria-label="Cerrar">✕</button>
       <div>✓ Agregado al carrito</div>
       <strong>${productName}</strong>
       <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
     </div>
   `;
   document.body.appendChild(tempToast);
+
+  // Función para cerrar el toast
+  const closeToast = () => {
+    tempToast.classList.remove("show");
+    setTimeout(() => {
+      tempToast.remove();
+    }, 400);
+  };
+
+  // Evento del botón X
+  tempToast.querySelector(".toast-close").addEventListener("click", closeToast);
 
   // Trigger animación
   setTimeout(() => {
@@ -136,10 +148,7 @@ function showToast(productName, quantity, price) {
 
   // Remover después de 3 segundos
   setTimeout(() => {
-    tempToast.classList.remove("show");
-    setTimeout(() => {
-      tempToast.remove();
-    }, 400);
+    closeToast();
   }, 3000);
 }
 
