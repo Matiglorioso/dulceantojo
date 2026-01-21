@@ -139,7 +139,7 @@ body {
 .toast-content {
   background: var(--primary);
   color: var(--primaryText);
-  padding: 14px 20px;
+  padding: 14px 44px 14px 20px;
   border-radius: 12px 12px 0 0;
   box-shadow: 0 -5px 30px rgba(75, 58, 47, 0.2);
   text-align: center;
@@ -152,15 +152,17 @@ body {
 
 .toast-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: var(--primaryText);
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   padding: 4px 8px;
   transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 .toast-close:hover {
