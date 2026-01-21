@@ -306,13 +306,14 @@ body {
 }
 
 .counter-input {
-  width: 40px;
+  width: 30px;
   border: none;
   text-align: center;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   background: transparent;
   padding: 0;
+  height: 36px;
 }
 
 .counter-input::-webkit-outer-spin-button,
@@ -327,9 +328,10 @@ body {
 
 .menu-footer .btn-add {
   padding: 8px 16px;
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
   width: auto;
+  height: 36px;
 }
 
 .cart-summary {
