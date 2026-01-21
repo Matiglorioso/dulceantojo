@@ -253,10 +253,30 @@ orderForm.addEventListener("submit", (e) => {
   const data = new FormData(orderForm);
   const delivery = data.get("delivery");
   const address = data.get("address") || "";
-  const name = data.get("name");
-  const phone = data.get("phone");
+  const name = data.get("name").trim();
+  const phone = data.get("phone").trim();
   const payment = data.get("payment");
   const notes = data.get("notes") || "";
+
+  // Validar nombre (mínimo 3 caracteres, solo letras)
+  if (name.length < 3) {
+    alert("El nombre debe tener al menos 3 caracteres");
+    return;
+  }
+  if (!/^[a-zA-Záéíóúñ\s]+$/.test(name)) {
+    alert("El nombre solo puede contener letras y espacios");
+    return;
+  }
+
+  // Validar WhatsApp (solo números)
+  if (!/^[0-9]+$/.test(phone)) {
+    alert("El WhatsApp solo puede contener números");
+    return;
+  }
+  if (phone.length < 7) {
+    alert("Por favor ingresa un número de WhatsApp válido");
+    return;
+  }
 
   // Crear líneas de productos
   const productLines = CART.map(

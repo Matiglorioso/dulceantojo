@@ -105,6 +105,9 @@
                 id="name"
                 name="name"
                 placeholder="Nombre y apellido"
+                minlength="3"
+                pattern="[a-zA-Záéíóúñ\s]+"
+                title="Mínimo 3 caracteres, solo letras"
                 required
               />
             </label>
@@ -114,6 +117,10 @@
                 id="phone"
                 name="phone"
                 placeholder="Ej: 351xxxxxxx"
+                type="tel"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                title="Solo números"
                 required
               />
             </label>
