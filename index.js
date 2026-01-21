@@ -43,9 +43,9 @@ function renderSection(grid, products) {
           <strong class="menu-title">${p.name}</strong>
           <div class="menu-desc">${p.desc}</div>
         </div>
-        <div class="menu-price">$ ${money(p.price)}</div>
       </div>
       <div class="menu-footer">
+        <div class="menu-price">$ ${money(p.price)}</div>
         <div class="counter">
           <button class="counter-btn" type="button" data-action="minus" data-id="${p.id}">−</button>
           <input class="counter-input" type="number" min="1" value="1" data-id="${p.id}" readonly />
