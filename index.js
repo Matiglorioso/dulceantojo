@@ -14,15 +14,14 @@ const dlg = document.getElementById("dlg");
 const closeBtn = document.getElementById("closeBtn");
 const orderForm = document.getElementById("orderForm");
 const cartItemsEl = document.getElementById("cartItems");
-const cartSummaryEl = document.getElementById("cartSummary");
-const checkoutBtn = document.getElementById("checkoutBtn");
+const cartIcon = document.getElementById("cartIcon");
+const cartBadge = document.getElementById("cartBadge");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
 const hintEl = document.getElementById("hint");
-
 let PRODUCTS = {
   tartas: [],
   budines: [],
@@ -116,30 +115,41 @@ function addToCart(productId, quantity) {
 }
 
 function showToast(productName, quantity, price) {
-  // Limpiar timeout anterior
-  if (toastTimeout) clearTimeout(toastTimeout);
-
   const total = price * quantity;
-  toastEl.innerHTML = `
+
+  // Crear elemento temporal para la notificación
+  const tempToast = document.createElement("div");
+  tempToast.className = "toast";
+  tempToast.innerHTML = `
     <div class="toast-content">
       <div>✓ Agregado al carrito</div>
       <strong>${productName}</strong>
       <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
     </div>
   `;
-  toastEl.classList.add("show");
+  document.body.appendChild(tempToast);
 
-  toastTimeout = setTimeout(() => {
-    toastEl.classList.remove("show");
+  // Trigger animación
+  setTimeout(() => {
+    tempToast.classList.add("show");
+  }, 10);
+
+  // Remover después de 3 segundos
+  setTimeout(() => {
+    tempToast.classList.remove("show");
+    setTimeout(() => {
+      tempToast.remove();
+    }, 400);
   }, 3000);
 }
 
 function updateCartUI() {
-  if (CART.length === 0) {
-    cartSummaryEl.classList.add("hide");
-  } else {
-    cartSummaryEl.classList.remove("hide");
-  }
+  // Calcular cantidad total de productos
+  const totalItems = CART.reduce((sum, item) => sum + item.qty, 0);
+
+  // Actualizar badge del carrito
+  cartBadge.textContent = totalItems;
+  cartBadge.style.display = totalItems > 0 ? "flex" : "none";
 }
 
 function renderCart() {
@@ -220,9 +230,12 @@ function renderCart() {
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 
-checkoutBtn.addEventListener("click", () => {
-  renderCart();
-  dlg.showModal();
+// Abrir modal con el icono del carrito
+cartIcon.addEventListener("click", () => {
+  if (CART.length > 0) {
+    renderCart();
+    dlg.showModal();
+  }
 });
 
 orderForm.addEventListener("submit", (e) => {
