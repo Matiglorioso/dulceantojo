@@ -501,6 +501,7 @@ body {
   padding: 0;
   background: var(--surface);
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
 dialog::backdrop {
@@ -514,6 +515,7 @@ dialog::backdrop {
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .modal h3 {
