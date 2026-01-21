@@ -117,6 +117,32 @@ body {
   margin: 0 auto;
 }
 
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.menu-section {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 20px 0;
+}
+
 .menu-item {
   border-bottom: 1px solid var(--border);
   padding-bottom: 16px;

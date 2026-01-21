@@ -1,38 +1,96 @@
-[
-  {
-    "id": "budin-limon",
-    "name": "Budín de limón con glaseado",
-    "price": 5200,
-    "desc": "Húmedo, cítrico y con glasé."
-  },
-  {
-    "id": "budin-marmol",
-    "name": "Budín marmolado",
-    "price": 5400,
-    "desc": "Vainilla + chocolate, bien casero."
-  },
-  {
-    "id": "torta-brownie",
-    "name": "Torta brownie",
-    "price": 12500,
-    "desc": "Intensa, chocolatosísima."
-  },
-  {
-    "id": "carrot-cake",
-    "name": "Carrot cake",
-    "price": 11500,
-    "desc": "Con frosting suave de queso."
-  },
-  {
-    "id": "rogel",
-    "name": "Rogel",
-    "price": 13500,
-    "desc": "Capas finitas + dulce de leche."
-  },
-  {
-    "id": "cheesecake",
-    "name": "Cheesecake",
-    "price": 14500,
-    "desc": "Base crocante + crema, clásico."
-  }
-]
+{
+  "tartas": [
+    {
+      "id": "tarta-cabsha",
+      "name": "Cabsha",
+      "price": 27000,
+      "desc": "Masa sablée de vainilla, dulce de leche y ganache de chocolate semiamargo"
+    },
+    {
+      "id": "tarta-coco",
+      "name": "Coco",
+      "price": 26000,
+      "desc": "Masa sablée de vainilla, dulce de leche y coco"
+    },
+    {
+      "id": "tarta-frutilla",
+      "name": "Frutilla",
+      "price": 27000,
+      "desc": "Masa sablée de vainilla, dulce de leche, crema chantilly y frutillas frescas"
+    },
+    {
+      "id": "tarta-pastafrola",
+      "name": "Pastafrola",
+      "price": 20000,
+      "desc": "Base de masa frola de vainilla con dulce de membrillo o batata"
+    },
+    {
+      "id": "tarta-lemon-pie",
+      "name": "Lemon Pie",
+      "price": 27000,
+      "desc": "Masa sablée de vainilla, curd de limón y merengue suizo"
+    },
+    {
+      "id": "tarta-durazno",
+      "name": "Durazno",
+      "price": 26000,
+      "desc": "Masa sablée de vainilla, crema chantilly y duraznos en almíbar"
+    },
+    {
+      "id": "tarta-key-lime-pie",
+      "name": "Key Lime Pie",
+      "price": 27000,
+      "desc": "Base de galletitas de vainilla con relleno cremoso de leche condensada y lima. Decorada con crema chantilly"
+    }
+  ],
+  "budines": [
+    {
+      "id": "budin-limon",
+      "name": "Limón",
+      "price": 8000,
+      "desc": "Masa de vainilla y limón cubierto de glaseado de azúcar"
+    },
+    {
+      "id": "budin-naranja",
+      "name": "Naranja",
+      "price": 8000,
+      "desc": "Masa de vainilla y naranja cubierto de glaseado de azúcar"
+    },
+    {
+      "id": "budin-vainilla-chocolate",
+      "name": "Vainilla y Chips de Chocolate",
+      "price": 8500,
+      "desc": "Masa de vainilla y con chips de chocolate semiamargo"
+    },
+    {
+      "id": "budin-naranja-chocolate",
+      "name": "Naranja y Chocolate",
+      "price": 8500,
+      "desc": "Masa de chocolate con naranja. Decorado con una cobertura de chocolate semiamargo"
+    },
+    {
+      "id": "budin-limon-amapolas",
+      "name": "Limón y Amapolas",
+      "price": 8000,
+      "desc": "Masa de vainilla con limón y semillas de amapola. Cubierto por un glaseado de azúcar"
+    },
+    {
+      "id": "budin-marmolado",
+      "name": "Budín Marmolado",
+      "price": 8000,
+      "desc": "Masa de vainilla y chocolate con cobertura de chocolate"
+    },
+    {
+      "id": "budin-banana-chocolate",
+      "name": "Integral de Banana con Chocolate",
+      "price": 8000,
+      "desc": "Masa integral de vainilla con banana y chips de chocolate semiamargo"
+    },
+    {
+      "id": "budin-carrot-cake",
+      "name": "Integral Carrot Cake con Nueces",
+      "price": 8000,
+      "desc": "Masa de integral de naranja y zanahoria con nueces"
+    }
+  ]
+}

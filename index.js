@@ -5,7 +5,8 @@ const WHATSAPP_TO = "5493512468459";
 const minLeadDays = 2;
 
 // DOM
-const grid = document.getElementById("grid");
+const gridTartas = document.getElementById("grid-tartas");
+const gridBudines = document.getElementById("grid-budines");
 const dlg = document.getElementById("dlg");
 const closeBtn = document.getElementById("closeBtn");
 const orderForm = document.getElementById("orderForm");
@@ -19,16 +20,19 @@ const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
 const hintEl = document.getElementById("hint");
 
-let PRODUCTS = [];
+let PRODUCTS = {
+  tartas: [],
+  budines: [],
+};
 let CART = []; // Carrito de compras
 let toastTimeout = null;
 
 // Helpers
 const money = (n) => new Intl.NumberFormat("es-AR").format(n);
 
-function render() {
+function renderSection(grid, products) {
   grid.innerHTML = "";
-  PRODUCTS.forEach((p) => {
+  products.forEach((p) => {
     const item = document.createElement("div");
     item.className = "menu-item";
     item.innerHTML = `
@@ -75,8 +79,17 @@ function render() {
   });
 }
 
+function render() {
+  renderSection(gridTartas, PRODUCTS.tartas);
+  renderSection(gridBudines, PRODUCTS.budines);
+}
+
 function addToCart(productId, quantity) {
-  const product = PRODUCTS.find((p) => p.id === productId);
+  // Buscar en ambas secciones
+  let product = PRODUCTS.tartas.find((p) => p.id === productId);
+  if (!product) {
+    product = PRODUCTS.budines.find((p) => p.id === productId);
+  }
   if (!product) return;
 
   // Buscar si el producto ya está en el carrito
@@ -297,7 +310,9 @@ async function init() {
     PRODUCTS = await res.json();
     render();
   } catch (err) {
-    grid.innerHTML = `<p class="muted">Error cargando productos. Revisá products.json o el deploy.</p>`;
+    const errorMsg = `<p class="muted">Error cargando productos. Revisá products.json o el deploy.</p>`;
+    gridTartas.innerHTML = errorMsg;
+    gridBudines.innerHTML = errorMsg;
     console.error(err);
   }
 }
