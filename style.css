@@ -497,6 +497,7 @@ body {
   border: 0;
   border-radius: var(--radius);
   width: min(560px, 94vw);
+  max-height: 90vh;
   padding: 0;
   background: var(--surface);
   box-shadow: var(--shadow);
@@ -508,6 +509,11 @@ dialog::backdrop {
 
 .modal {
   padding: 14px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal h3 {
