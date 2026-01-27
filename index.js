@@ -290,18 +290,28 @@ cartIcon.addEventListener("click", () => {
 // Helper para obtener el valor de un custom select
 function getCustomSelectValue(selectName) {
   const select = document.querySelector(`.custom-select[data-name="${selectName}"]`);
-  if (!select) return null;
+  if (!select) {
+    console.warn(`Custom select "${selectName}" no encontrado`);
+    return null;
+  }
   
-  // Primero intentar leer el atributo data-value
-  const dataValue = select.getAttribute('data-value');
-  if (dataValue && dataValue.trim()) {
+  // Primero intentar leer el atributo data-value (puede ser null si no se ha establecido)
+  let dataValue = select.getAttribute('data-value');
+  
+  // Si data-value existe y no está vacío, usarlo
+  if (dataValue !== null && dataValue.trim() !== '') {
     return dataValue.trim();
   }
   
-  // Si no existe, leer el texto del trigger
+  // Si no existe data-value o está vacío, leer el texto del trigger
   const trigger = select.querySelector('.custom-select-trigger');
   if (trigger && trigger.textContent) {
-    return trigger.textContent.trim();
+    const triggerText = trigger.textContent.trim();
+    // Actualizar el data-value con el valor del trigger para mantener sincronización
+    if (triggerText) {
+      select.setAttribute('data-value', triggerText);
+    }
+    return triggerText;
   }
   
   return null;
