@@ -150,34 +150,38 @@ body {
   position: relative;
 }
 
-.toast-button {
-  background: var(--primary);
-  border: none;
-  color: var(--primaryText);
+.toast-button,
+.toast-content.toast-button,
+button.toast-button {
+  background: var(--primary) !important;
+  border: none !important;
+  color: var(--primaryText) !important;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
-  padding: 14px 20px;
+  padding: 14px 20px !important;
   width: 100%;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 4px;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -5px 30px rgba(75, 58, 47, 0.2);
+  border-radius: 12px 12px 0 0 !important;
+  box-shadow: 0 -5px 30px rgba(75, 58, 47, 0.2) !important;
   text-align: center;
   white-space: nowrap;
   min-width: 200px;
 }
 
-.toast-button:hover {
-  background-color: var(--primaryHover);
+.toast-button:hover,
+.toast-content.toast-button:hover,
+button.toast-button:hover {
+  background-color: var(--primaryHover) !important;
   transform: translateY(-2px);
 }
 
