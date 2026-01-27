@@ -291,25 +291,29 @@ cartIcon.addEventListener("click", () => {
 function getCustomSelectValue(selectName) {
   const select = document.querySelector(`.custom-select[data-name="${selectName}"]`);
   if (!select) {
-    console.warn(`Custom select "${selectName}" no encontrado`);
     return null;
   }
   
-  // Primero intentar leer el atributo data-value (puede ser null si no se ha establecido)
-  let dataValue = select.getAttribute('data-value');
-  
-  // Si data-value existe y no está vacío, usarlo
-  if (dataValue !== null && dataValue.trim() !== '') {
-    return dataValue.trim();
+  // Intentar leer el dataset.value (se actualiza cuando el usuario hace clic)
+  if (select.dataset.value && select.dataset.value.trim() !== '') {
+    return select.dataset.value.trim();
   }
   
-  // Si no existe data-value o está vacío, leer el texto del trigger
+  // Si dataset.value no está establecido, leer el atributo data-value del HTML
+  const htmlValue = select.getAttribute('data-value');
+  if (htmlValue && htmlValue.trim() !== '') {
+    // Sincronizar dataset.value con el valor del HTML
+    select.dataset.value = htmlValue.trim();
+    return htmlValue.trim();
+  }
+  
+  // Como último recurso, leer el texto del trigger
   const trigger = select.querySelector('.custom-select-trigger');
   if (trigger && trigger.textContent) {
     const triggerText = trigger.textContent.trim();
-    // Actualizar el data-value con el valor del trigger para mantener sincronización
+    // Sincronizar dataset.value con el texto del trigger
     if (triggerText) {
-      select.setAttribute('data-value', triggerText);
+      select.dataset.value = triggerText;
     }
     return triggerText;
   }
