@@ -316,20 +316,29 @@ function getCustomSelectValue(selectName) {
     return null;
   }
   
-  // Asegurarse de que dataset.value esté inicializado
-  if (!select.dataset.value || select.dataset.value.trim() === '') {
-    const htmlValue = select.getAttribute('data-value');
-    if (htmlValue && htmlValue.trim() !== '') {
-      select.dataset.value = htmlValue.trim();
-    } else {
-      const trigger = select.querySelector('.custom-select-trigger');
-      if (trigger && trigger.textContent) {
-        select.dataset.value = trigger.textContent.trim();
+  // Primero intentar leer dataset.value (se actualiza cuando el usuario hace clic)
+  // Pero dataset.value puede ser undefined incluso si el HTML tiene data-value
+  // así que también verificamos el atributo directamente
+  let value = select.dataset.value;
+  
+  // Si dataset.value no existe o está vacío, leer directamente del atributo HTML
+  if (!value || value.trim() === '') {
+    value = select.getAttribute('data-value');
+  }
+  
+  // Si aún no hay valor, leer del texto del trigger
+  if (!value || value.trim() === '') {
+    const trigger = select.querySelector('.custom-select-trigger');
+    if (trigger && trigger.textContent) {
+      value = trigger.textContent.trim();
+      // Sincronizar con el atributo para futuras lecturas
+      if (value) {
+        select.setAttribute('data-value', value);
       }
     }
   }
   
-  return select.dataset.value ? select.dataset.value.trim() : null;
+  return value ? value.trim() : null;
 }
 
 orderForm.addEventListener("submit", (e) => {
