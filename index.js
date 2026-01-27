@@ -121,12 +121,12 @@ function showToast(productName, quantity, price) {
   const tempToast = document.createElement("div");
   tempToast.className = "toast";
   tempToast.innerHTML = `
-    <button class="toast-content toast-button" aria-label="Ver resumen del pedido">
+    <div class="toast-button" aria-label="Ver resumen del pedido">
       <button class="toast-close" aria-label="Cerrar">✕</button>
       <div>✓ Agregado al carrito</div>
       <strong>${productName}</strong>
       <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
-    </button>
+    </div>
   `;
   document.body.appendChild(tempToast);
 
