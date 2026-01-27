@@ -605,15 +605,25 @@ body {
   background: #f3f3f3;
 }
 
+/* Dialog base - estilos compartidos */
 .dialog {
   border: 0;
   border-radius: var(--radius);
-  width: min(560px, 94vw);
   max-height: 90vh;
   padding: 0;
   background: var(--surface);
   box-shadow: var(--shadow);
   overflow: hidden;
+}
+
+/* Dialog del carrito */
+.dialog-cart {
+  width: min(560px, 94vw);
+}
+
+/* Dialog de agradecimiento */
+.dialog-thank-you {
+  width: min(500px, 90vw);
 }
 
 dialog::backdrop {
@@ -827,7 +837,8 @@ textarea {
   .card img {
     height: 160px;
   }
-  .dialog {
+  .dialog-cart,
+  .dialog-thank-you {
     width: 96vw;
     border-radius: 18px;
   }
