@@ -264,11 +264,16 @@ orderForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const data = new FormData(orderForm);
-  const delivery = data.get("delivery");
+  
+  // Obtener valores de los custom selects
+  const deliverySelect = document.querySelector('.custom-select[data-name="delivery"]');
+  const paymentSelect = document.querySelector('.custom-select[data-name="payment"]');
+  const delivery = deliverySelect ? deliverySelect.dataset.value : "Retiro";
+  const payment = paymentSelect ? paymentSelect.dataset.value : "Efectivo";
+  
   const address = data.get("address") || "";
   const name = data.get("name").trim();
   const phone = data.get("phone").trim();
-  const payment = data.get("payment");
   const notes = data.get("notes") || "";
 
   // Validar nombre (mínimo 3 caracteres, solo letras)
@@ -291,6 +296,9 @@ orderForm.addEventListener("submit", (e) => {
     return;
   }
 
+  // Calcular total del pedido
+  const totalPrice = CART.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
   // Crear líneas de productos
   const productLines = CART.map(
     (item) => `• ${item.name} x${item.qty} = $${money(item.price * item.qty)}`,
@@ -300,10 +308,11 @@ orderForm.addEventListener("submit", (e) => {
     "Hola! Quiero hacer un pedido en *Dulce Antojo* 💕",
     ...productLines,
     `• Entrega: ${delivery}`,
-    delivery === "Envío" ? `• Dirección: ${address}` : null,
+    delivery === "Envío" && address ? `• Dirección: ${address}` : null,
     `• Nombre: ${name}`,
     `• Mi WhatsApp: ${phone}`,
     `• Forma de pago: ${payment}`,
+    `• Total: $${money(totalPrice)}`,
     notes.trim() ? `• Notas: ${notes.trim()}` : null,
   ].filter(Boolean);
 
