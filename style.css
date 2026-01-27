@@ -741,10 +741,9 @@ textarea {
 
 .thank-you-modal {
   text-align: center;
-  padding: 32px 24px;
   min-width: 320px;
-  max-width: 400px;
   position: relative;
+  background: var(--bg);
 }
 
 .thank-you-modal .modal-header {
@@ -779,6 +778,41 @@ textarea {
   color: var(--text);
   margin: 0;
   line-height: 1.4;
+}
+
+.thank-you-summary {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  max-width: 100%;
+}
+
+.thank-you-summary h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.thank-you-summary-item {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thank-you-summary-item:last-child {
+  margin-bottom: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 16px;
 }
 
 @media (max-width: 520px) {

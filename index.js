@@ -24,6 +24,7 @@ const addressEl = document.getElementById("address");
 const hintEl = document.getElementById("hint");
 const thankYouDlg = document.getElementById("thankYouDlg");
 const thankYouCloseBtn = document.getElementById("thankYouCloseBtn");
+const thankYouSummary = document.getElementById("thankYouSummary");
 let PRODUCTS = {
   tartas: [],
   budines: [],
@@ -251,6 +252,22 @@ function renderCart() {
   });
 }
 
+function renderThankYouSummary(orderSummary, total) {
+  thankYouSummary.innerHTML = `
+    <h3>Resumen del pedido</h3>
+    ${orderSummary.map(item => `
+      <div class="thank-you-summary-item">
+        <span>${item.name} x${item.qty}</span>
+        <span>$ ${money(item.total)}</span>
+      </div>
+    `).join('')}
+    <div class="thank-you-summary-item">
+      <span>Total</span>
+      <span>$ ${money(total)}</span>
+    </div>
+  `;
+}
+
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
@@ -330,10 +347,22 @@ orderForm.addEventListener("submit", (e) => {
   const url = `https://wa.me/${WHATSAPP_TO}?text=${text}`;
   window.open(url, "_blank");
 
+  // Guardar resumen del pedido antes de limpiar el carrito
+  const orderSummary = CART.map(item => ({
+    name: item.name,
+    qty: item.qty,
+    price: item.price,
+    total: item.price * item.qty
+  }));
+  const orderTotal = totalPrice;
+
   // Limpiar carrito después de enviar
   CART = [];
   updateCartUI();
   dlg.close();
+  
+  // Mostrar resumen en el modal de agradecimiento
+  renderThankYouSummary(orderSummary, orderTotal);
   
   // Mostrar modal de agradecimiento después de cerrar el modal del carrito
   setTimeout(() => {
