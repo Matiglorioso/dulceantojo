@@ -153,6 +153,7 @@ function showToast(productName, quantity, price) {
     closeToast();
     if (CART.length > 0) {
       renderCart();
+      initCustomSelectValues(); // Inicializar valores de los selects
       dlg.showModal();
     }
   });
@@ -283,9 +284,30 @@ thankYouDlg.addEventListener("click", (e) => {
 cartIcon.addEventListener("click", () => {
   if (CART.length > 0) {
     renderCart();
+    initCustomSelectValues(); // Inicializar valores de los selects
     dlg.showModal();
   }
 });
+
+// Inicializar valores de custom selects desde el HTML
+function initCustomSelectValues() {
+  const customSelects = document.querySelectorAll(".custom-select");
+  customSelects.forEach((select) => {
+    // Si dataset.value no está establecido, leerlo del atributo data-value del HTML
+    if (!select.dataset.value || select.dataset.value.trim() === '') {
+      const htmlValue = select.getAttribute('data-value');
+      if (htmlValue && htmlValue.trim() !== '') {
+        select.dataset.value = htmlValue.trim();
+      } else {
+        // Si tampoco hay data-value, usar el texto del trigger
+        const trigger = select.querySelector('.custom-select-trigger');
+        if (trigger && trigger.textContent) {
+          select.dataset.value = trigger.textContent.trim();
+        }
+      }
+    }
+  });
+}
 
 // Helper para obtener el valor de un custom select
 function getCustomSelectValue(selectName) {
@@ -294,31 +316,20 @@ function getCustomSelectValue(selectName) {
     return null;
   }
   
-  // Intentar leer el dataset.value (se actualiza cuando el usuario hace clic)
-  if (select.dataset.value && select.dataset.value.trim() !== '') {
-    return select.dataset.value.trim();
-  }
-  
-  // Si dataset.value no está establecido, leer el atributo data-value del HTML
-  const htmlValue = select.getAttribute('data-value');
-  if (htmlValue && htmlValue.trim() !== '') {
-    // Sincronizar dataset.value con el valor del HTML
-    select.dataset.value = htmlValue.trim();
-    return htmlValue.trim();
-  }
-  
-  // Como último recurso, leer el texto del trigger
-  const trigger = select.querySelector('.custom-select-trigger');
-  if (trigger && trigger.textContent) {
-    const triggerText = trigger.textContent.trim();
-    // Sincronizar dataset.value con el texto del trigger
-    if (triggerText) {
-      select.dataset.value = triggerText;
+  // Asegurarse de que dataset.value esté inicializado
+  if (!select.dataset.value || select.dataset.value.trim() === '') {
+    const htmlValue = select.getAttribute('data-value');
+    if (htmlValue && htmlValue.trim() !== '') {
+      select.dataset.value = htmlValue.trim();
+    } else {
+      const trigger = select.querySelector('.custom-select-trigger');
+      if (trigger && trigger.textContent) {
+        select.dataset.value = trigger.textContent.trim();
+      }
     }
-    return triggerText;
   }
   
-  return null;
+  return select.dataset.value ? select.dataset.value.trim() : null;
 }
 
 orderForm.addEventListener("submit", (e) => {
