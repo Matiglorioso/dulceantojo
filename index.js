@@ -295,8 +295,14 @@ orderForm.addEventListener("submit", (e) => {
   // Obtener valores de los custom selects
   const deliverySelect = document.querySelector('.custom-select[data-name="delivery"]');
   const paymentSelect = document.querySelector('.custom-select[data-name="payment"]');
-  const delivery = deliverySelect ? deliverySelect.dataset.value : "Retiro";
-  const payment = paymentSelect ? paymentSelect.dataset.value : "Efectivo";
+  
+  // Obtener el valor del dataset o del texto del trigger como fallback
+  const delivery = deliverySelect 
+    ? (deliverySelect.dataset.value || deliverySelect.querySelector('.custom-select-trigger').textContent.trim())
+    : "Retiro";
+  const payment = paymentSelect 
+    ? (paymentSelect.dataset.value || paymentSelect.querySelector('.custom-select-trigger').textContent.trim())
+    : "Efectivo";
   
   const address = data.get("address") || "";
   const name = data.get("name").trim();
