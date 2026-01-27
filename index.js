@@ -287,41 +287,34 @@ cartIcon.addEventListener("click", () => {
   }
 });
 
+// Helper para obtener el valor de un custom select
+function getCustomSelectValue(selectName) {
+  const select = document.querySelector(`.custom-select[data-name="${selectName}"]`);
+  if (!select) return null;
+  
+  // Primero intentar leer el atributo data-value
+  const dataValue = select.getAttribute('data-value');
+  if (dataValue && dataValue.trim()) {
+    return dataValue.trim();
+  }
+  
+  // Si no existe, leer el texto del trigger
+  const trigger = select.querySelector('.custom-select-trigger');
+  if (trigger && trigger.textContent) {
+    return trigger.textContent.trim();
+  }
+  
+  return null;
+}
+
 orderForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const data = new FormData(orderForm);
   
-  // Obtener valores de los custom selects
-  const deliverySelect = document.querySelector('.custom-select[data-name="delivery"]');
-  const paymentSelect = document.querySelector('.custom-select[data-name="payment"]');
-  
-  // Obtener el valor: primero del atributo data-value, luego del texto del trigger, y finalmente el valor por defecto
-  let delivery = "Retiro";
-  if (deliverySelect) {
-    const dataValue = deliverySelect.getAttribute('data-value');
-    if (dataValue && dataValue.trim()) {
-      delivery = dataValue.trim();
-    } else {
-      const trigger = deliverySelect.querySelector('.custom-select-trigger');
-      if (trigger) {
-        delivery = trigger.textContent.trim();
-      }
-    }
-  }
-  
-  let payment = "Efectivo";
-  if (paymentSelect) {
-    const dataValue = paymentSelect.getAttribute('data-value');
-    if (dataValue && dataValue.trim()) {
-      payment = dataValue.trim();
-    } else {
-      const trigger = paymentSelect.querySelector('.custom-select-trigger');
-      if (trigger) {
-        payment = trigger.textContent.trim();
-      }
-    }
-  }
+  // Obtener valores de los custom selects con valores por defecto
+  const delivery = getCustomSelectValue("delivery") || "Retiro";
+  const payment = getCustomSelectValue("payment") || "Efectivo";
   
   const address = data.get("address") || "";
   const name = data.get("name").trim();
