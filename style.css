@@ -744,6 +744,19 @@ textarea {
   padding: 32px 24px;
   min-width: 320px;
   max-width: 400px;
+  position: relative;
+}
+
+.thank-you-modal .modal-header {
+  position: relative;
+  margin-bottom: 0;
+  justify-content: flex-end;
+}
+
+.thank-you-modal .close-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
 }
 
 .thank-you-content {

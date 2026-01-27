@@ -255,6 +255,13 @@ function renderCart() {
 closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
 
+// Cerrar modal de agradecimiento al hacer clic fuera
+thankYouDlg.addEventListener("click", (e) => {
+  if (e.target === thankYouDlg) {
+    thankYouDlg.close();
+  }
+});
+
 // Abrir modal con el icono del carrito
 cartIcon.addEventListener("click", () => {
   if (CART.length > 0) {
