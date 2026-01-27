@@ -741,7 +741,8 @@ textarea {
 
 .thank-you-modal {
   text-align: center;
-  min-width: 320px;
+  min-width: 400px;
+  max-width: 500px;
   position: relative;
   background: var(--bg);
 }
@@ -763,6 +764,9 @@ textarea {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .thank-you-logo {
@@ -782,12 +786,13 @@ textarea {
 
 .thank-you-summary {
   margin-top: 20px;
-  padding: 16px;
+  padding: 20px;
   background: var(--surface);
   border-radius: 12px;
   border: 1px solid var(--border);
   text-align: left;
-  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .thank-you-summary h3 {
