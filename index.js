@@ -296,13 +296,32 @@ orderForm.addEventListener("submit", (e) => {
   const deliverySelect = document.querySelector('.custom-select[data-name="delivery"]');
   const paymentSelect = document.querySelector('.custom-select[data-name="payment"]');
   
-  // Obtener el valor del dataset o del texto del trigger como fallback
-  const delivery = deliverySelect 
-    ? (deliverySelect.dataset.value || deliverySelect.querySelector('.custom-select-trigger').textContent.trim())
-    : "Retiro";
-  const payment = paymentSelect 
-    ? (paymentSelect.dataset.value || paymentSelect.querySelector('.custom-select-trigger').textContent.trim())
-    : "Efectivo";
+  // Obtener el valor: primero del atributo data-value, luego del texto del trigger, y finalmente el valor por defecto
+  let delivery = "Retiro";
+  if (deliverySelect) {
+    const dataValue = deliverySelect.getAttribute('data-value');
+    if (dataValue && dataValue.trim()) {
+      delivery = dataValue.trim();
+    } else {
+      const trigger = deliverySelect.querySelector('.custom-select-trigger');
+      if (trigger) {
+        delivery = trigger.textContent.trim();
+      }
+    }
+  }
+  
+  let payment = "Efectivo";
+  if (paymentSelect) {
+    const dataValue = paymentSelect.getAttribute('data-value');
+    if (dataValue && dataValue.trim()) {
+      payment = dataValue.trim();
+    } else {
+      const trigger = paymentSelect.querySelector('.custom-select-trigger');
+      if (trigger) {
+        payment = trigger.textContent.trim();
+      }
+    }
+  }
   
   const address = data.get("address") || "";
   const name = data.get("name").trim();
