@@ -121,12 +121,12 @@ function showToast(productName, quantity, price) {
   const tempToast = document.createElement("div");
   tempToast.className = "toast";
   tempToast.innerHTML = `
-    <div class="toast-content">
+    <button class="toast-content toast-button" aria-label="Ver resumen del pedido">
       <button class="toast-close" aria-label="Cerrar">✕</button>
       <div>✓ Agregado al carrito</div>
       <strong>${productName}</strong>
       <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
-    </div>
+    </button>
   `;
   document.body.appendChild(tempToast);
 
@@ -139,7 +139,20 @@ function showToast(productName, quantity, price) {
   };
 
   // Evento del botón X
-  tempToast.querySelector(".toast-close").addEventListener("click", closeToast);
+  tempToast.querySelector(".toast-close").addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeToast();
+  });
+
+  // Evento para hacer clicable todo el toast y abrir el modal
+  tempToast.querySelector(".toast-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    closeToast();
+    if (CART.length > 0) {
+      renderCart();
+      dlg.showModal();
+    }
+  });
 
   // Trigger animación
   setTimeout(() => {
