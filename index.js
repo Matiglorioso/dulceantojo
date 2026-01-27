@@ -22,6 +22,8 @@ const totalAmountEl = document.getElementById("totalAmount");
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
 const hintEl = document.getElementById("hint");
+const thankYouDlg = document.getElementById("thankYouDlg");
+const thankYouCloseBtn = document.getElementById("thankYouCloseBtn");
 let PRODUCTS = {
   tartas: [],
   budines: [],
@@ -251,6 +253,7 @@ function renderCart() {
 
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
+thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
 
 // Abrir modal con el icono del carrito
 cartIcon.addEventListener("click", () => {
@@ -324,6 +327,11 @@ orderForm.addEventListener("submit", (e) => {
   CART = [];
   updateCartUI();
   dlg.close();
+  
+  // Mostrar modal de agradecimiento después de cerrar el modal del carrito
+  setTimeout(() => {
+    thankYouDlg.showModal();
+  }, 300);
 });
 
 // Tab Handler
