@@ -271,10 +271,11 @@ body {
 }
 
 .section-subtitle {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  color: #3a2d24;
   margin: 0 0 20px 0;
+  letter-spacing: 0.3px;
 }
 
 .menu-item {
@@ -304,11 +305,10 @@ body {
 
 .menu-title {
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: #3a2d24;
+  color: var(--text);
   margin: 0;
-  letter-spacing: 0.3px;
 }
 
 .menu-desc {
