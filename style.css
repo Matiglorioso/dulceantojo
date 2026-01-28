@@ -411,8 +411,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 12px;
-  padding: 0;
 }
 
 .cart-total {
@@ -421,13 +419,9 @@ body {
   border-radius: 10px;
   text-align: center;
   font-size: 14px;
-  margin: 0 0 12px 0;
-  border: none;
-  box-shadow: 0 3px 8px rgba(231, 169, 181, 0.25);
+  margin: 0 14px 0 14px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
   color: var(--primaryText);
 }
 
