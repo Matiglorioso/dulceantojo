@@ -665,73 +665,55 @@ textarea {
   background: #fff;
 }
 
-.custom-select {
-  position: relative;
-}
-
-.custom-select-trigger {
-  padding: 12px;
-  border-radius: 14px;
-  border: 1px solid #ddd;
-  background: #fff;
-  cursor: pointer;
+.radio-group {
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.radio-label {
+  display: flex;
   align-items: center;
-  user-select: none;
-}
-
-.custom-select-trigger::after {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid #4b3a2f;
-  border-bottom: 2px solid #4b3a2f;
-  transform: rotate(45deg) translateY(-2px);
-  margin-left: 8px;
-  flex-shrink: 0;
-}
-
-.custom-select-options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #fff;
-  border: none;
-  border-radius: 0 0 14px 14px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  z-index: 100;
-}
-
-.custom-select-options.active {
-  max-height: 200px;
-  border: 1px solid #ddd;
-  border-top: none;
-  overflow-y: auto;
-}
-
-.custom-select-option {
-  padding: 12px;
+  gap: 8px;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.custom-select-option:hover {
-  background: var(--bg);
-}
-
-.custom-select-option:first-child {
-  border-top: none;
-}
-
-.select-wrapper {
-  position: relative;
-  display: block;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
   border-radius: 14px;
-  overflow: hidden;
+  background: #fff;
+  transition: all 0.2s ease;
+  flex: 1;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.radio-label:hover {
+  background: var(--bg);
+  border-color: var(--primary);
+}
+
+.radio-label input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.radio-label input[type="radio"]:checked + span {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.radio-label:has(input[type="radio"]:checked) {
+  background: var(--bg);
+  border-color: var(--primary);
+  border-width: 2px;
+}
+
+.radio-label span {
+  user-select: none;
 }
 
 textarea {

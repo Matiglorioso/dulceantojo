@@ -153,7 +153,7 @@ function showToast(productName, quantity, price) {
     closeToast();
     if (CART.length > 0) {
       renderCart();
-      initCustomSelectValues(); // Inicializar valores de los selects
+      initRadioButtons(); // Inicializar radio buttons
       dlg.showModal();
     }
   });
@@ -284,61 +284,35 @@ thankYouDlg.addEventListener("click", (e) => {
 cartIcon.addEventListener("click", () => {
   if (CART.length > 0) {
     renderCart();
-    initCustomSelectValues(); // Inicializar valores de los selects
+    initRadioButtons(); // Inicializar radio buttons
     dlg.showModal();
   }
 });
 
-// Inicializar valores de custom selects desde el HTML
-function initCustomSelectValues() {
-  const customSelects = document.querySelectorAll(".custom-select");
-  customSelects.forEach((select) => {
-    // Si dataset.value no está establecido, leerlo del atributo data-value del HTML
-    if (!select.dataset.value || select.dataset.value.trim() === '') {
-      const htmlValue = select.getAttribute('data-value');
-      if (htmlValue && htmlValue.trim() !== '') {
-        select.dataset.value = htmlValue.trim();
-      } else {
-        // Si tampoco hay data-value, usar el texto del trigger
-        const trigger = select.querySelector('.custom-select-trigger');
-        if (trigger && trigger.textContent) {
-          select.dataset.value = trigger.textContent.trim();
-        }
-      }
-    }
+// Inicializar radio buttons - asegurar que ninguno esté seleccionado por defecto
+function initRadioButtons() {
+  // Deseleccionar todos los radio buttons
+  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach(radio => {
+    radio.checked = false;
   });
-}
-
-// Helper para obtener el valor de un custom select
-function getCustomSelectValue(selectName) {
-  const select = document.querySelector(`.custom-select[data-name="${selectName}"]`);
-  if (!select) {
-    return null;
-  }
+  document.querySelectorAll('input[type="radio"][name="payment"]').forEach(radio => {
+    radio.checked = false;
+  });
   
-  // Primero intentar leer dataset.value (se actualiza cuando el usuario hace clic)
-  // Pero dataset.value puede ser undefined incluso si el HTML tiene data-value
-  // así que también verificamos el atributo directamente
-  let value = select.dataset.value;
+  // Ocultar campo de dirección inicialmente
+  addrWrap.classList.add("hide");
+  addressEl.required = false;
+  addressEl.value = "";
   
-  // Si dataset.value no existe o está vacío, leer directamente del atributo HTML
-  if (!value || value.trim() === '') {
-    value = select.getAttribute('data-value');
-  }
-  
-  // Si aún no hay valor, leer del texto del trigger
-  if (!value || value.trim() === '') {
-    const trigger = select.querySelector('.custom-select-trigger');
-    if (trigger && trigger.textContent) {
-      value = trigger.textContent.trim();
-      // Sincronizar con el atributo para futuras lecturas
-      if (value) {
-        select.setAttribute('data-value', value);
-      }
-    }
-  }
-  
-  return value ? value.trim() : null;
+  // Agregar listeners para mostrar/ocultar dirección según entrega
+  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const isShip = radio.value === "Envío";
+      addrWrap.classList.toggle("hide", !isShip);
+      addressEl.required = isShip;
+      if (!isShip) addressEl.value = "";
+    });
+  });
 }
 
 orderForm.addEventListener("submit", (e) => {
@@ -346,9 +320,19 @@ orderForm.addEventListener("submit", (e) => {
 
   const data = new FormData(orderForm);
   
-  // Obtener valores de los custom selects con valores por defecto
-  const delivery = getCustomSelectValue("delivery") || "Retiro";
-  const payment = getCustomSelectValue("payment") || "Efectivo";
+  // Obtener valores de los radio buttons
+  const delivery = data.get("delivery");
+  const payment = data.get("payment");
+  
+  // Validar que se hayan seleccionado los radio buttons
+  if (!delivery) {
+    alert("Por favor selecciona una opción de entrega");
+    return;
+  }
+  if (!payment) {
+    alert("Por favor selecciona una forma de pago");
+    return;
+  }
   
   const address = data.get("address") || "";
   const name = data.get("name").trim();
@@ -372,6 +356,12 @@ orderForm.addEventListener("submit", (e) => {
   }
   if (phone.length < 7) {
     alert("Por favor ingresa un número de WhatsApp válido");
+    return;
+  }
+  
+  // Validar dirección si es envío
+  if (delivery === "Envío" && !address.trim()) {
+    alert("Por favor ingresa la dirección de entrega");
     return;
   }
 
@@ -447,50 +437,12 @@ function initTabs() {
   });
 }
 
-// Custom Select Handler
-function initCustomSelects() {
-  const customSelects = document.querySelectorAll(".custom-select");
-
-  customSelects.forEach((select) => {
-    const trigger = select.querySelector(".custom-select-trigger");
-    const optionsList = select.querySelector(".custom-select-options");
-    const options = select.querySelectorAll(".custom-select-option");
-
-    trigger.addEventListener("click", () => {
-      optionsList.classList.toggle("active");
-    });
-
-    options.forEach((option) => {
-      option.addEventListener("click", () => {
-        trigger.textContent = option.textContent;
-        select.dataset.value = option.dataset.value;
-        optionsList.classList.remove("active");
-
-        // Si es delivery, mostrar/ocultar dirección
-        if (select.dataset.name === "delivery") {
-          const isShip = option.dataset.value === "Envío";
-          addrWrap.classList.toggle("hide", !isShip);
-          addressEl.required = isShip;
-          if (!isShip) addressEl.value = "";
-        }
-      });
-    });
-  });
-
-  // Cerrar dropdown al hacer click fuera
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".custom-select")) {
-      document
-        .querySelectorAll(".custom-select-options.active")
-        .forEach((opt) => opt.classList.remove("active"));
-    }
-  });
-}
+// Los radio buttons ya no necesitan inicialización especial aquí
+// La función initRadioButtons() se llama cuando se abre el modal
 
 // Load products
 async function init() {
   initTabs();
-  initCustomSelects();
 
   try {
     const res = await fetch("./products.json", { cache: "no-store" });

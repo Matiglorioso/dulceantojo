@@ -76,15 +76,16 @@
           </div>
 
           <label>
-            Entrega
-            <div class="custom-select" data-name="delivery" data-value="Retiro">
-              <div class="custom-select-trigger">Retiro</div>
-              <div class="custom-select-options">
-                <div class="custom-select-option" data-value="Retiro">
-                  Retiro
-                </div>
-                <div class="custom-select-option" data-value="Envío">Envío</div>
-              </div>
+            Entrega <span style="color: #d9534f;">*</span>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="delivery" value="Retiro" required />
+                <span>Retiro</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="delivery" value="Envío" required />
+                <span>Envío</span>
+              </label>
             </div>
           </label>
 
@@ -127,21 +128,16 @@
           </div>
 
           <label>
-            Forma de pago
-            <div
-              class="custom-select"
-              data-name="payment"
-              data-value="Efectivo"
-            >
-              <div class="custom-select-trigger">Efectivo</div>
-              <div class="custom-select-options">
-                <div class="custom-select-option" data-value="Efectivo">
-                  Efectivo
-                </div>
-                <div class="custom-select-option" data-value="Transferencia">
-                  Transferencia
-                </div>
-              </div>
+            Forma de pago <span style="color: #d9534f;">*</span>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="payment" value="Efectivo" required />
+                <span>Efectivo</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="payment" value="Transferencia" required />
+                <span>Transferencia</span>
+              </label>
             </div>
           </label>
 
