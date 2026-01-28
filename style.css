@@ -800,12 +800,15 @@ textarea {
 }
 
 .thank-you-instagram {
-  margin-top: 24px;
   text-align: center;
+}
+
+.thank-you-instagram-label-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
   align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 
 .thank-you-instagram-label {
@@ -815,23 +818,23 @@ textarea {
   font-weight: 500;
 }
 
-.thank-you-instagram-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-}
-
 .instagram-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--primary);
 }
 
 .thank-you-instagram-user {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.thank-you-instagram-user:hover {
+  color: var(--primary);
 }
 
 @media (max-width: 520px) {
