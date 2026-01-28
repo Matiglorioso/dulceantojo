@@ -667,8 +667,8 @@ textarea {
 
 .radio-group {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  gap: 24px;
   margin-top: 6px;
 }
 
