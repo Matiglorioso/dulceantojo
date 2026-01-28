@@ -799,6 +799,41 @@ textarea {
   font-size: 16px;
 }
 
+.thank-you-instagram {
+  margin-top: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.thank-you-instagram-label {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+.thank-you-instagram-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.instagram-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+
+.thank-you-instagram-user {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
 @media (max-width: 520px) {
   .two {
     grid-template-columns: 1fr;
