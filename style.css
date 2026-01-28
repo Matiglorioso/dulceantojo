@@ -411,19 +411,49 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  padding: 0 14px;
 }
 
 .cart-total {
-  padding: 12px 16px;
-  background: var(--bg);
-  border-radius: 12px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primaryHover) 100%);
+  border-radius: 14px;
   text-align: center;
-  font-size: 16px;
-  margin-bottom: 16px;
-  border: 2px solid var(--border);
+  font-size: 18px;
+  margin: 0 14px 20px 14px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(231, 169, 181, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--primaryText);
+}
+
+.total-icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.9;
+}
+
+.cart-total div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.total-label {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cart-total strong {
+  font-size: 24px;
+  font-weight: 800;
 }
 
 .cart-item {
@@ -431,6 +461,16 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+  box-shadow: 0 2px 8px rgba(75, 58, 47, 0.06);
+  border-color: var(--primary);
 }
 
 .cart-item-info {
@@ -518,7 +558,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin: -14px -14px 20px -14px;
+  padding: 20px 20px 16px 20px;
+  background: linear-gradient(to bottom, rgba(231, 169, 181, 0.08), rgba(251, 247, 243, 0.4));
+  border-bottom: 1px solid var(--border);
 }
 
 .modal-header.center {
@@ -529,11 +572,16 @@ body {
 .modal-header.center h3 {
   flex: 1;
   text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
 }
 
 .modal-header.center .close-btn {
   position: absolute;
-  right: 0;
+  right: 16px;
+  top: 16px;
 }
 
 .close-btn {
@@ -595,10 +643,30 @@ body {
 .btn.primary {
   background: var(--primary);
   color: var(--primaryText);
+  box-shadow: 0 4px 12px rgba(231, 169, 181, 0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
 }
 
 .btn.primary:hover {
   background: var(--primaryHover);
+  box-shadow: 0 6px 16px rgba(231, 169, 181, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn.primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(231, 169, 181, 0.3);
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .btn.ghost {
@@ -631,7 +699,7 @@ dialog::backdrop {
 }
 
 .modal {
-  padding: 14px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   max-height: 90vh;
@@ -646,7 +714,29 @@ dialog::backdrop {
 
 .form {
   display: grid;
-  gap: 10px;
+  gap: 20px;
+  padding: 0 14px 14px 14px;
+}
+
+.form-section {
+  background: rgba(251, 247, 243, 0.5);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 label {
@@ -660,9 +750,42 @@ input,
 textarea {
   padding: 12px;
   border-radius: 14px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   font: inherit;
   background: #fff;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(231, 169, 181, 0.1);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-wrapper input {
+  padding-left: 38px;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: var(--primary);
 }
 
 .radio-group {
@@ -675,27 +798,41 @@ textarea {
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
   color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
 }
 
 .radio-label:hover {
   color: var(--primary);
+  background: rgba(231, 169, 181, 0.08);
 }
 
 .radio-label input[type="radio"] {
   margin: 0;
   cursor: pointer;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   accent-color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.radio-label input[type="radio"]:checked {
+  transform: scale(1.1);
 }
 
 .radio-label input[type="radio"]:checked + span {
   font-weight: 700;
+  color: var(--primary);
+}
+
+.radio-label:has(input[type="radio"]:checked) {
+  background: rgba(231, 169, 181, 0.12);
   color: var(--primary);
 }
 
@@ -845,5 +982,75 @@ textarea {
   .dialog-thank-you {
     width: 96vw;
     border-radius: 18px;
+  }
+  
+  .modal-header {
+    padding: 16px 16px 12px 16px;
+    margin: 0 0 16px 0;
+  }
+  
+  .modal-header.center h3 {
+    font-size: 18px;
+  }
+  
+  .form {
+    padding: 0 12px 12px 12px;
+    gap: 16px;
+  }
+  
+  .form-section {
+    padding: 12px;
+  }
+  
+  .cart-items {
+    padding: 0 12px;
+    gap: 10px;
+  }
+  
+  .cart-item {
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .cart-total {
+    margin: 0 12px 16px 12px;
+    padding: 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .cart-total strong {
+    font-size: 20px;
+  }
+  
+  .total-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .btn.primary {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+  
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .input-wrapper input {
+    padding-left: 36px;
+  }
+  
+  .input-icon {
+    width: 16px;
+    height: 16px;
+    left: 10px;
   }
 }
