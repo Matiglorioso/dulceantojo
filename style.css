@@ -1033,8 +1033,7 @@ textarea {
   }
   
   .total-icon {
-    width: 16px;
-    height: 16px;
+    display: none;
   }
   
   .total-label {
