@@ -229,7 +229,7 @@ body {
   border-bottom: 3px solid transparent;
   padding: 12px 20px;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--muted);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -272,6 +272,7 @@ body {
 
 .section-subtitle {
   font-size: 14px;
+  font-weight: 700;
   color: var(--muted);
   margin: 0 0 20px 0;
 }
