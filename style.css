@@ -416,24 +416,24 @@ body {
 }
 
 .cart-total {
-  padding: 18px 20px;
+  padding: 14px 16px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primaryHover) 100%);
-  border-radius: 14px;
+  border-radius: 12px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   margin: 0 14px 20px 14px;
   border: none;
   box-shadow: 0 4px 12px rgba(231, 169, 181, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--primaryText);
 }
 
 .total-icon {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   opacity: 0.9;
 }
 
@@ -444,7 +444,7 @@ body {
 }
 
 .total-label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   opacity: 0.85;
   text-transform: uppercase;
@@ -452,7 +452,7 @@ body {
 }
 
 .cart-total strong {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -558,8 +558,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: -14px -14px 20px -14px;
-  padding: 20px 20px 16px 20px;
+  margin: 0 0 20px 0;
+  padding: 24px 20px 16px 20px;
   background: linear-gradient(to bottom, rgba(231, 169, 181, 0.08), rgba(251, 247, 243, 0.4));
   border-bottom: 1px solid var(--border);
 }
@@ -726,6 +726,14 @@ dialog::backdrop {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.form-section > .radio-group,
+.form-section > .input-wrapper,
+.form-section > textarea,
+.form-section > input,
+.form-section > .two {
+  margin-top: 4px;
 }
 
 .section-title {
@@ -985,7 +993,7 @@ textarea {
   }
   
   .modal-header {
-    padding: 16px 16px 12px 16px;
+    padding: 20px 16px 12px 16px;
     margin: 0 0 16px 0;
   }
   
@@ -1014,18 +1022,22 @@ textarea {
   
   .cart-total {
     margin: 0 12px 16px 12px;
-    padding: 16px;
+    padding: 12px 14px;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
   
   .cart-total strong {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .total-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .total-label {
+    font-size: 10px;
   }
   
   .btn.primary {

@@ -308,9 +308,11 @@ function initRadioButtons() {
   document.querySelectorAll('input[type="radio"][name="delivery"]').forEach(radio => {
     radio.addEventListener('change', () => {
       const isShip = radio.value === "Envío";
-      addrWrap.classList.toggle("hide", !isShip);
-      addressEl.required = isShip;
-      if (!isShip) addressEl.value = "";
+      if (addrWrap) {
+        addrWrap.classList.toggle("hide", !isShip);
+        addressEl.required = isShip;
+        if (!isShip && addressEl) addressEl.value = "";
+      }
     });
   });
 }
