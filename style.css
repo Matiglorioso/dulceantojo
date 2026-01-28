@@ -271,11 +271,11 @@ body {
 }
 
 .section-subtitle {
-  font-size: 15px;
-  font-weight: 600;
-  color: #3a2d24;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
   margin: 0 0 20px 0;
-  letter-spacing: 0.3px;
 }
 
 .menu-item {
