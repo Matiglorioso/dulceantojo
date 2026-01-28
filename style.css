@@ -764,7 +764,6 @@ textarea {
 }
 
 .thank-you-summary {
-  margin-top: 20px;
   padding: 20px;
   background: var(--surface);
   border-radius: 12px;
@@ -805,10 +804,8 @@ textarea {
 
 .thank-you-instagram-label-wrapper {
   display: flex;
-  align-items: center;
   gap: 6px;
   justify-content: center;
-  margin-bottom: 8px;
 }
 
 .thank-you-instagram-label {
@@ -825,8 +822,8 @@ textarea {
 }
 
 .thank-you-instagram-user {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 800;
   color: var(--text);
   text-decoration: none;
   display: inline-block;
