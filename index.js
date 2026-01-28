@@ -273,6 +273,13 @@ function renderThankYouSummary(orderSummary, total) {
 closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
 
+// Cerrar modal del carrito al hacer clic fuera
+dlg.addEventListener("click", (e) => {
+  if (e.target === dlg) {
+    dlg.close();
+  }
+});
+
 // Cerrar modal de agradecimiento al hacer clic fuera
 thankYouDlg.addEventListener("click", (e) => {
   if (e.target === thankYouDlg) {
