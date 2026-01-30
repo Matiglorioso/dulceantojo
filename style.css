@@ -168,7 +168,7 @@ body {
 
 .site-footer {
   padding: 24px 20px;
-  border-top: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
   background: #ede6df;
   color: var(--text);
   margin-top: 24px;
@@ -179,13 +179,13 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .footer-side {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex: 1;
   font-size: 14px;
   color: var(--text);
@@ -205,31 +205,41 @@ body {
   color: var(--text);
 }
 
+/* Íconos clicables: área mínima 44px, fondo sutil */
 .footer-social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 50%;
+  background: rgba(75, 58, 47, 0.06);
   color: var(--text);
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .footer-social-link:hover {
   color: var(--primary);
-  transform: scale(1.1);
+  background: rgba(231, 169, 181, 0.2);
+  transform: scale(1.08);
 }
 
 .footer-social-link .footer-social-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
+/* Bloque central con más aire */
 .footer-center {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   flex-shrink: 0;
+  padding: 14px 20px;
+  margin: 0 -4px;
 }
 
 .footer-word {
@@ -247,14 +257,18 @@ body {
   border-radius: 50%;
 }
 
+/* Línea de info más visible y separada */
 .footer-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 4px 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
+  padding-top: 16px;
+  margin-top: 0;
+  border-top: 1px solid var(--border);
 }
 
 .footer-item {
