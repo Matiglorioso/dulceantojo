@@ -430,7 +430,6 @@ body {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  margin-bottom: 12px;
 }
 
 .cart-items {
@@ -1061,7 +1060,6 @@ textarea {
   
   .cart-items-wrapper {
     padding: 10px;
-    margin-bottom: 10px;
   }
   
   .cart-item {
