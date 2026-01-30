@@ -183,20 +183,22 @@ body {
   gap: 24px;
 }
 
-/* Contenedor izquierdo: ocupa espacio, contenido pegado al centro */
+/* Contenedor izquierdo: ancho limitado para no quedar tan esquinado */
 .footer-left {
   flex: 1 1 0;
   min-width: 0;
+  max-width: 220px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   order: 1;
 }
 
-/* Contenedor derecho: ocupa espacio, contenido pegado al centro */
+/* Contenedor derecho: ancho limitado para no quedar tan esquinado */
 .footer-right {
   flex: 1 1 0;
   min-width: 0;
+  max-width: 220px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -301,25 +303,42 @@ body {
   user-select: none;
 }
 
-/* Footer responsive: móvil */
+/* Footer responsive: móvil — solo logo + íconos Instagram y WhatsApp */
 @media (max-width: 640px) {
   .footer-row {
-    flex-direction: column;
-    justify-content: center;
-    gap: 28px;
-    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px 24px;
+    margin-bottom: 0;
+    justify-items: center;
+    align-items: center;
   }
   .footer-center {
     order: -1;
+    grid-column: 1 / -1;
   }
-  .footer-left,
+  .footer-left {
+    flex: none;
+    justify-content: center;
+    min-width: auto;
+    max-width: none;
+    order: 1;
+    grid-column: 1;
+  }
   .footer-right {
     flex: none;
     justify-content: center;
     min-width: auto;
+    max-width: none;
+    order: 2;
+    grid-column: 2;
   }
   .footer-side-title {
-    font-size: 11px;
+    display: none;
+  }
+  .footer-info-desktop {
+    display: none;
   }
 }
 
@@ -328,16 +347,7 @@ body {
     padding: 20px 16px;
   }
   .footer-row {
-    gap: 24px;
-  }
-  .footer-info {
-    flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
-    padding-top: 14px;
-  }
-  .footer-sep {
-    display: none;
+    gap: 16px 20px;
   }
   .footer-word {
     font-size: 16px;
