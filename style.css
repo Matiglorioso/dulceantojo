@@ -137,11 +137,11 @@ body {
 }
 
 .toast-button {
-  background: var(--bg);
-  color: var(--text);
+  background: #f2d8dc;
+  color: var(--primaryText);
   padding: 20px 28px 22px;
   border-radius: 14px 14px 0 0;
-  box-shadow: 0 -6px 24px rgba(75, 58, 47, 0.1);
+  box-shadow: 0 -6px 24px rgba(231, 169, 181, 0.2);
   text-align: center;
   white-space: nowrap;
   min-width: 300px;
@@ -157,14 +157,14 @@ body {
   gap: 8px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border);
-  border-bottom: 2px solid rgba(231, 169, 181, 0.4);
+  border: 1px solid rgba(231, 169, 181, 0.5);
+  border-bottom: 2px solid rgba(231, 169, 181, 0.5);
 }
 
 .toast-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 -8px 28px rgba(75, 58, 47, 0.12);
-  background: #faf5f4;
+  box-shadow: 0 -8px 28px rgba(231, 169, 181, 0.25);
+  background: #efcdd2;
 }
 
 .toast-button:active {
@@ -177,7 +177,7 @@ body {
   right: 10px;
   background: none;
   border: none;
-  color: var(--text);
+  color: var(--primaryText);
   font-size: 16px;
   cursor: pointer;
   padding: 4px;
