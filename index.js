@@ -1,8 +1,12 @@
-// ✅ WhatsApp destino (Argentina: 54 + 9 + área + número)
-const WHATSAPP_TO = "5493512468459";
-
-// Config: pedidos con anticipación mínima (días)
-const minLeadDays = 2;
+// ─── Config centralizado (escalable: WhatsApp hoy, API después) ───
+const CONFIG = {
+  WHATSAPP_TO: "5493512468459",
+  minLeadDays: 2,
+  PRODUCTS_URL: "./products.json",
+  // Placeholders para futuro backend:
+  // API_ORDERS_URL: "",
+  // USE_API: false,
+};
 
 // DOM
 const gridTartas = document.getElementById("grid-tartas");
@@ -377,38 +381,44 @@ orderForm.addEventListener("submit", (e) => {
     return;
   }
 
-  // Calcular total del pedido
   const totalPrice = CART.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-  // Crear líneas de productos
-  const productLines = CART.map(
-    (item) => `• ${item.name} x${item.qty} = $${money(item.price * item.qty)}`,
-  );
+  // Payload de pedido reutilizable (WhatsApp hoy; API/DB después)
+  const orderPayload = {
+    customer: { name, phone },
+    delivery: { type: delivery, address: delivery === "Envío" ? address.trim() : null },
+    payment,
+    items: CART.map((item) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      qty: item.qty,
+      total: item.price * item.qty,
+    })),
+    total: totalPrice,
+    notes: notes.trim() || null,
+  };
 
+  // Envío por WhatsApp (cuando tengas API: enviar orderPayload a CONFIG.API_ORDERS_URL)
+  const productLines = orderPayload.items.map(
+    (item) => `• ${item.name} x${item.qty} = $${money(item.total)}`,
+  );
   const lines = [
     "Hola! Quiero hacer un pedido en *Dulce Antojo* 💕",
     ...productLines,
-    `• Entrega: ${delivery}`,
-    delivery === "Envío" && address ? `• Dirección: ${address}` : null,
-    `• Nombre: ${name}`,
-    `• Mi WhatsApp: ${phone}`,
-    `• Forma de pago: ${payment}`,
-    `• Total: $${money(totalPrice)}`,
-    notes.trim() ? `• Notas: ${notes.trim()}` : null,
+    `• Entrega: ${orderPayload.delivery.type}`,
+    orderPayload.delivery.address ? `• Dirección: ${orderPayload.delivery.address}` : null,
+    `• Nombre: ${orderPayload.customer.name}`,
+    `• Mi WhatsApp: ${orderPayload.customer.phone}`,
+    `• Forma de pago: ${orderPayload.payment}`,
+    `• Total: $${money(orderPayload.total)}`,
+    orderPayload.notes ? `• Notas: ${orderPayload.notes}` : null,
   ].filter(Boolean);
-
   const text = encodeURIComponent(lines.join("\n"));
-  const url = `https://wa.me/${WHATSAPP_TO}?text=${text}`;
-  window.open(url, "_blank");
+  window.open(`https://wa.me/${CONFIG.WHATSAPP_TO}?text=${text}`, "_blank");
 
-  // Guardar resumen del pedido antes de limpiar el carrito
-  const orderSummary = CART.map(item => ({
-    name: item.name,
-    qty: item.qty,
-    price: item.price,
-    total: item.price * item.qty
-  }));
-  const orderTotal = totalPrice;
+  const orderSummary = orderPayload.items.map(({ name, qty, total }) => ({ name, qty, total }));
+  const orderTotal = orderPayload.total;
 
   // Limpiar carrito después de enviar
   CART = [];
@@ -457,7 +467,7 @@ async function init() {
   initTabs();
 
   try {
-    const res = await fetch("./products.json", { cache: "no-store" });
+    const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
     if (!res.ok)
       throw new Error(`No se pudo cargar products.json (${res.status})`);
     PRODUCTS = await res.json();
