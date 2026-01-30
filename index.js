@@ -126,7 +126,6 @@ function showToast(productName, quantity, price) {
   tempToast.innerHTML = `
     <div class="toast-button" aria-label="Ver resumen del pedido">
       <button class="toast-close" aria-label="Cerrar">✕</button>
-      <div class="toast-icon">✓</div>
       <div class="toast-body">
         <span class="toast-label">Agregado al carrito</span>
         <span class="toast-product">${productName}</span>
