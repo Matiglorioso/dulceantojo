@@ -1,6 +1,6 @@
 // ─── Config centralizado (escalable: WhatsApp hoy, API después) ───
 const CONFIG = {
-  WHATSAPP_TO: "5493512468459",
+  WHATSAPP_TO: "5493515147985",
   minLeadDays: 2,
   PRODUCTS_URL: "./products.json",
   // Placeholders para futuro backend:
