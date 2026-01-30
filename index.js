@@ -126,9 +126,12 @@ function showToast(productName, quantity, price) {
   tempToast.innerHTML = `
     <div class="toast-button" aria-label="Ver resumen del pedido">
       <button class="toast-close" aria-label="Cerrar">✕</button>
-      <div>✓ Agregado al carrito</div>
-      <strong>${productName}</strong>
-      <div class="toast-qty">x${quantity} = $ ${money(total)}</div>
+      <div class="toast-icon">✓</div>
+      <div class="toast-body">
+        <span class="toast-label">Agregado al carrito</span>
+        <span class="toast-product">${productName}</span>
+        <span class="toast-detail">x${quantity} · $ ${money(total)}</span>
+      </div>
     </div>
   `;
   document.body.appendChild(tempToast);
@@ -163,10 +166,10 @@ function showToast(productName, quantity, price) {
     tempToast.classList.add("show");
   }, 10);
 
-  // Remover después de 3 segundos
+  // Remover después de 5 segundos
   setTimeout(() => {
     closeToast();
-  }, 3000);
+  }, 5000);
 }
 
 function updateCartUI() {
