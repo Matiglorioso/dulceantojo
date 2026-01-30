@@ -271,9 +271,9 @@ body {
 }
 
 .footer-word {
-  font-family: "Great Vibes", cursive;
-  font-size: 22px;
-  font-weight: 400;
+  font-family: "Dancing Script", cursive;
+  font-size: 30px;
+  font-weight: 700;
   color: var(--text);
   letter-spacing: 0.02em;
 }
@@ -325,7 +325,7 @@ body {
     display: none;
   }
   .footer-word {
-    font-size: 14px;
+    font-size: 22px;
     letter-spacing: 0.02em;
   }
   .footer-logo {
@@ -355,7 +355,7 @@ body {
     gap: 4px;
   }
   .footer-word {
-    font-size: 12px;
+    font-size: 18px;
   }
   .footer-logo {
     width: 34px;
