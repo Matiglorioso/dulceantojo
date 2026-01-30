@@ -1146,17 +1146,19 @@ textarea {
 
 .thank-you-modal {
   text-align: center;
-  min-width: 400px;
+  min-width: 0;
   max-width: 500px;
+  width: 100%;
   position: relative;
   background: var(--bg);
+  box-sizing: border-box;
 }
 
 .thank-you-modal .modal-header {
   position: relative;
   margin-bottom: 0;
   justify-content: flex-end;
-  padding: 16px 20px 0 20px;
+  padding: 16px 24px 0 24px;
   border-bottom: none;
   background: transparent;
 }
@@ -1164,7 +1166,7 @@ textarea {
 .thank-you-modal .close-btn {
   position: absolute;
   top: 16px;
-  right: 16px;
+  right: 24px;
   width: 36px;
   height: 36px;
   display: flex;
@@ -1180,7 +1182,7 @@ textarea {
   align-items: center;
   gap: 20px;
   width: 100%;
-  padding: 0 8px 28px 8px;
+  padding: 0 24px 28px 24px;
   box-sizing: border-box;
 }
 
@@ -1200,7 +1202,7 @@ textarea {
 }
 
 .thank-you-summary {
-  padding: 20px;
+  padding: 20px 24px;
   background: var(--surface);
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -1296,16 +1298,20 @@ textarea {
   }
   
   .thank-you-modal .modal-header {
-    padding: 14px 16px 0 16px;
+    padding: 14px 20px 0 20px;
   }
   
   .thank-you-modal .close-btn {
     top: 14px;
-    right: 14px;
+    right: 20px;
   }
   
   .thank-you-content {
-    padding-bottom: 24px;
+    padding: 0 20px 24px 20px;
+  }
+
+  .thank-you-summary {
+    padding: 16px 20px;
   }
   
   .modal-header.center h3 {
