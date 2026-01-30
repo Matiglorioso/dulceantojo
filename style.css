@@ -84,6 +84,37 @@ body {
   transition: width 0.25s ease, height 0.25s ease;
 }
 
+.header-instagram {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: var(--primary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.header-instagram:hover {
+  color: var(--primaryHover);
+  transform: scale(1.1);
+}
+
+.header-instagram .instagram-icon {
+  width: 28px;
+  height: 28px;
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.site-header.scrolled .header-instagram {
+  padding: 6px;
+}
+
+.site-header.scrolled .header-instagram .instagram-icon {
+  width: 22px;
+  height: 22px;
+}
+
 .cart-icon {
   background: none;
   border: none;
