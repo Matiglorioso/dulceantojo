@@ -740,7 +740,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 10px 0;
+  padding: 0;
   border-bottom: 1px solid var(--border);
   transition: background 0.2s ease;
 }
@@ -1327,7 +1327,7 @@ textarea {
   }
   
   .cart-item {
-    padding: 8px 0;
+    padding: 0;
     flex-wrap: wrap;
   }
   
