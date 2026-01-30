@@ -137,11 +137,11 @@ body {
 }
 
 .toast-button {
-  background: #f2d8dc;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primaryHover) 100%);
   color: var(--primaryText);
   padding: 20px 28px 22px;
   border-radius: 14px 14px 0 0;
-  box-shadow: 0 -6px 24px rgba(231, 169, 181, 0.2);
+  box-shadow: 0 -6px 24px rgba(231, 169, 181, 0.35);
   text-align: center;
   white-space: nowrap;
   min-width: 300px;
@@ -157,14 +157,13 @@ body {
   gap: 8px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(231, 169, 181, 0.5);
-  border-bottom: 2px solid rgba(231, 169, 181, 0.5);
+  border: none;
+  border-bottom: 3px solid rgba(75, 58, 47, 0.08);
 }
 
 .toast-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 -8px 28px rgba(231, 169, 181, 0.25);
-  background: #efcdd2;
+  box-shadow: 0 -8px 28px rgba(231, 169, 181, 0.4);
 }
 
 .toast-button:active {
@@ -188,7 +187,7 @@ body {
 }
 
 .toast-close:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .toast-body {
@@ -337,7 +336,7 @@ body {
 
 .menu-price {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text);
   white-space: nowrap;
   flex-shrink: 0;
@@ -345,7 +344,7 @@ body {
 
 .menu-footer {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   flex-shrink: 0;
 }
@@ -354,20 +353,20 @@ body {
   display: flex;
   align-items: center;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   background: var(--surface);
-  height: 36px;
+  height: 30px;
 }
 
 .counter-btn {
-  width: 28px;
-  height: 36px;
+  width: 24px;
+  height: 30px;
   border: none;
   background: var(--bg);
   color: var(--text);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   padding: 0;
   display: flex;
@@ -381,14 +380,14 @@ body {
 }
 
 .counter-input {
-  width: 30px;
+  width: 26px;
   border: none;
   text-align: center;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   background: transparent;
   padding: 0;
-  height: 36px;
+  height: 30px;
 }
 
 .counter-input::-webkit-outer-spin-button,
@@ -402,11 +401,11 @@ body {
 }
 
 .menu-footer .btn-add {
-  padding: 8px 16px;
+  padding: 6px 12px;
   font-size: 12px;
   white-space: nowrap;
   width: auto;
-  height: 36px;
+  height: 30px;
 }
 
 .cart-summary {
