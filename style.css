@@ -285,17 +285,17 @@ body {
   border-radius: 50%;
 }
 
-/* Footer responsive: móvil — íconos en la misma fila, todo adaptable */
+/* Footer responsive: móvil — íconos en la misma fila, más grande */
 @media (max-width: 640px) {
   .site-footer {
-    padding: 24px 20px;
+    padding: 32px 24px;
   }
   .footer-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 0;
     flex-wrap: nowrap;
     min-width: 0;
@@ -304,8 +304,8 @@ body {
     order: 0;
     flex: 1 1 auto;
     min-width: 0;
-    padding: 8px 6px;
-    gap: 6px;
+    padding: 10px 8px;
+    gap: 8px;
   }
   .footer-left {
     flex: 0 0 auto;
@@ -325,16 +325,45 @@ body {
     display: none;
   }
   .footer-word {
-    font-size: 22px;
+    font-size: 28px;
     letter-spacing: 0.02em;
   }
   .footer-logo {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
   }
   .footer-social-link {
-    min-width: 40px;
-    min-height: 40px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+  .footer-social-link .footer-social-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 28px 20px;
+  }
+  .footer-row {
+    gap: 8px;
+  }
+  .footer-center {
+    padding: 8px 6px;
+    gap: 6px;
+  }
+  .footer-word {
+    font-size: 24px;
+  }
+  .footer-logo {
+    width: 42px;
+    height: 42px;
+  }
+  .footer-social-link {
+    min-width: 42px;
+    min-height: 42px;
     padding: 6px;
   }
   .footer-social-link .footer-social-icon {
@@ -343,38 +372,9 @@ body {
   }
 }
 
-@media (max-width: 480px) {
-  .site-footer {
-    padding: 16px 12px;
-  }
-  .footer-row {
-    gap: 6px;
-  }
-  .footer-center {
-    padding: 6px 4px;
-    gap: 4px;
-  }
-  .footer-word {
-    font-size: 18px;
-  }
-  .footer-logo {
-    width: 34px;
-    height: 34px;
-  }
-  .footer-social-link {
-    min-width: 36px;
-    min-height: 36px;
-    padding: 5px;
-  }
-  .footer-social-link .footer-social-icon {
-    width: 20px;
-    height: 20px;
-  }
-}
-
 @media (max-width: 520px) {
   .site-footer {
-    padding: 18px 14px;
+    padding: 30px 22px;
   }
 }
 
