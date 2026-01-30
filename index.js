@@ -16,6 +16,7 @@ const orderForm = document.getElementById("orderForm");
 const cartItemsEl = document.getElementById("cartItems");
 const cartIcon = document.getElementById("cartIcon");
 const cartBadge = document.getElementById("cartBadge");
+const siteHeader = document.querySelector(".site-header");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 
@@ -470,3 +471,17 @@ async function init() {
 }
 
 init();
+
+// Header se contrae al hacer scroll
+const SCROLL_THRESHOLD = 60;
+function updateHeaderScroll() {
+  if (siteHeader) {
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      siteHeader.classList.add("scrolled");
+    } else {
+      siteHeader.classList.remove("scrolled");
+    }
+  }
+}
+window.addEventListener("scroll", updateHeaderScroll, { passive: true });
+updateHeaderScroll(); // estado inicial
