@@ -776,13 +776,13 @@ body {
 }
 
 .cart-item-actions input {
-  width: 50px;
+  width: 36px;
   text-align: center;
-  padding: 6px;
+  padding: 4px;
   font-weight: 700;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 12px;
 }
 
 .qty-input::-webkit-outer-spin-button,
@@ -796,13 +796,14 @@ body {
 }
 
 .btn-qty {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   border: 1px solid var(--border);
   background: var(--bg);
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 700;
+  font-size: 14px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -815,14 +816,15 @@ body {
 }
 
 .btn-remove {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   border: 1px solid #ddd;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   padding: 0;
   color: #d9534f;
+  font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
