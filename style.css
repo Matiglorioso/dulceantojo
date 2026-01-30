@@ -139,14 +139,14 @@ body {
 .toast-button {
   background: var(--primary);
   color: var(--primaryText);
-  padding: 14px 20px;
-  border-radius: 12px 12px 0 0;
+  padding: 18px 28px;
+  border-radius: 14px 14px 0 0;
   box-shadow: 0 -5px 30px rgba(75, 58, 47, 0.2);
   text-align: center;
   font-weight: 600;
   font-size: 14px;
   white-space: nowrap;
-  min-width: 200px;
+  min-width: 300px;
   position: relative;
   width: 100%;
   cursor: pointer;
@@ -155,7 +155,7 @@ body {
     transform 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
   border: none;
@@ -172,17 +172,18 @@ body {
 
 .toast-close {
   position: absolute;
-  top: 2px;
-  right: 4px;
+  top: 8px;
+  right: 10px;
   background: none;
   border: none;
   color: var(--primaryText);
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
-  padding: 1px 3px;
+  padding: 4px;
   transition: opacity 0.2s;
   flex-shrink: 0;
   z-index: 10;
+  line-height: 1;
 }
 
 .toast-close:hover {
@@ -190,15 +191,19 @@ body {
 }
 
 .toast-button div:first-child {
-  font-size: 12px;
-  opacity: 0.85;
-  margin-bottom: 4px;
+  font-size: 13px;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+}
+
+.toast-button strong {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .toast-qty {
-  font-size: 13px;
+  font-size: 14px;
   opacity: 0.9;
-  margin-top: 4px;
 }
 
 .grid {
@@ -984,6 +989,12 @@ textarea {
 }
 
 @media (max-width: 520px) {
+  .toast-button {
+    min-width: 260px;
+    max-width: 92vw;
+    padding: 16px 20px;
+  }
+
   .two {
     grid-template-columns: 1fr;
   }
