@@ -172,6 +172,8 @@ body {
   background: #ede6df;
   color: var(--text);
   margin-top: 24px;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .footer-row {
@@ -179,8 +181,10 @@ body {
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  max-width: 100%;
   margin-bottom: 0;
   gap: 24px;
+  box-sizing: border-box;
 }
 
 /* Contenedor izquierdo: ancho limitado para no quedar tan esquinado */
@@ -263,6 +267,7 @@ body {
   flex-shrink: 0;
   padding: 14px 20px;
   margin: 0 -4px;
+  min-width: 0;
 }
 
 .footer-word {
@@ -280,51 +285,93 @@ body {
   border-radius: 50%;
 }
 
-/* Footer responsive: móvil — íconos en la misma fila que el logo */
+/* Footer responsive: móvil — íconos en la misma fila, todo adaptable */
 @media (max-width: 640px) {
   .footer-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     margin-bottom: 0;
+    flex-wrap: nowrap;
+    min-width: 0;
   }
   .footer-center {
     order: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 8px 6px;
+    gap: 6px;
   }
   .footer-left {
-    flex: none;
+    flex: 0 0 auto;
     justify-content: center;
-    min-width: auto;
+    min-width: 0;
     max-width: none;
     order: -1;
   }
   .footer-right {
-    flex: none;
+    flex: 0 0 auto;
     justify-content: center;
-    min-width: auto;
+    min-width: 0;
     max-width: none;
     order: 1;
   }
   .footer-side-title {
     display: none;
   }
+  .footer-word {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+  .footer-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .footer-social-link {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px;
+  }
+  .footer-social-link .footer-social-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 16px 12px;
+  }
+  .footer-row {
+    gap: 6px;
+  }
+  .footer-center {
+    padding: 6px 4px;
+    gap: 4px;
+  }
+  .footer-word {
+    font-size: 12px;
+  }
+  .footer-logo {
+    width: 34px;
+    height: 34px;
+  }
+  .footer-social-link {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 5px;
+  }
+  .footer-social-link .footer-social-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (max-width: 520px) {
   .site-footer {
-    padding: 20px 16px;
-  }
-  .footer-row {
-    gap: 16px 20px;
-  }
-  .footer-word {
-    font-size: 16px;
-  }
-  .footer-logo {
-    width: 44px;
-    height: 44px;
+    padding: 18px 14px;
   }
 }
 
