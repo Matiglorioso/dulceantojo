@@ -166,8 +166,9 @@ body {
   margin: 0 auto;
 }
 
+/* ─── Footer: identidad, CTAs, copyright (buenas prácticas) ─── */
 .site-footer {
-  padding: 32px 48px;
+  padding: 40px 24px 28px;
   border-top: 3px solid var(--primary);
   background: #ede6df;
   color: var(--text);
@@ -176,205 +177,148 @@ body {
   box-sizing: border-box;
 }
 
-.footer-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 0;
-  gap: 24px;
-  box-sizing: border-box;
-}
-
-/* Contenedor izquierdo: ancho limitado para no quedar tan esquinado */
-.footer-left {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 220px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  order: 1;
-}
-
-/* Contenedor derecho: ancho limitado para no quedar tan esquinado */
-.footer-right {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 220px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  order: 3;
-}
-
-.footer-side {
+.footer-inner {
+  max-width: 520px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  flex: 0 0 auto;
-  color: var(--text);
+  gap: 28px;
 }
 
-.footer-center {
-  order: 2;
-  flex: 0 0 auto;
-}
-
-.footer-side-title {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text);
-  text-align: center;
-}
-
-/* Íconos clicables: área mínima 44px, fondo sutil */
-.footer-social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 8px;
-  border-radius: 50%;
-  background: rgba(75, 58, 47, 0.06);
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-}
-
-.footer-social-link:hover {
-  color: var(--primary);
-  background: rgba(231, 169, 181, 0.2);
-  transform: scale(1.08);
-}
-
-.footer-social-link .footer-social-icon {
-  width: 26px;
-  height: 26px;
-}
-
-/* Bloque central con más aire */
-.footer-center {
+/* Bloque 1: marca (logo + nombre + tagline) */
+.footer-brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-shrink: 0;
-  padding: 14px 20px;
-  margin: 0 -4px;
-  min-width: 0;
+  gap: 8px;
 }
 
-.footer-word {
+.footer-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.footer-name {
   font-family: "Dancing Script", cursive;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.02em;
 }
 
-.footer-logo {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  border-radius: 50%;
+.footer-tagline {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
 }
 
-/* Footer responsive: móvil — íconos en la misma fila, más grande */
+/* Bloque 2: CTAs (Instagram + WhatsApp) */
+.footer-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(75, 58, 47, 0.08);
+  border: 1px solid rgba(75, 58, 47, 0.12);
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.footer-cta:hover {
+  background: rgba(75, 58, 47, 0.12);
+  transform: translateY(-1px);
+}
+
+.footer-cta-instagram:hover {
+  color: var(--text);
+}
+
+.footer-cta-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25d366;
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.footer-cta-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Bloque 3: info + copyright */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(75, 58, 47, 0.12);
+  width: 100%;
+}
+
+.footer-info {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Footer responsive */
 @media (max-width: 640px) {
   .site-footer {
-    padding: 32px 24px;
+    padding: 32px 20px 24px;
   }
-  .footer-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 0;
-    flex-wrap: nowrap;
-    min-width: 0;
+  .footer-inner {
+    gap: 24px;
   }
-  .footer-center {
-    order: 0;
-    flex: 1 1 auto;
-    min-width: 0;
-    padding: 10px 8px;
-    gap: 8px;
+  .footer-name {
+    font-size: 26px;
   }
-  .footer-left {
-    flex: 0 0 auto;
-    justify-content: center;
-    min-width: 0;
-    max-width: none;
-    order: -1;
+  .footer-tagline {
+    font-size: 13px;
   }
-  .footer-right {
-    flex: 0 0 auto;
-    justify-content: center;
-    min-width: 0;
-    max-width: none;
-    order: 1;
+  .footer-cta {
+    padding: 11px 18px;
+    font-size: 14px;
   }
-  .footer-side-title {
-    display: none;
-  }
-  .footer-word {
-    font-size: 28px;
-    letter-spacing: 0.02em;
-  }
-  .footer-logo {
-    width: 48px;
-    height: 48px;
-  }
-  .footer-social-link {
-    min-width: 44px;
-    min-height: 44px;
-    padding: 8px;
-  }
-  .footer-social-link .footer-social-icon {
-    width: 24px;
-    height: 24px;
+  .footer-ctas {
+    gap: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .site-footer {
-    padding: 28px 20px;
-  }
-  .footer-row {
-    gap: 8px;
-  }
-  .footer-center {
-    padding: 8px 6px;
-    gap: 6px;
-  }
-  .footer-word {
-    font-size: 24px;
+    padding: 28px 16px 20px;
   }
   .footer-logo {
-    width: 42px;
-    height: 42px;
+    width: 56px;
+    height: 56px;
   }
-  .footer-social-link {
-    min-width: 42px;
-    min-height: 42px;
-    padding: 6px;
+  .footer-name {
+    font-size: 24px;
   }
-  .footer-social-link .footer-social-icon {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-@media (max-width: 520px) {
-  .site-footer {
-    padding: 30px 22px;
+  .footer-cta {
+    width: 100%;
+    justify-content: center;
   }
 }
 
