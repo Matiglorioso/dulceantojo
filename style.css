@@ -203,7 +203,7 @@ body {
 
 .footer-name {
   font-family: "Dancing Script", cursive;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.02em;
@@ -215,28 +215,28 @@ body {
   font-weight: 600;
 }
 
-/* Bloque 2: CTAs (Instagram + WhatsApp) */
+/* Bloque 2: CTAs (Instagram + WhatsApp) — más discretos */
 .footer-ctas {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .footer-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 6px;
+  padding: 8px 12px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
   color: var(--text);
   background: rgba(75, 58, 47, 0.08);
   border: 1px solid rgba(75, 58, 47, 0.12);
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  min-height: 44px;
+  min-height: 40px;
   box-sizing: border-box;
 }
 
@@ -256,8 +256,8 @@ body {
 }
 
 .footer-cta-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -291,17 +291,21 @@ body {
     gap: 16px;
   }
   .footer-name {
-    font-size: 22px;
+    font-size: 28px;
   }
   .footer-tagline {
     font-size: 12px;
   }
   .footer-cta {
-    padding: 9px 14px;
-    font-size: 13px;
+    padding: 7px 11px;
+    font-size: 12px;
   }
   .footer-ctas {
-    gap: 8px;
+    gap: 6px;
+  }
+  .footer-cta-icon {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -314,7 +318,7 @@ body {
     height: 42px;
   }
   .footer-name {
-    font-size: 20px;
+    font-size: 26px;
   }
   .footer-cta {
     width: 100%;
