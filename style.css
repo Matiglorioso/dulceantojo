@@ -246,7 +246,9 @@ body {
 }
 
 .footer-cta-instagram:hover {
-  color: var(--text);
+  background: rgba(225, 48, 108, 0.15);
+  color: #e1306c;
+  border-color: rgba(225, 48, 108, 0.3);
 }
 
 .footer-cta-whatsapp:hover {
