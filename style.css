@@ -365,14 +365,14 @@ body {
   .faja-mobile {
     display: block;
     width: 100%;
-    margin: 18px 0 0;
+    margin: 18px 0;
     padding: 14px 16px;
     text-align: center;
     font-family: "Nunito", system-ui, sans-serif;
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--text);
-    background: #ede6df;
+    color: var(--primaryText);
+    background: var(--primary);
     box-sizing: border-box;
   }
 
@@ -416,7 +416,7 @@ body {
     height: 6px;
   }
   .container {
-    padding: 28px 12px 24px;
+    padding: 0 12px 24px;
   }
   .products-box {
     padding: 14px 12px 20px;
@@ -431,14 +431,14 @@ body {
   .faja-mobile {
     font-size: 1.15rem;
     padding: 12px 14px;
-    margin-top: 14px;
+    margin: 14px 0;
   }
   .banner-carousel {
     max-height: 48vh;
     aspect-ratio: 1 / 1;
   }
   .container {
-    padding: 24px 10px 20px;
+    padding: 0 10px 20px;
   }
   .products-box {
     padding: 12px 10px 16px;
