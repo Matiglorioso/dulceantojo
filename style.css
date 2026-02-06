@@ -166,6 +166,67 @@ body {
   margin: 0 auto;
 }
 
+/* ─── Banner carrusel: ancho completo, automático ─── */
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.banner-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.banner-slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.banner-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  object-fit: cover;
+  display: block;
+  vertical-align: middle;
+}
+
+.banner-cta {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.banner-cta:hover {
+  background: var(--primary);
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .banner-slide img {
+    max-height: 40vh;
+  }
+  .banner-cta {
+    font-size: 13px;
+    padding: 6px 14px;
+    bottom: 10px;
+  }
+}
+
 /* ─── Footer: identidad, CTAs, copyright (buenas prácticas) ─── */
 .site-footer {
   padding: 24px 20px 20px;

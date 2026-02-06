@@ -495,3 +495,18 @@ function updateHeaderScroll() {
 }
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll(); // estado inicial
+
+// Banner carrusel: avance automático
+function initBannerCarousel() {
+  const track = document.querySelector(".banner-track");
+  const slides = document.querySelectorAll(".banner-slide");
+  if (!track || slides.length === 0) return;
+  let index = 0;
+  const total = slides.length;
+  function goTo(i) {
+    index = ((i % total) + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+  setInterval(() => goTo(index + 1), 4500);
+}
+initBannerCarousel();
