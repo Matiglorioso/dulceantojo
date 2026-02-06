@@ -166,69 +166,112 @@ body {
   margin: 0 auto;
 }
 
-/* ─── Banner carrusel: ancho completo, automático (productos sin recortar) ─── */
-.banner-carousel {
-  position: relative;
+/* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
+.banner-section {
   width: 100%;
-  overflow: hidden;
   background: #ede6df;
+}
+
+.banner-wrap {
+  display: flex;
+  width: 100%;
+  min-height: 50vh;
+}
+
+.banner-carousel {
+  flex: 0 0 55%;
+  width: 55%;
+  height: 50vh;
+  min-height: 320px;
+  overflow: hidden;
+  position: relative;
 }
 
 .banner-track {
   display: flex;
   width: 100%;
+  height: 100%;
   transition: transform 0.5s ease-in-out;
 }
 
 .banner-slide {
   flex: 0 0 100%;
   width: 100%;
-  position: relative;
-  padding: 0 0 48px;
+  height: 100%;
   box-sizing: border-box;
 }
 
 .banner-slide img {
   width: 100%;
-  height: 50vh;
-  min-height: 240px;
+  height: 100%;
+  min-height: 320px;
   object-fit: cover;
   display: block;
-  vertical-align: middle;
 }
 
-.banner-cta {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-block;
-  padding: 4px 0;
-  background: none;
-  color: var(--text);
-  font-size: 13px;
+.banner-side {
+  flex: 0 0 45%;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: #ede6df;
+  box-sizing: border-box;
+}
+
+.banner-side-text {
+  margin: 0 0 20px;
+  font-size: 22px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: var(--primaryText);
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.banner-cta:hover {
-  color: var(--primary);
+.banner-btn:hover {
+  background: var(--primaryHover);
+  transform: translateY(-2px);
 }
 
-@media (max-width: 640px) {
-  .banner-slide {
-    padding: 0 0 44px;
+@media (max-width: 768px) {
+  .banner-wrap {
+    flex-direction: column;
+    min-height: 0;
+  }
+  .banner-carousel {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 280px;
   }
   .banner-slide img {
-    height: 42vh;
-    min-height: 200px;
+    min-height: 280px;
   }
-  .banner-cta {
-    font-size: 12px;
-    bottom: 12px;
+  .banner-side {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 28px 20px;
+  }
+  .banner-side-text {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .banner-btn {
+    padding: 10px 24px;
+    font-size: 14px;
   }
 }
 
