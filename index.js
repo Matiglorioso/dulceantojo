@@ -84,7 +84,7 @@ function renderSection(grid, products) {
       const qty = parseInt(
         btn.closest(".menu-item").querySelector(".counter-input").value,
       );
-      addToCart(id, qty);
+      addToCart(id, qty, btn);
     });
   });
 }
@@ -94,7 +94,7 @@ function render() {
   renderSection(gridBudines, PRODUCTS.budines);
 }
 
-function addToCart(productId, quantity) {
+function addToCart(productId, quantity, addToCartBtn) {
   // Buscar en ambas secciones
   let product = PRODUCTS.tartas.find((p) => p.id === productId);
   if (!product) {
@@ -116,9 +116,19 @@ function addToCart(productId, quantity) {
     });
   }
 
-  // Mostrar notificación
-  showToast(product.name, quantity, product.price);
+  // Micro-interacción: animación en botón y en ícono del carrito
+  if (addToCartBtn) {
+    addToCartBtn.classList.add("added");
+    setTimeout(() => addToCartBtn.classList.remove("added"), 400);
+  }
+  if (cartIcon) {
+    cartIcon.classList.remove("cart-bump");
+    void cartIcon.offsetWidth;
+    cartIcon.classList.add("cart-bump");
+    setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
+  }
 
+  showToast(product.name, quantity, product.price);
   updateCartUI();
 }
 
@@ -434,27 +444,31 @@ orderForm.addEventListener("submit", (e) => {
   }, 300);
 });
 
-// Tab Handler
+// Tab Handler con transición suave
 function initTabs() {
   tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const tabName = btn.dataset.tab;
 
-      // Remover clase active de todos los botones
       tabBtns.forEach((b) => b.classList.remove("active"));
-      // Agregar clase active al botón clickeado
       btn.classList.add("active");
 
-      // Ocultar todas las secciones
-      sectionTartas.classList.remove("active");
-      sectionBudines.classList.remove("active");
+      const prevSection = sectionTartas.classList.contains("active")
+        ? sectionTartas
+        : sectionBudines;
+      const nextSection = tabName === "tartas" ? sectionTartas : sectionBudines;
+      if (prevSection === nextSection) return;
 
-      // Mostrar la sección correspondiente
-      if (tabName === "tartas") {
-        sectionTartas.classList.add("active");
-      } else if (tabName === "budines") {
-        sectionBudines.classList.add("active");
-      }
+      prevSection.classList.remove("visible");
+      nextSection.classList.remove("active", "visible");
+
+      requestAnimationFrame(() => {
+        prevSection.classList.remove("active");
+        nextSection.classList.add("active");
+        requestAnimationFrame(() => {
+          nextSection.classList.add("visible");
+        });
+      });
     });
   });
 }
@@ -462,9 +476,21 @@ function initTabs() {
 // Los radio buttons ya no necesitan inicialización especial aquí
 // La función initRadioButtons() se llama cuando se abre el modal
 
+// Scroll suave al hacer clic en "Pedir" del banner
+function initBannerPedir() {
+  const btn = document.getElementById("bannerBtnPedir");
+  const target = document.getElementById("productos");
+  if (btn && target) {
+    btn.addEventListener("click", () => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
 // Load products
 async function init() {
   initTabs();
+  initBannerPedir();
 
   try {
     const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
