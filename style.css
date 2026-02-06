@@ -389,7 +389,7 @@ body {
     padding-top: 36px;
   }
   .tabs-menu {
-    margin-bottom: 28px;
+    margin-bottom: 12px;
   }
 }
 
@@ -671,7 +671,7 @@ body {
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -680,7 +680,7 @@ body {
   display: flex;
   gap: 12px;
   max-width: 700px;
-  margin: 0 auto 36px;
+  margin: 0 auto 14px;
   padding-bottom: 0;
   border-bottom: 2px solid var(--border);
 }
@@ -756,20 +756,18 @@ body {
   font-weight: 400;
   font-style: italic;
   color: var(--muted);
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 }
 
 .menu-item {
   border-bottom: 1px solid var(--border);
-  padding: 12px 0 16px;
+  padding: 8px 8px 10px;
   display: flex;
   gap: 16px;
   align-items: center;
   transition: background-color var(--transition-fast), border-color var(--transition-fast);
   border-radius: var(--radius);
   margin: 0 -8px;
-  padding-left: 8px;
-  padding-right: 8px;
 }
 
 .menu-item:hover {
