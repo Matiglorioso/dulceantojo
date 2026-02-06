@@ -197,6 +197,17 @@ body {
   margin: 0 auto;
 }
 
+/* Contenedor con borde: tabs + productos como bloque sobre el contenido */
+.products-box {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 18px 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(75, 58, 47, 0.06);
+}
+
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
 .banner-section {
   width: 100%;
@@ -679,9 +690,8 @@ body {
 .tabs-menu {
   display: flex;
   gap: 12px;
-  max-width: 700px;
-  margin: 0 auto 14px;
-  padding-bottom: 0;
+  margin: 0 0 14px;
+  padding: 0 0 0;
   border-bottom: 2px solid var(--border);
 }
 
@@ -761,23 +771,10 @@ body {
 
 .menu-item {
   border-bottom: 1px solid var(--border);
-  padding: 8px 8px 10px;
+  padding: 8px 0 10px;
   display: flex;
   gap: 16px;
   align-items: center;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
-  border-radius: var(--radius);
-  margin: 0 -8px;
-}
-
-.menu-item:hover {
-  background-color: rgba(231, 169, 181, 0.06);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .menu-item {
-    transition: none;
-  }
 }
 
 .menu-item:last-child {
