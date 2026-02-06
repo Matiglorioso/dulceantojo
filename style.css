@@ -365,17 +365,14 @@ body {
   .faja-mobile {
     display: block;
     width: 100%;
-    margin: 0;
+    margin: 18px 0 0;
     padding: 14px 16px;
     text-align: center;
-    font-family: "Dancing Script", cursive;
-    font-size: 1.5rem;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text);
-    background: linear-gradient(90deg, #ede6df 0%, var(--primary) 50%, #ede6df 100%);
-    background-color: rgba(231, 169, 181, 0.35);
-    border-top: 2px solid rgba(231, 169, 181, 0.5);
-    border-bottom: 2px solid rgba(231, 169, 181, 0.5);
+    background: #ede6df;
     box-sizing: border-box;
   }
 
@@ -432,8 +429,9 @@ body {
 /* ─── Celulares chicos ─── */
 @media (max-width: 480px) {
   .faja-mobile {
-    font-size: 1.35rem;
+    font-size: 1.15rem;
     padding: 12px 14px;
+    margin-top: 14px;
   }
   .banner-carousel {
     max-height: 48vh;
