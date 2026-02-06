@@ -183,60 +183,52 @@ body {
 .banner-slide {
   flex: 0 0 100%;
   width: 100%;
-  min-height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ede6df;
-  padding: 16px 0 48px;
+  position: relative;
+  padding: 0 0 48px;
   box-sizing: border-box;
 }
 
 .banner-slide img {
   width: 100%;
-  height: auto;
-  max-height: 58vh;
-  max-width: 100%;
-  object-fit: contain;
+  height: 50vh;
+  min-height: 240px;
+  object-fit: cover;
   display: block;
+  vertical-align: middle;
 }
 
 .banner-cta {
   position: absolute;
-  bottom: 12px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-block;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 0;
+  background: none;
   color: var(--text);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   text-decoration: none;
-  border-radius: 999px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(231, 169, 181, 0.4);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .banner-cta:hover {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
+  color: var(--primary);
 }
 
 @media (max-width: 640px) {
   .banner-slide {
-    min-height: 220px;
-    padding: 12px 0 44px;
+    padding: 0 0 44px;
   }
   .banner-slide img {
-    max-height: 50vh;
+    height: 42vh;
+    min-height: 200px;
   }
   .banner-cta {
-    font-size: 13px;
-    padding: 6px 14px;
-    bottom: 10px;
+    font-size: 12px;
+    bottom: 12px;
   }
 }
 
