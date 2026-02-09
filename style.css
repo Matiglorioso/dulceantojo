@@ -1022,9 +1022,11 @@ body {
   -moz-appearance: textfield;
 }
 
-/* Ícono de carrito en botón Agregar: oculto en desktop */
-.menu-footer .btn-add-icon {
-  display: none;
+/* Ícono de carrito en botón Agregar: oculto solo en desktop (en móvil se muestra en tartas y budines) */
+@media (min-width: 769px) {
+  .menu-footer .btn-add-icon {
+    display: none;
+  }
 }
 
 .menu-footer .btn-add {
