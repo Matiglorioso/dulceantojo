@@ -834,10 +834,10 @@ body {
   }
   .menu-item:has(.menu-item-img) {
     display: grid !important;
-    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-columns: 140px minmax(0, 1fr);
     grid-template-rows: auto auto;
     gap: 10px 14px;
-    align-items: start;
+    align-items: center;
     padding: 12px 0 14px;
     min-width: 0;
     width: 100%;
@@ -846,20 +846,25 @@ body {
   .menu-item:has(.menu-item-img) .menu-item-img {
     grid-column: 1;
     grid-row: 1 / -1;
-    width: 120px !important;
-    min-width: 120px !important;
-    height: 100px !important;
-    min-height: 100px;
-    max-height: 100px;
-    align-self: start;
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 115px !important;
+    min-height: 115px;
+    max-height: 115px;
+    align-self: center;
+    justify-self: center;
     object-fit: cover;
     object-position: center;
+    border-radius: var(--radius);
   }
   .menu-item:has(.menu-item-img) .menu-header {
     grid-column: 2;
     grid-row: 1;
     min-width: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .menu-item:has(.menu-item-img) .menu-title-desc {
     min-width: 0;
@@ -871,6 +876,7 @@ body {
     gap: 8px;
     min-width: 0;
     max-width: 100%;
+    align-items: center;
   }
   .menu-item:has(.menu-item-img) .menu-footer .menu-price {
     flex-shrink: 0;
@@ -936,15 +942,15 @@ body {
 
 @media (max-width: 480px) {
   .menu-item:has(.menu-item-img) {
-    grid-template-columns: 100px minmax(0, 1fr);
+    grid-template-columns: 120px minmax(0, 1fr);
     gap: 8px 12px;
   }
   .menu-item:has(.menu-item-img) .menu-item-img {
-    width: 100px !important;
-    min-width: 100px !important;
-    height: 88px !important;
-    min-height: 88px;
-    max-height: 88px;
+    width: 120px !important;
+    min-width: 120px !important;
+    height: 100px !important;
+    min-height: 100px;
+    max-height: 100px;
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add {
     padding: 8px 14px;
