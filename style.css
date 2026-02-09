@@ -896,6 +896,42 @@ body {
     width: 1em;
     height: 1em;
   }
+  /* Botón Agregar: solo ícono en móvil */
+  .menu-footer .btn-add-text {
+    display: none;
+  }
+  .menu-footer .btn-add-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primaryText);
+  }
+  .menu-footer .btn-add-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .menu-footer .btn-add {
+    padding: 8px;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Counter más compacto en móvil */
+  .menu-footer .counter {
+    height: 26px;
+    border-radius: 5px;
+  }
+  .menu-footer .counter-btn {
+    width: 22px;
+    height: 26px;
+    font-size: 11px;
+  }
+  .menu-footer .counter-input {
+    width: 20px;
+    font-size: 10px;
+    height: 26px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -915,8 +951,24 @@ body {
     font-size: 11px;
   }
   .menu-footer .btn-add {
-    padding: 6px 8px;
-    font-size: 11px;
+    padding: 6px;
+  }
+  .menu-footer .btn-add-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .menu-footer .counter {
+    height: 24px;
+  }
+  .menu-footer .counter-btn {
+    width: 20px;
+    height: 24px;
+    font-size: 10px;
+  }
+  .menu-footer .counter-input {
+    width: 18px;
+    font-size: 10px;
+    height: 24px;
   }
 }
 
