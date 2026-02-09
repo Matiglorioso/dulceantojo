@@ -355,7 +355,7 @@ body {
   color: var(--text);
 }
 
-/* ─── Móvil: reubicar contenido para que no se desborde; imagen más grande ─── */
+/* ─── Móvil (container, products-box, tabs) ─── */
 @media (max-width: 768px) {
   .container {
     padding: 28px 12px 24px;
@@ -366,60 +366,15 @@ body {
   .tabs-menu {
     margin-bottom: 12px;
   }
-
-  .menu-item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    grid-template-rows: auto auto;
-    gap: 10px 14px;
-    align-items: start;
-    padding: 12px 0 14px;
-    min-width: 0;
-  }
-  .menu-item-img {
-    grid-column: 1;
-    grid-row: 1 / -1;
-    width: 120px;
-    min-width: 120px;
-    height: auto;
-    min-height: 140px;
-    align-self: stretch;
-    object-fit: cover;
-  }
-  .menu-header {
-    grid-column: 2;
-    grid-row: 1;
-    min-width: 0;
-    overflow: hidden;
-  }
-  .menu-title-desc {
-    min-width: 0;
-  }
-  .menu-footer {
-    grid-column: 2;
-    grid-row: 2;
-    flex-wrap: wrap;
-    gap: 8px;
-    min-width: 0;
-  }
 }
 
-/* ─── Celulares chicos ─── */
+/* ─── Celulares chicos (header, etc.) ─── */
 @media (max-width: 480px) {
   .container {
     padding: 24px 10px 20px;
   }
   .products-box {
     padding: 12px 10px 16px;
-  }
-  .menu-item {
-    grid-template-columns: 100px 1fr;
-    gap: 8px 12px;
-  }
-  .menu-item-img {
-    width: 100px;
-    min-width: 100px;
-    min-height: 120px;
   }
   .site-header {
     padding: 8px 12px;
@@ -866,6 +821,57 @@ body {
   gap: 10px;
   align-items: center;
   flex-shrink: 0;
+}
+
+/* Móvil: grid para que no se desborde; imagen más grande (DEBE ir después de .menu-item base) */
+@media (max-width: 768px) {
+  .menu-item {
+    display: grid !important;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 12px 0 14px;
+    min-width: 0;
+  }
+  .menu-item-img {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 120px !important;
+    min-width: 120px !important;
+    height: auto !important;
+    min-height: 140px;
+    align-self: stretch;
+    object-fit: cover;
+  }
+  .menu-header {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .menu-title-desc {
+    min-width: 0;
+  }
+  .menu-footer {
+    grid-column: 2;
+    grid-row: 2;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item {
+    grid-template-columns: 100px 1fr;
+    gap: 8px 12px;
+  }
+  .menu-item-img {
+    width: 100px !important;
+    min-width: 100px !important;
+    min-height: 120px;
+  }
 }
 
 .counter {
