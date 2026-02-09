@@ -4,43 +4,50 @@
       "id": "tarta-cabsha",
       "name": "Cabsha",
       "price": 27000,
-      "desc": "Masa sablée de vainilla, dulce de leche y ganache de chocolate semiamargo"
+      "desc": "Masa sablée de vainilla, dulce de leche y ganache de chocolate semiamargo",
+      "image": "img/tartas/choco.jpeg"
     },
     {
       "id": "tarta-coco",
       "name": "Coco",
       "price": 26000,
-      "desc": "Masa sablée de vainilla, dulce de leche y coco"
+      "desc": "Masa sablée de vainilla, dulce de leche y coco",
+      "image": "img/tartas/coco.jpeg"
     },
     {
       "id": "tarta-frutilla",
       "name": "Frutilla",
       "price": 27000,
-      "desc": "Masa sablée de vainilla, dulce de leche, crema chantilly y frutillas frescas"
+      "desc": "Masa sablée de vainilla, dulce de leche, crema chantilly y frutillas frescas",
+      "image": "img/tartas/frutilla.jpeg"
     },
     {
       "id": "tarta-pastafrola",
       "name": "Pastafrola",
       "price": 20000,
-      "desc": "Base de masa frola de vainilla con dulce de membrillo o batata"
+      "desc": "Base de masa frola de vainilla con dulce de membrillo o batata",
+      "image": "img/tartas/pastafrola.jpeg"
     },
     {
       "id": "tarta-lemon-pie",
       "name": "Lemon Pie",
       "price": 27000,
-      "desc": "Masa sablée de vainilla, curd de limón y merengue suizo"
+      "desc": "Masa sablée de vainilla, curd de limón y merengue suizo",
+      "image": "img/tartas/lemonpie2.jpeg"
     },
     {
       "id": "tarta-durazno",
       "name": "Durazno",
       "price": 26000,
-      "desc": "Masa sablée de vainilla, crema chantilly y duraznos en almíbar"
+      "desc": "Masa sablée de vainilla, crema chantilly y duraznos en almíbar",
+      "image": "img/tartas/durazno.jpeg"
     },
     {
       "id": "tarta-key-lime-pie",
       "name": "Key Lime Pie",
       "price": 27000,
-      "desc": "Base de galletitas de vainilla con relleno cremoso de leche condensada y lima. Decorada con crema chantilly"
+      "desc": "Base de galletitas de vainilla con relleno cremoso de leche condensada y lima. Decorada con crema chantilly",
+      "image": "img/tartas/keylime.jpeg"
     }
   ],
   "budines": [

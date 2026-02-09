@@ -45,7 +45,11 @@ function renderSection(grid, products) {
   products.forEach((p) => {
     const item = document.createElement("div");
     item.className = "menu-item";
+    const imgBlock = p.image
+      ? `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" />`
+      : "";
     item.innerHTML = `
+      ${imgBlock}
       <div class="menu-header">
         <div class="menu-title-desc">
           <strong class="menu-title">${p.name}</strong>
@@ -476,21 +480,9 @@ function initTabs() {
 // Los radio buttons ya no necesitan inicialización especial aquí
 // La función initRadioButtons() se llama cuando se abre el modal
 
-// Scroll suave al hacer clic en "Pedir" del banner
-function initBannerPedir() {
-  const btn = document.getElementById("bannerBtnPedir");
-  const target = document.getElementById("productos");
-  if (btn && target) {
-    btn.addEventListener("click", () => {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-}
-
 // Load products
 async function init() {
   initTabs();
-  initBannerPedir();
 
   try {
     const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
@@ -521,90 +513,3 @@ function updateHeaderScroll() {
 }
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll(); // estado inicial
-
-// Banner carrusel: avance automático + mejoras UX
-function initBannerCarousel() {
-  const carousel = document.querySelector(".banner-carousel");
-  const track = document.querySelector(".banner-track");
-  const dotsContainer = document.querySelector(".banner-dots");
-  const slides = document.querySelectorAll(".banner-slide");
-  if (!track || !carousel || slides.length === 0) return;
-
-  const total = slides.length;
-  let index = 0;
-  let intervalId = null;
-  const intervalMs = 4500;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function goTo(i) {
-    index = ((i % total) + total) % total;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    if (dotsContainer) {
-      dotsContainer.querySelectorAll(".banner-dot").forEach((dot, j) => {
-        dot.classList.toggle("active", j === index);
-      });
-    }
-  }
-
-  function startInterval() {
-    if (intervalId) return;
-    const ms = reducedMotion ? 12000 : intervalMs;
-    intervalId = setInterval(() => goTo(index + 1), ms);
-  }
-
-  function stopInterval() {
-    if (intervalId) {
-      clearInterval(intervalId);
-      intervalId = null;
-    }
-  }
-
-  // Indicadores (dots)
-  if (dotsContainer) {
-    for (let i = 0; i < total; i++) {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "banner-dot" + (i === 0 ? " active" : "");
-      dot.setAttribute("aria-label", "Ir a imagen " + (i + 1));
-      dot.addEventListener("click", () => goTo(i));
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  // Pausa al hover
-  carousel.addEventListener("mouseenter", stopInterval);
-  carousel.addEventListener("mouseleave", startInterval);
-
-  // Pausa cuando no está visible (Intersection Observer)
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) startInterval();
-        else stopInterval();
-      });
-    },
-    { threshold: 0.2 }
-  );
-  observer.observe(carousel);
-
-  // Swipe en móvil
-  let touchStartX = 0;
-  carousel.addEventListener(
-    "touchstart",
-    (e) => {
-      touchStartX = e.touches[0].clientX;
-    },
-    { passive: true }
-  );
-  carousel.addEventListener("touchend", (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const delta = touchStartX - touchEndX;
-    if (Math.abs(delta) > 50) {
-      if (delta > 0) goTo(index + 1);
-      else goTo(index - 1);
-    }
-  });
-
-  startInterval();
-}
-initBannerCarousel();
