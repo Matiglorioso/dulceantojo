@@ -206,6 +206,8 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: 0 4px 20px rgba(75, 58, 47, 0.06);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
@@ -825,14 +827,21 @@ body {
 
 /* Móvil: grid para que no se desborde; imagen más grande (DEBE ir después de .menu-item base) */
 @media (max-width: 768px) {
+  .section-wrapper,
+  .menu-section,
+  .menu {
+    min-width: 0;
+  }
   .menu-item {
     display: grid !important;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 120px minmax(0, 1fr);
     grid-template-rows: auto auto;
     gap: 10px 14px;
     align-items: start;
     padding: 12px 0 14px;
     min-width: 0;
+    width: 100%;
+    overflow: hidden;
   }
   .menu-item-img {
     grid-column: 1;
@@ -859,18 +868,47 @@ body {
     flex-wrap: wrap;
     gap: 8px;
     min-width: 0;
+    max-width: 100%;
+  }
+  .menu-footer .menu-price {
+    flex-shrink: 0;
+  }
+  .menu-footer .counter {
+    flex-shrink: 0;
+  }
+  .menu-footer .btn-add {
+    min-width: 0;
+    padding: 6px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .menu-footer .btn-add-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primaryText);
+  }
+  .menu-footer .btn-add-icon svg {
+    width: 1em;
+    height: 1em;
   }
 }
 
 @media (max-width: 480px) {
   .menu-item {
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 100px minmax(0, 1fr);
     gap: 8px 12px;
   }
   .menu-item-img {
     width: 100px !important;
     min-width: 100px !important;
     min-height: 120px;
+  }
+  .menu-footer .btn-add {
+    padding: 6px 8px;
+    font-size: 11px;
   }
 }
 
@@ -923,6 +961,11 @@ body {
 
 .counter-input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Ícono de carrito en botón Agregar: oculto en desktop */
+.menu-footer .btn-add-icon {
+  display: none;
 }
 
 .menu-footer .btn-add {
