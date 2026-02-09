@@ -899,8 +899,8 @@ body {
     color: var(--primaryText);
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
   /* Botón Agregar: solo ícono en móvil, mismo tamaño y bold en tartas y budines */
   .menu-footer .btn-add-text {
@@ -913,8 +913,8 @@ body {
     color: var(--primaryText);
   }
   .menu-footer .btn-add-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     stroke-width: 2.5;
   }
   .menu-footer .btn-add {
@@ -957,15 +957,15 @@ body {
     padding: 8px 14px;
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
   }
   .menu-footer .btn-add {
     padding: 8px 14px;
   }
   .menu-footer .btn-add-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     stroke-width: 2.5;
   }
   .menu-footer .counter {
