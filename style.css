@@ -899,10 +899,10 @@ body {
     color: var(--primaryText);
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
-    width: 1em;
-    height: 1em;
+    width: 20px;
+    height: 20px;
   }
-  /* Botón Agregar: solo ícono en móvil */
+  /* Botón Agregar: solo ícono en móvil, mismo tamaño y bold en tartas y budines */
   .menu-footer .btn-add-text {
     display: none;
   }
@@ -915,6 +915,7 @@ body {
   .menu-footer .btn-add-icon svg {
     width: 20px;
     height: 20px;
+    stroke-width: 2.5;
   }
   .menu-footer .btn-add {
     padding: 10px 18px;
@@ -955,12 +956,17 @@ body {
   .menu-item:has(.menu-item-img) .menu-footer .btn-add {
     padding: 8px 14px;
   }
+  .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
+    width: 18px;
+    height: 18px;
+  }
   .menu-footer .btn-add {
     padding: 8px 14px;
   }
   .menu-footer .btn-add-icon svg {
     width: 18px;
     height: 18px;
+    stroke-width: 2.5;
   }
   .menu-footer .counter {
     height: 26px;
