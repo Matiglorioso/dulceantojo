@@ -309,10 +309,12 @@ function getSecondImagePath(path) {
 
 let lightboxSlideIndex = 0;
 let lightboxTotalSlides = 1;
+const LIGHTBOX_SLIDE_GAP_PX = 20;
 
 function updateLightboxCarousel() {
   if (!lightboxSlides || lightboxTotalSlides <= 1) return;
-  lightboxSlides.style.transform = `translateX(-${lightboxSlideIndex * 100}%)`;
+  const offsetPx = lightboxSlideIndex * LIGHTBOX_SLIDE_GAP_PX;
+  lightboxSlides.style.transform = `translateX(calc(-${lightboxSlideIndex * 100}% - ${offsetPx}px))`;
   if (lightboxDotsEl) {
     lightboxDotsEl.querySelectorAll(".dot").forEach((d, i) => {
       d.classList.toggle("active", i === lightboxSlideIndex);

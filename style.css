@@ -1093,9 +1093,11 @@ body {
   width: 100%;
   max-width: 90vw;
   max-height: 85vh;
+  overflow: hidden;
 }
 .lightbox-slides {
   display: flex;
+  gap: 20px;
   transition: transform var(--transition-normal);
   width: 100%;
 }
@@ -1105,6 +1107,7 @@ body {
   align-items: center;
   justify-content: center;
   min-width: 0;
+  box-sizing: border-box;
 }
 .lightbox-slide .lightbox-img {
   max-width: 100%;
