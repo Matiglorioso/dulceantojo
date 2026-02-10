@@ -30,6 +30,9 @@ const hintEl = document.getElementById("hint");
 const thankYouDlg = document.getElementById("thankYouDlg");
 const thankYouCloseBtn = document.getElementById("thankYouCloseBtn");
 const thankYouSummary = document.getElementById("thankYouSummary");
+const imageLightbox = document.getElementById("imageLightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
 let PRODUCTS = {
   tartas: [],
   budines: [],
@@ -293,6 +296,39 @@ function renderThankYouSummary(orderSummary, total) {
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
+
+// Lightbox: abrir imagen de producto al tocar/clicar la miniatura
+function openImageLightbox(src, alt) {
+  if (!lightboxImg || !imageLightbox) return;
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || "";
+  imageLightbox.classList.add("is-open");
+  imageLightbox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeImageLightbox() {
+  if (!imageLightbox) return;
+  imageLightbox.classList.remove("is-open");
+  imageLightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+if (imageLightbox) {
+  const backdrop = imageLightbox.querySelector(".lightbox-backdrop");
+  if (lightboxClose) lightboxClose.addEventListener("click", closeImageLightbox);
+  if (backdrop) backdrop.addEventListener("click", closeImageLightbox);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && imageLightbox.classList.contains("is-open")) {
+      closeImageLightbox();
+    }
+  });
+}
+document.addEventListener("click", (e) => {
+  if (e.target && e.target.classList.contains("menu-item-img")) {
+    e.preventDefault();
+    const img = e.target;
+    if (img.src) openImageLightbox(img.src, img.alt);
+  }
+});
 
 // Cerrar modal del carrito al hacer clic fuera
 dlg.addEventListener("click", (e) => {

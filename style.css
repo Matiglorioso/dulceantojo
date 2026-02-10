@@ -1034,6 +1034,76 @@ body {
   -moz-appearance: textfield;
 }
 
+/* Lightbox: imagen de producto a tamaño completo */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(75, 58, 47, 0.75);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.lightbox-close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 101;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.lightbox-close:hover {
+  background: var(--primary);
+  color: var(--primaryText);
+}
+.menu-item-img {
+  cursor: pointer;
+}
+
 /* Ícono de carrito en botón Agregar: oculto solo en desktop (en móvil se muestra en tartas y budines) */
 @media (min-width: 769px) {
   .menu-footer .btn-add-icon {
