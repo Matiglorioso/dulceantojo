@@ -1088,6 +1088,33 @@ body {
   align-items: center;
   justify-content: center;
 }
+.lightbox-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 90vw;
+  max-height: 85vh;
+}
+.lightbox-slides {
+  display: flex;
+  transition: transform var(--transition-normal);
+  width: 100%;
+}
+.lightbox-slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.lightbox-slide .lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
 .lightbox-img {
   max-width: 100%;
   max-height: 85vh;
@@ -1096,6 +1123,59 @@ body {
   object-fit: contain;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 2;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.lightbox-arrow:hover {
+  background: var(--primary);
+  color: var(--primaryText);
+}
+.lightbox-prev {
+  left: -12px;
+}
+.lightbox-next {
+  right: -12px;
+}
+.lightbox-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.lightbox-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.lightbox-dots .dot.active {
+  background: var(--primary);
+}
+.lightbox-carousel.is-single .lightbox-arrow,
+.lightbox-carousel.is-single .lightbox-dots {
+  display: none;
 }
 .lightbox-close {
   position: fixed;
@@ -1129,8 +1209,15 @@ body {
   .lightbox-content {
     max-height: 80vh;
   }
+  .lightbox-slide .lightbox-img,
   .lightbox-img {
     max-height: 80vh;
+  }
+  .lightbox-prev {
+    left: 4px;
+  }
+  .lightbox-next {
+    right: 4px;
   }
   .lightbox-close {
     top: 12px;

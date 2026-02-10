@@ -28,8 +28,14 @@ const thankYouDlg = document.getElementById("thankYouDlg");
 const thankYouCloseBtn = document.getElementById("thankYouCloseBtn");
 const thankYouSummary = document.getElementById("thankYouSummary");
 const imageLightbox = document.getElementById("imageLightbox");
-const lightboxImg = document.getElementById("lightboxImg");
+const lightboxCarousel = imageLightbox && imageLightbox.querySelector(".lightbox-carousel");
+const lightboxSlides = imageLightbox && imageLightbox.querySelector(".lightbox-slides");
+const lightboxImg1 = document.getElementById("lightboxImg1");
+const lightboxImg2 = document.getElementById("lightboxImg2");
 const lightboxClose = document.getElementById("lightboxClose");
+const lightboxPrev = document.getElementById("lightboxPrev");
+const lightboxNext = document.getElementById("lightboxNext");
+const lightboxDotsEl = document.getElementById("lightboxDots");
 let PRODUCTS = {
   tartas: [],
   budines: [],
@@ -46,7 +52,7 @@ function renderSection(grid, products) {
     const item = document.createElement("div");
     item.className = "menu-item";
     const imgBlock = p.image
-      ? `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" />`
+      ? `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`
       : "";
     item.innerHTML = `
       ${imgBlock}
@@ -295,28 +301,110 @@ closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
 
 // Lightbox: abrir imagen de producto al tocar/clicar la miniatura
-function openImageLightbox(src, alt) {
-  if (!lightboxImg || !imageLightbox) return;
-  if (imageLightbox.classList.contains("is-open") && lightboxImg.src === src) return;
-  lightboxImg.src = src;
-  lightboxImg.alt = alt || "";
+function getSecondImagePath(path) {
+  if (!path) return null;
+  if (/2\.(jpe?g)$/i.test(path)) return path.replace(/2\.(jpe?g)$/i, ".$1");
+  return path.replace(/(\.(jpe?g))$/i, "2$1");
+}
+
+let lightboxSlideIndex = 0;
+let lightboxTotalSlides = 1;
+
+function updateLightboxCarousel() {
+  if (!lightboxSlides || lightboxTotalSlides <= 1) return;
+  lightboxSlides.style.transform = `translateX(-${lightboxSlideIndex * 100}%)`;
+  if (lightboxDotsEl) {
+    lightboxDotsEl.querySelectorAll(".dot").forEach((d, i) => {
+      d.classList.toggle("active", i === lightboxSlideIndex);
+      d.setAttribute("aria-current", i === lightboxSlideIndex ? "true" : "false");
+    });
+  }
+}
+
+function openImageLightbox(src, alt, secondSrc) {
+  if (!lightboxImg1 || !imageLightbox) return;
+  const hasSecond = Boolean(secondSrc);
+  lightboxImg1.src = src;
+  lightboxImg1.alt = alt || "";
+  if (lightboxImg2) {
+    if (hasSecond) {
+      lightboxImg2.src = secondSrc;
+      lightboxImg2.alt = alt ? `${alt} (2)` : "";
+      lightboxImg2.style.display = "";
+    } else {
+      lightboxImg2.removeAttribute("src");
+      lightboxImg2.style.display = "none";
+    }
+  }
+  lightboxSlideIndex = 0;
+  lightboxTotalSlides = hasSecond ? 2 : 1;
+  if (lightboxCarousel) {
+    lightboxCarousel.classList.toggle("is-single", !hasSecond);
+  }
+  if (lightboxDotsEl) {
+    lightboxDotsEl.innerHTML = "";
+    if (hasSecond) {
+      for (let i = 0; i < 2; i++) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `Imagen ${i + 1} de 2`);
+        dot.setAttribute("aria-current", i === 0 ? "true" : "false");
+        dot.addEventListener("click", () => {
+          lightboxSlideIndex = i;
+          updateLightboxCarousel();
+        });
+        lightboxDotsEl.appendChild(dot);
+      }
+    }
+  }
+  updateLightboxCarousel();
   imageLightbox.classList.add("is-open");
   imageLightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 }
+
 function closeImageLightbox() {
   if (!imageLightbox) return;
   imageLightbox.classList.remove("is-open");
   imageLightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
+
 if (imageLightbox) {
   const backdrop = imageLightbox.querySelector(".lightbox-backdrop");
   if (lightboxClose) lightboxClose.addEventListener("click", closeImageLightbox);
   if (backdrop) backdrop.addEventListener("click", closeImageLightbox);
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (lightboxTotalSlides <= 1) return;
+      lightboxSlideIndex = lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
+      updateLightboxCarousel();
+    });
+  }
+  if (lightboxNext) {
+    lightboxNext.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (lightboxTotalSlides <= 1) return;
+      lightboxSlideIndex = lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
+      updateLightboxCarousel();
+    });
+  }
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && imageLightbox.classList.contains("is-open")) {
+    if (!imageLightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") {
       closeImageLightbox();
+      return;
+    }
+    if (lightboxTotalSlides > 1) {
+      if (e.key === "ArrowLeft") {
+        lightboxSlideIndex = lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
+        updateLightboxCarousel();
+      } else if (e.key === "ArrowRight") {
+        lightboxSlideIndex = lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
+        updateLightboxCarousel();
+      }
     }
   });
 }
@@ -324,7 +412,9 @@ function handleProductImageOpen(e) {
   const img = e.target && e.target.classList.contains("menu-item-img") ? e.target : null;
   if (!img || !img.src) return;
   e.preventDefault();
-  openImageLightbox(img.src, img.alt);
+  const dataSrc = img.getAttribute("data-src");
+  const secondSrc = dataSrc ? getSecondImagePath(dataSrc) : null;
+  openImageLightbox(img.src, img.alt, secondSrc);
 }
 document.addEventListener("click", handleProductImageOpen);
 document.addEventListener("touchend", (e) => {
