@@ -197,10 +197,18 @@ body {
   margin: 0 auto;
 }
 
-/* Contenedor con borde: tabs + productos como bloque sobre el contenido */
+/* Contenedores de productos apilados (Tartas, Budines, Muffins) */
+.products-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+}
+
 .products-box {
   max-width: 700px;
   margin: 0 auto;
+  width: 100%;
   padding: 18px 20px 24px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -208,6 +216,20 @@ body {
   box-shadow: 0 4px 20px rgba(75, 58, 47, 0.06);
   overflow-x: hidden;
   box-sizing: border-box;
+}
+
+.products-box-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 4px 0;
+  letter-spacing: 0.3px;
+}
+
+.products-coming {
+  color: var(--muted);
+  font-style: italic;
+  margin: 0 0 8px 0;
 }
 
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
@@ -827,8 +849,7 @@ body {
 
 /* Móvil: grid solo para ítems con imagen (tartas); budines sin imagen quedan en layout flex como antes */
 @media (max-width: 768px) {
-  .section-wrapper,
-  .menu-section,
+  .products-box,
   .menu {
     min-width: 0;
   }

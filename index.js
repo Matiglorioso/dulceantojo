@@ -11,9 +11,6 @@ const CONFIG = {
 // DOM
 const gridTartas = document.getElementById("grid-tartas");
 const gridBudines = document.getElementById("grid-budines");
-const tabBtns = document.querySelectorAll(".tab-btn");
-const sectionTartas = document.getElementById("section-tartas");
-const sectionBudines = document.getElementById("section-budines");
 const dlg = document.getElementById("dlg");
 const closeBtn = document.getElementById("closeBtn");
 const orderForm = document.getElementById("orderForm");
@@ -491,41 +488,8 @@ orderForm.addEventListener("submit", (e) => {
   }, 300);
 });
 
-// Tab Handler con transición suave
-function initTabs() {
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const tabName = btn.dataset.tab;
-
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const prevSection = sectionTartas.classList.contains("active")
-        ? sectionTartas
-        : sectionBudines;
-      const nextSection = tabName === "tartas" ? sectionTartas : sectionBudines;
-      if (prevSection === nextSection) return;
-
-      prevSection.classList.remove("visible");
-      nextSection.classList.remove("active", "visible");
-
-      requestAnimationFrame(() => {
-        prevSection.classList.remove("active");
-        nextSection.classList.add("active");
-        requestAnimationFrame(() => {
-          nextSection.classList.add("visible");
-        });
-      });
-    });
-  });
-}
-
-// Los radio buttons ya no necesitan inicialización especial aquí
-// La función initRadioButtons() se llama cuando se abre el modal
-
 // Load products
 async function init() {
-  initTabs();
 
   try {
     const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
