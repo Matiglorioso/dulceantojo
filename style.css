@@ -1143,6 +1143,12 @@ body {
   box-shadow: var(--shadow);
   z-index: 2;
   transition: background var(--transition-fast), color var(--transition-fast);
+  opacity: 0;
+  pointer-events: none;
+}
+.lightbox-arrow.lightbox-arrow-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 .lightbox-arrow:hover {
   background: var(--primary);
@@ -1158,7 +1164,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 .lightbox-dots .dot {
   width: 8px;

@@ -319,6 +319,12 @@ function updateLightboxCarousel() {
       d.setAttribute("aria-current", i === lightboxSlideIndex ? "true" : "false");
     });
   }
+  if (lightboxPrev) {
+    lightboxPrev.classList.toggle("lightbox-arrow-visible", lightboxSlideIndex >= 1);
+  }
+  if (lightboxNext) {
+    lightboxNext.classList.toggle("lightbox-arrow-visible", lightboxSlideIndex === 0);
+  }
 }
 
 function openImageLightbox(src, alt, secondSrc) {
@@ -408,12 +414,18 @@ if (imageLightbox) {
     }
   });
 }
+function hasSecondImage(dataSrc) {
+  if (!dataSrc) return false;
+  const noSecond = ["keylime", "choco", "pastafrola"];
+  return !noSecond.some((name) => dataSrc.toLowerCase().includes(name));
+}
+
 function handleProductImageOpen(e) {
   const img = e.target && e.target.classList.contains("menu-item-img") ? e.target : null;
   if (!img || !img.src) return;
   e.preventDefault();
   const dataSrc = img.getAttribute("data-src");
-  const secondSrc = dataSrc ? getSecondImagePath(dataSrc) : null;
+  const secondSrc = dataSrc && hasSecondImage(dataSrc) ? getSecondImagePath(dataSrc) : null;
   openImageLightbox(img.src, img.alt, secondSrc);
 }
 document.addEventListener("click", handleProductImageOpen);
