@@ -300,6 +300,7 @@ thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
 // Lightbox: abrir imagen de producto al tocar/clicar la miniatura
 function openImageLightbox(src, alt) {
   if (!lightboxImg || !imageLightbox) return;
+  if (imageLightbox.classList.contains("is-open") && lightboxImg.src === src) return;
   lightboxImg.src = src;
   lightboxImg.alt = alt || "";
   imageLightbox.classList.add("is-open");
@@ -322,13 +323,19 @@ if (imageLightbox) {
     }
   });
 }
-document.addEventListener("click", (e) => {
+function handleProductImageOpen(e) {
+  const img = e.target && e.target.classList.contains("menu-item-img") ? e.target : null;
+  if (!img || !img.src) return;
+  e.preventDefault();
+  openImageLightbox(img.src, img.alt);
+}
+document.addEventListener("click", handleProductImageOpen);
+document.addEventListener("touchend", (e) => {
   if (e.target && e.target.classList.contains("menu-item-img")) {
+    handleProductImageOpen(e);
     e.preventDefault();
-    const img = e.target;
-    if (img.src) openImageLightbox(img.src, img.alt);
   }
-});
+}, { passive: false });
 
 // Cerrar modal del carrito al hacer clic fuera
 dlg.addEventListener("click", (e) => {

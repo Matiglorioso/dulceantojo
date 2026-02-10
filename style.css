@@ -1100,8 +1100,31 @@ body {
   background: var(--primary);
   color: var(--primaryText);
 }
+
+@media (max-width: 768px) {
+  .lightbox {
+    padding: 12px;
+  }
+  .lightbox-content {
+    max-height: 80vh;
+  }
+  .lightbox-img {
+    max-height: 80vh;
+  }
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
 .menu-item-img {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 /* Ícono de carrito en botón Agregar: oculto solo en desktop (en móvil se muestra en tartas y budines) */
