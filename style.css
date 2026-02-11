@@ -101,14 +101,15 @@ body {
   font-weight: 400;
 }
 
-/* Menú horizontal categorías (arriba del banner) */
+/* Menú horizontal categorías (mismo estilo que el header) */
 .nav-categories {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 14px 20px;
-  background: rgba(231, 169, 181, 0.12);
+  padding: 10px 16px;
+  background: rgba(251, 247, 243, 0.95);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 .nav-categories-link {
