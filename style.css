@@ -83,22 +83,39 @@ body {
   min-width: 20px;
 }
 
-/* Trust bar debajo del header */
+/* Trust bar: texto en mayúsculas con animación tipo marquesina */
 .trust-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
+  overflow: hidden;
+  padding: 8px 0;
   background: rgba(231, 169, 181, 0.12);
   border-bottom: 1px solid var(--border);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
+  letter-spacing: 0.02em;
 }
-.trust-bar-sep {
-  color: var(--muted);
-  font-weight: 400;
+.trust-bar-track {
+  display: flex;
+  width: max-content;
+  animation: trust-bar-slide 25s linear infinite;
+}
+.trust-bar-text {
+  flex: 0 0 auto;
+  padding: 0 2rem;
+  white-space: nowrap;
+}
+@keyframes trust-bar-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trust-bar-track {
+    animation: none;
+    margin: 0 auto;
+  }
+  .trust-bar-track .trust-bar-text:last-child {
+    display: none;
+  }
 }
 
 /* Menú horizontal categorías (mismo estilo que el header, fino) */
@@ -113,7 +130,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 .nav-categories-link {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--text);
   text-decoration: none;
