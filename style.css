@@ -245,12 +245,13 @@ body {
   box-sizing: border-box;
 }
 .products-faja-text {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: var(--text-2xl);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
 }
 
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
