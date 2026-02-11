@@ -175,6 +175,21 @@ body {
   object-position: center;
   display: block;
 }
+
+/* Desktop: banner más ancho, imagen casi completa y centrada */
+@media (min-width: 769px) {
+  .hero-banner .banner-slide {
+    aspect-ratio: 21 / 9;
+    max-height: none;
+    min-height: 320px;
+    height: clamp(320px, 38vh, 420px);
+  }
+  .hero-banner .banner-slide img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
 .banner-dots {
   position: absolute;
   bottom: 12px;
