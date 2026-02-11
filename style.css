@@ -245,11 +245,12 @@ body {
   box-sizing: border-box;
 }
 .products-faja-text {
-  font-family: "Satisfy", cursive;
+  font-family: "Montserrat", sans-serif;
   font-size: var(--text-2xl);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
-  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
