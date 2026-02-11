@@ -1043,28 +1043,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Desktop: controles un poco más grandes para acompañar el contenido */
-@media (min-width: 769px) {
-  .menu-item .menu-footer .counter {
-    height: 34px;
-  }
-  .menu-item .menu-footer .counter-btn {
-    width: 28px;
-    height: 34px;
-    font-size: 13px;
-  }
-  .menu-item .menu-footer .counter-input {
-    width: 30px;
-    height: 34px;
-    font-size: 12px;
-  }
-  .menu-item .menu-footer .btn-add {
-    height: 34px;
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-}
-
 /* Móvil: grid solo para ítems con imagen (tartas); budines sin imagen quedan en layout flex como antes */
 @media (max-width: 768px) {
   .products-box,
@@ -1149,30 +1127,16 @@ body {
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add {
     min-width: 0;
-    padding: 10px 16px;
-    font-size: 13px;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    min-height: 44px;
   }
   .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon {
     display: inline-flex;
     align-items: center;
     color: var(--primaryText);
   }
-  .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
-    width: 18px;
-    height: 18px;
-  }
-  .menu-item:has(.menu-item-img) .menu-footer .counter {
-    min-height: 36px;
-  }
-  .menu-item:has(.menu-item-img) .menu-footer .menu-price {
-    font-size: var(--text-base);
-  }
-  /* Botón Agregar: solo ícono en móvil, mismo tamaño y bold en tartas y budines */
+  /* Botón Agregar: solo ícono en móvil, mismo tamaño que budines */
   .menu-footer .btn-add-text {
     display: none;
   }
@@ -1240,13 +1204,6 @@ body {
   }
   .menu-item:has(.menu-item-img) .menu-title {
     font-size: var(--text-base);
-  }
-  .menu-item:has(.menu-item-img) .menu-footer .btn-add {
-    padding: 8px 14px;
-  }
-  .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
-    width: 14px;
-    height: 14px;
   }
   .menu-footer .btn-add {
     padding: 8px 14px;
