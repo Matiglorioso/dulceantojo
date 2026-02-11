@@ -55,10 +55,14 @@ function renderSection(grid, products) {
   products.forEach((p) => {
     const item = document.createElement("div");
     item.className = "menu-item";
-    const imgBlock = p.image
-      ? `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`
+    const hasImg = !!p.image;
+    const hasBadge = !!p.badge;
+    const imgBlock = hasImg
+      ? (hasBadge
+        ? `<div class="menu-item-img-wrap"><img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" /><span class="menu-item-badge">${p.badge}</span></div>`
+        : `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`)
       : "";
-    const badgeBlock = p.badge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
+    const badgeBlock = !hasImg && hasBadge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
     item.innerHTML = `
       ${imgBlock}
       <div class="menu-header">
