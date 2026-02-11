@@ -690,3 +690,63 @@ function updateHeaderScroll() {
 }
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll(); // estado inicial
+
+// Banner carrusel: auto-play 3 tartas, 2 budines, 1 muffin
+const bannerTrack = document.getElementById("bannerTrack");
+const bannerDotsEl = document.getElementById("bannerDots");
+const BANNER_SLIDES = 6;
+const BANNER_INTERVAL_MS = 4500;
+let bannerIndex = 0;
+let bannerTimer = null;
+
+function updateBanner() {
+  if (!bannerTrack) return;
+  bannerTrack.style.transform = `translateX(-${bannerIndex * 100}%)`;
+  if (bannerDotsEl) {
+    bannerDotsEl.querySelectorAll(".banner-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === bannerIndex);
+      dot.setAttribute("aria-current", i === bannerIndex ? "true" : "false");
+    });
+  }
+}
+
+function advanceBanner() {
+  bannerIndex = (bannerIndex + 1) % BANNER_SLIDES;
+  updateBanner();
+}
+
+function startBannerTimer() {
+  stopBannerTimer();
+  bannerTimer = setInterval(advanceBanner, BANNER_INTERVAL_MS);
+}
+function stopBannerTimer() {
+  if (bannerTimer) {
+    clearInterval(bannerTimer);
+    bannerTimer = null;
+  }
+}
+
+if (bannerTrack && bannerDotsEl) {
+  for (let i = 0; i < BANNER_SLIDES; i++) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "banner-dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("aria-label", `Ir a imagen ${i + 1} de ${BANNER_SLIDES}`);
+    dot.setAttribute("aria-current", i === 0 ? "true" : "false");
+    dot.addEventListener("click", () => {
+      bannerIndex = i;
+      updateBanner();
+      startBannerTimer();
+    });
+    bannerDotsEl.appendChild(dot);
+  }
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReducedMotion) {
+    startBannerTimer();
+    const heroBanner = bannerTrack.closest(".hero-banner");
+    if (heroBanner) {
+      heroBanner.addEventListener("mouseenter", stopBannerTimer);
+      heroBanner.addEventListener("mouseleave", startBannerTimer);
+    }
+  }
+}

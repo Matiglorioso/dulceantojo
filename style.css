@@ -101,6 +101,77 @@ body {
   font-weight: 400;
 }
 
+/* Banner carrusel (3 tartas, 2 budines, 1 muffin) - autoreproducible */
+.hero-banner {
+  width: 100%;
+  overflow: hidden;
+  background: var(--border);
+  position: relative;
+}
+.banner-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.6s ease-in-out;
+  will-change: transform;
+}
+.banner-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 42vh;
+  overflow: hidden;
+}
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.banner-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+.banner-dots .banner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(75, 58, 47, 0.2);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.banner-dots .banner-dot:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+.banner-dots .banner-dot.active {
+  background: var(--primary);
+  transform: scale(1.2);
+}
+@media (max-width: 768px) {
+  .banner-slide {
+    aspect-ratio: 4 / 3;
+    max-height: 38vh;
+  }
+  .banner-dots {
+    bottom: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner-track {
+    transition-duration: 0.2s;
+  }
+}
+
 /* Logo del header como enlace */
 .header-logo-link {
   display: inline-flex;
