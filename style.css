@@ -245,7 +245,7 @@ body {
   box-sizing: border-box;
 }
 .products-faja-text {
-  font-family: "Great Vibes", cursive;
+  font-family: "Satisfy", cursive;
   font-size: var(--text-2xl);
   font-weight: 400;
   color: var(--text);
