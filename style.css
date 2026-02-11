@@ -101,6 +101,34 @@ body {
   font-weight: 400;
 }
 
+/* Menú horizontal categorías (arriba del banner) */
+.nav-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 20px;
+  background: rgba(231, 169, 181, 0.12);
+  border-bottom: 1px solid var(--border);
+}
+.nav-categories-link {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.nav-categories-link:hover {
+  color: var(--primary);
+  background: rgba(231, 169, 181, 0.2);
+}
+.nav-categories-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 /* Banner carrusel (3 tartas, 2 budines, 1 muffin) - autoreproducible */
 .hero-banner {
   width: 100%;
@@ -196,60 +224,6 @@ body {
 .site-header.scrolled .cart-icon-svg {
   width: 22px;
   height: 22px;
-}
-
-/* Hero bienvenida */
-.hero-welcome {
-  text-align: center;
-  padding: 24px 20px 16px;
-}
-.hero-title {
-  font-family: "Dancing Script", cursive;
-  font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 6px 0;
-  letter-spacing: 0.02em;
-}
-.hero-subtitle {
-  font-size: var(--text-lg);
-  color: var(--muted);
-  font-weight: 600;
-  margin: 0 0 20px 0;
-}
-.hero-cta {
-  display: inline-flex;
-  width: auto;
-  min-width: 200px;
-  justify-content: center;
-  padding: 12px 24px;
-  font-size: var(--text-base);
-  text-decoration: none;
-  margin-bottom: 14px;
-}
-.hero-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 16px;
-}
-.hero-link {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 4px 0;
-  border-bottom: 1px solid transparent;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
-}
-.hero-link:hover {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-}
-.hero-link:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-  border-radius: 4px;
 }
 
 /* Fajas como enlaces (scroll a sección) */

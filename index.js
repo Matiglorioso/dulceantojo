@@ -501,8 +501,8 @@ if (stickyCartBarBtn && dlg) {
   });
 }
 
-// Scroll suave para enlaces internos (fajas, hero CTA y enlaces categorías)
-document.querySelectorAll(".products-faja-link, .hero-cta, .hero-link").forEach((link) => {
+// Scroll suave para enlaces internos (fajas y menú categorías)
+document.querySelectorAll(".products-faja-link, .nav-categories-link").forEach((link) => {
   link.addEventListener("click", (e) => {
     const href = link.getAttribute("href");
     if (href && href.startsWith("#")) {
