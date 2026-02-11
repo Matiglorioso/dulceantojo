@@ -176,12 +176,12 @@ body {
   display: block;
 }
 
-/* Desktop: ocupa todo el ancho del banner, imagen llena el área (cover) */
+/* Desktop: banner más alto para abajo, imágenes más completas (menos recorte) */
 @media (min-width: 769px) {
   .hero-banner .banner-slide {
-    aspect-ratio: 16 / 9;
-    max-height: 55vh;
-    min-height: 380px;
+    aspect-ratio: 16 / 10;
+    max-height: 72vh;
+    min-height: 480px;
   }
   .hero-banner .banner-slide img {
     object-fit: cover;
@@ -224,7 +224,7 @@ body {
 @media (max-width: 768px) {
   .banner-slide {
     aspect-ratio: 4 / 3;
-    max-height: 38vh;
+    max-height: 50vh;
   }
   .banner-dots {
     bottom: 8px;
