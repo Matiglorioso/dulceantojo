@@ -234,21 +234,23 @@ body {
 
 /* Fajas de seguridad entre secciones */
 .products-faja {
-  max-width: 700px;
+  max-width: 820px;
   margin: 0 auto;
   width: 100%;
-  padding: 14px 20px;
-  background: linear-gradient(135deg, rgba(231, 169, 181, 0.2) 0%, rgba(231, 169, 181, 0.08) 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 16px 24px;
+  background: rgba(231, 169, 181, 0.35);
+  border: none;
+  border-radius: 0;
   text-align: center;
   box-sizing: border-box;
 }
 .products-faja-text {
-  font-size: var(--text-lg);
+  font-family: "Oswald", sans-serif;
+  font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--text);
-  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
@@ -410,7 +412,7 @@ body {
     padding: 12px 16px;
   }
   .products-faja-text {
-    font-size: var(--text-base);
+    font-size: var(--text-xl);
   }
   .tabs-menu {
     margin-bottom: 12px;
@@ -429,7 +431,7 @@ body {
     padding: 10px 12px;
   }
   .products-faja-text {
-    font-size: var(--text-sm);
+    font-size: var(--text-lg);
   }
   .site-header {
     padding: 8px 12px;
