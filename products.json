@@ -4,6 +4,7 @@
       "id": "tarta-cabsha",
       "name": "Cabsha",
       "price": 27000,
+      "badge": "Más pedido",
       "desc": "Masa sablée de vainilla, dulce de leche y ganache de chocolate semiamargo",
       "image": "img/tartas/choco.jpeg"
     },
@@ -18,6 +19,7 @@
       "id": "tarta-frutilla",
       "name": "Frutilla",
       "price": 27000,
+      "badge": "Recomendada",
       "desc": "Masa sablée de vainilla, dulce de leche, crema chantilly y frutillas frescas",
       "image": "img/tartas/frutilla.jpeg"
     },

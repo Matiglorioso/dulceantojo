@@ -20,6 +20,10 @@ const cartBadge = document.getElementById("cartBadge");
 const siteHeader = document.querySelector(".site-header");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
+const submitOrderBtn = document.getElementById("submitOrderBtn");
+const stickyCartBar = document.getElementById("stickyCartBar");
+const stickyCartCount = document.getElementById("stickyCartCount");
+const stickyCartBarBtn = document.getElementById("stickyCartBarBtn");
 
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
@@ -54,10 +58,12 @@ function renderSection(grid, products) {
     const imgBlock = p.image
       ? `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`
       : "";
+    const badgeBlock = p.badge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
     item.innerHTML = `
       ${imgBlock}
       <div class="menu-header">
         <div class="menu-title-desc">
+          ${badgeBlock}
           <strong class="menu-title">${p.name}</strong>
           <div class="menu-desc">${p.desc}</div>
         </div>
@@ -203,6 +209,18 @@ function updateCartUI() {
   // Actualizar badge del carrito
   cartBadge.textContent = totalItems;
   cartBadge.style.display = totalItems > 0 ? "flex" : "none";
+
+  // Barra fija móvil: mostrar/ocultar y actualizar número
+  if (stickyCartBar && stickyCartCount) {
+    if (totalItems > 0) {
+      stickyCartBar.classList.remove("hide");
+      stickyCartBar.setAttribute("aria-hidden", "false");
+      stickyCartCount.textContent = totalItems;
+    } else {
+      stickyCartBar.classList.add("hide");
+      stickyCartBar.setAttribute("aria-hidden", "true");
+    }
+  }
 }
 
 function renderCart() {
@@ -299,6 +317,10 @@ function renderThankYouSummary(orderSummary, total) {
 // Events
 closeBtn.addEventListener("click", () => dlg.close());
 thankYouCloseBtn.addEventListener("click", () => thankYouDlg.close());
+const thankYouCta = document.getElementById("thankYouCta");
+if (thankYouCta) {
+  thankYouCta.addEventListener("click", () => thankYouDlg.close());
+}
 
 // Lightbox: abrir imagen de producto al tocar/clicar la miniatura
 function getSecondImagePath(path) {
@@ -459,9 +481,35 @@ thankYouDlg.addEventListener("click", (e) => {
 cartIcon.addEventListener("click", () => {
   if (CART.length > 0) {
     renderCart();
-    initRadioButtons(); // Inicializar radio buttons
+    initRadioButtons();
     dlg.showModal();
   }
+});
+
+// Barra fija móvil: al tocar abre el carrito
+if (stickyCartBarBtn && dlg) {
+  stickyCartBarBtn.addEventListener("click", () => {
+    if (CART.length > 0) {
+      renderCart();
+      initRadioButtons();
+      dlg.showModal();
+    }
+  });
+}
+
+// Scroll suave al hacer clic en las fajas (enlaces a secciones)
+document.querySelectorAll(".products-faja-link").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const href = link.getAttribute("href");
+    if (href && href.startsWith("#")) {
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  });
 });
 
 // Inicializar radio buttons - asegurar que ninguno esté seleccionado por defecto
@@ -576,20 +624,31 @@ orderForm.addEventListener("submit", (e) => {
     orderPayload.notes ? `• Notas: ${orderPayload.notes}` : null,
   ].filter(Boolean);
   const text = encodeURIComponent(lines.join("\n"));
-  window.open(`https://wa.me/${CONFIG.WHATSAPP_TO}?text=${text}`, "_blank");
+  const waUrl = `https://wa.me/${CONFIG.WHATSAPP_TO}?text=${text}`;
+
+  // Estado de carga en el botón
+  if (submitOrderBtn) {
+    submitOrderBtn.classList.add("is-loading");
+    submitOrderBtn.disabled = true;
+  }
+  window.open(waUrl, "_blank");
+
+  // Quitar estado de carga tras un momento (WhatsApp ya abierto)
+  setTimeout(() => {
+    if (submitOrderBtn) {
+      submitOrderBtn.classList.remove("is-loading");
+      submitOrderBtn.disabled = false;
+    }
+  }, 1500);
 
   const orderSummary = orderPayload.items.map(({ name, qty, total }) => ({ name, qty, total }));
   const orderTotal = orderPayload.total;
 
-  // Limpiar carrito después de enviar
   CART = [];
   updateCartUI();
   dlg.close();
-  
-  // Mostrar resumen en el modal de agradecimiento
+
   renderThankYouSummary(orderSummary, orderTotal);
-  
-  // Mostrar modal de agradecimiento después de cerrar el modal del carrito
   setTimeout(() => {
     thankYouDlg.showModal();
   }, 300);
