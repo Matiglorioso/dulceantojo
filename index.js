@@ -346,6 +346,9 @@ function openImageLightbox(src, alt, secondSrc) {
   }
   lightboxSlideIndex = 0;
   lightboxTotalSlides = hasSecond ? 2 : 1;
+  if (lightboxSlides) {
+    lightboxSlides.style.transform = hasSecond ? "" : "translateX(0)";
+  }
   if (lightboxCarousel) {
     lightboxCarousel.classList.toggle("is-single", !hasSecond);
   }
