@@ -101,24 +101,24 @@ body {
   font-weight: 400;
 }
 
-/* Menú horizontal categorías (mismo estilo que el header) */
+/* Menú horizontal categorías (mismo estilo que el header, fino) */
 .nav-categories {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
-  padding: 10px 16px;
+  gap: 20px;
+  padding: 6px 16px;
   background: rgba(251, 247, 243, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 .nav-categories-link {
-  font-size: var(--text-base);
-  font-weight: 700;
+  font-size: var(--text-sm);
+  font-weight: 600;
   color: var(--text);
   text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
   transition: color var(--transition-fast), background var(--transition-fast);
 }
 .nav-categories-link:hover {
