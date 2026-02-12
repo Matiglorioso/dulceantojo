@@ -548,9 +548,9 @@ body {
 
 .banner-side-text {
   margin: 0 0 28px;
-  font-family: "Dancing Script", cursive;
+  font-family: "Pacifico", cursive;
   font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
   text-align: center;
   line-height: 1.25;
@@ -669,12 +669,20 @@ body {
   gap: 18px;
 }
 
-/* Bloque 1: marca (Dulce + logo + Antojo + tagline) */
+/* Bloque 1: marca (Dulce + logo + Antojo alineado con Instagram + tagline) */
 .footer-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .footer-name-wrap {
@@ -686,17 +694,17 @@ body {
 }
 
 .footer-logo {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .footer-name {
-  font-family: "Dancing Script", cursive;
+  font-family: "Pacifico", cursive;
   font-size: 2.85rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
   letter-spacing: 0.06em;
 }
@@ -717,8 +725,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   padding: 0;
   border-radius: 50%;
   text-decoration: none;
@@ -741,8 +749,8 @@ body {
 }
 
 .footer-cta-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
 }
 
@@ -779,19 +787,22 @@ body {
     font-size: 2.5rem;
   }
   .footer-logo {
-    width: 50px;
-    height: 50px;
+    width: 62px;
+    height: 62px;
+  }
+  .footer-top {
+    gap: 16px;
   }
   .footer-tagline {
     font-size: 14px;
   }
   .footer-cta {
-    width: 44px;
-    height: 44px;
+    width: 62px;
+    height: 62px;
   }
   .footer-cta-icon {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -800,11 +811,14 @@ body {
     padding: 18px 14px 16px;
   }
   .footer-logo {
-    width: 46px;
-    height: 46px;
+    width: 54px;
+    height: 54px;
   }
   .footer-name-wrap {
     gap: 8px;
+  }
+  .footer-top {
+    gap: 14px;
   }
   .footer-name {
     font-size: 2.15rem;
@@ -813,8 +827,12 @@ body {
     font-size: 14px;
   }
   .footer-cta {
-    width: 44px;
-    height: 44px;
+    width: 54px;
+    height: 54px;
+  }
+  .footer-cta-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 
