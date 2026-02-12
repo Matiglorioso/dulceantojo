@@ -21,9 +21,6 @@ const siteHeader = document.querySelector(".site-header");
 const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 const submitOrderBtn = document.getElementById("submitOrderBtn");
-const stickyCartBar = document.getElementById("stickyCartBar");
-const stickyCartCount = document.getElementById("stickyCartCount");
-const stickyCartBarBtn = document.getElementById("stickyCartBarBtn");
 
 const addrWrap = document.getElementById("addrWrap");
 const addressEl = document.getElementById("address");
@@ -213,18 +210,6 @@ function updateCartUI() {
   // Actualizar badge del carrito
   cartBadge.textContent = totalItems;
   cartBadge.style.display = totalItems > 0 ? "flex" : "none";
-
-  // Barra fija móvil: mostrar/ocultar y actualizar número
-  if (stickyCartBar && stickyCartCount) {
-    if (totalItems > 0) {
-      stickyCartBar.classList.remove("hide");
-      stickyCartBar.setAttribute("aria-hidden", "false");
-      stickyCartCount.textContent = totalItems;
-    } else {
-      stickyCartBar.classList.add("hide");
-      stickyCartBar.setAttribute("aria-hidden", "true");
-    }
-  }
 }
 
 function renderCart() {
@@ -490,17 +475,6 @@ cartIcon.addEventListener("click", () => {
   }
 });
 
-// Barra fija móvil: al tocar abre el carrito
-if (stickyCartBarBtn && dlg) {
-  stickyCartBarBtn.addEventListener("click", () => {
-    if (CART.length > 0) {
-      renderCart();
-      initRadioButtons();
-      dlg.showModal();
-    }
-  });
-}
-
 // Scroll suave para enlaces internos (fajas y menú categorías)
 document.querySelectorAll(".products-faja-link, .nav-categories-link").forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -690,3 +664,63 @@ function updateHeaderScroll() {
 }
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll(); // estado inicial
+
+// Banner carrusel: auto-play 3 tartas, 2 budines, 1 muffin
+const bannerTrack = document.getElementById("bannerTrack");
+const bannerDotsEl = document.getElementById("bannerDots");
+const BANNER_SLIDES = 6;
+const BANNER_INTERVAL_MS = 4500;
+let bannerIndex = 0;
+let bannerTimer = null;
+
+function updateBanner() {
+  if (!bannerTrack) return;
+  bannerTrack.style.transform = `translateX(-${bannerIndex * 100}%)`;
+  if (bannerDotsEl) {
+    bannerDotsEl.querySelectorAll(".banner-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === bannerIndex);
+      dot.setAttribute("aria-current", i === bannerIndex ? "true" : "false");
+    });
+  }
+}
+
+function advanceBanner() {
+  bannerIndex = (bannerIndex + 1) % BANNER_SLIDES;
+  updateBanner();
+}
+
+function startBannerTimer() {
+  stopBannerTimer();
+  bannerTimer = setInterval(advanceBanner, BANNER_INTERVAL_MS);
+}
+function stopBannerTimer() {
+  if (bannerTimer) {
+    clearInterval(bannerTimer);
+    bannerTimer = null;
+  }
+}
+
+if (bannerTrack && bannerDotsEl) {
+  for (let i = 0; i < BANNER_SLIDES; i++) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "banner-dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("aria-label", `Ir a imagen ${i + 1} de ${BANNER_SLIDES}`);
+    dot.setAttribute("aria-current", i === 0 ? "true" : "false");
+    dot.addEventListener("click", () => {
+      bannerIndex = i;
+      updateBanner();
+      startBannerTimer();
+    });
+    bannerDotsEl.appendChild(dot);
+  }
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReducedMotion) {
+    startBannerTimer();
+    const heroBanner = bannerTrack.closest(".hero-banner");
+    if (heroBanner) {
+      heroBanner.addEventListener("mouseenter", stopBannerTimer);
+      heroBanner.addEventListener("mouseleave", startBannerTimer);
+    }
+  }
+}
