@@ -1,0 +1,17 @@
+---
+description: Subir cambios a Git después de modificar código
+alwaysApply: true
+---
+
+# Subir cambios a Git
+
+Cuando hagas cambios en el código del proyecto:
+
+1. **Siempre** ejecutar al finalizar:
+   - `git add` de los archivos modificados
+   - `git commit -m "mensaje descriptivo"`
+   - `git push`
+
+2. El mensaje del commit debe ser claro y en español (ej.: "Toast minimalista: barra fina + enlace Ver carrito").
+
+3. No des por terminada una tarea de código sin haber subido los cambios al remoto, salvo que el usuario pida explícitamente no hacerlo.
