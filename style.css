@@ -686,7 +686,7 @@ body {
 
 .footer-name {
   font-family: "Dancing Script", cursive;
-  font-size: 30px;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.02em;
@@ -698,30 +698,25 @@ body {
   font-weight: 600;
 }
 
-/* Bloque 2: CTAs (Instagram + WhatsApp) — más discretos */
+/* Bloque 2: CTA Instagram — círculo */
 .footer-ctas {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
 }
 
 .footer-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  padding: 12px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
   border-radius: 50%;
-  font-size: 13px;
-  font-weight: 600;
   text-decoration: none;
   color: var(--text);
   background: rgba(75, 58, 47, 0.08);
   border: 1px solid rgba(75, 58, 47, 0.12);
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  min-width: 44px;
-  min-height: 44px;
   box-sizing: border-box;
 }
 
@@ -734,12 +729,6 @@ body {
   background: rgba(225, 48, 108, 0.15);
   color: #e1306c;
   border-color: rgba(225, 48, 108, 0.3);
-}
-
-.footer-cta-whatsapp:hover {
-  background: rgba(37, 211, 102, 0.15);
-  color: #25d366;
-  border-color: rgba(37, 211, 102, 0.3);
 }
 
 .footer-cta-icon {
@@ -778,21 +767,18 @@ body {
     gap: 16px;
   }
   .footer-name {
-    font-size: 28px;
+    font-size: 2.25rem;
   }
   .footer-tagline {
     font-size: 12px;
   }
   .footer-cta {
-    padding: 7px 11px;
-    font-size: 12px;
-  }
-  .footer-ctas {
-    gap: 6px;
+    width: 44px;
+    height: 44px;
   }
   .footer-cta-icon {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -805,11 +791,11 @@ body {
     height: 42px;
   }
   .footer-name {
-    font-size: 26px;
+    font-size: 2rem;
   }
   .footer-cta {
-    width: 100%;
-    justify-content: center;
+    width: 44px;
+    height: 44px;
   }
 }
 
