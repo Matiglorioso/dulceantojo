@@ -145,62 +145,74 @@ function addToCart(productId, quantity, addToCartBtn) {
     setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
   }
 
-  showToast(product.name, quantity, product.price);
+  showToast(product, quantity);
   updateCartUI();
 }
 
-function showToast(productName, quantity, price) {
-  const total = price * quantity;
+const TOAST_DURATION_MS = 6000; // 6s recomendado para lectura y accesibilidad
 
-  // Crear elemento temporal para la notificación
+function showToast(product, quantity) {
+  const total = product.price * quantity;
+  const productName = product.name;
+  const price = product.price;
+  const imgHtml = product.image
+    ? `<img class="toast-img" src="${product.image}" alt="" width="48" height="48" />`
+    : "";
+
   const tempToast = document.createElement("div");
   tempToast.className = "toast";
+  tempToast.setAttribute("role", "status");
+  tempToast.setAttribute("aria-live", "polite");
+  tempToast.setAttribute("aria-label", "Producto agregado al carrito");
   tempToast.innerHTML = `
-    <div class="toast-button" aria-label="Ver resumen del pedido">
-      <button class="toast-close" aria-label="Cerrar">✕</button>
+    <div class="toast-inner">
+      <button type="button" class="toast-close" aria-label="Cerrar notificación">✕</button>
       <div class="toast-body">
-        <span class="toast-label">Agregado al carrito</span>
-        <span class="toast-product">${productName}</span>
-        <span class="toast-detail">x${quantity} · $ ${money(total)}</span>
+        ${imgHtml}
+        <div class="toast-text">
+          <span class="toast-label">Agregado al carrito</span>
+          <span class="toast-product">${productName}</span>
+          <span class="toast-detail">x${quantity} · $ ${money(total)}</span>
+        </div>
+      </div>
+      <div class="toast-actions">
+        <button type="button" class="toast-btn toast-btn-secondary">Seguir comprando</button>
+        <button type="button" class="toast-btn toast-btn-primary">Ver carrito</button>
       </div>
     </div>
   `;
   document.body.appendChild(tempToast);
 
-  // Función para cerrar el toast
   const closeToast = () => {
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = null;
     tempToast.classList.remove("show");
-    setTimeout(() => {
-      tempToast.remove();
-    }, 400);
+    setTimeout(() => tempToast.remove(), 400);
   };
 
-  // Evento del botón X
   tempToast.querySelector(".toast-close").addEventListener("click", (e) => {
     e.stopPropagation();
     closeToast();
   });
 
-  // Evento para hacer clicable todo el toast y abrir el modal
-  tempToast.querySelector(".toast-button").addEventListener("click", (e) => {
-    e.preventDefault();
+  tempToast.querySelector(".toast-btn-secondary").addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeToast();
+  });
+
+  tempToast.querySelector(".toast-btn-primary").addEventListener("click", (e) => {
+    e.stopPropagation();
     closeToast();
     if (CART.length > 0) {
       renderCart();
-      initRadioButtons(); // Inicializar radio buttons
+      initRadioButtons();
       dlg.showModal();
     }
   });
 
-  // Trigger animación
-  setTimeout(() => {
-    tempToast.classList.add("show");
-  }, 10);
+  setTimeout(() => tempToast.classList.add("show"), 10);
 
-  // Remover después de 5 segundos
-  setTimeout(() => {
-    closeToast();
-  }, 5000);
+  toastTimeout = setTimeout(closeToast, TOAST_DURATION_MS);
 }
 
 function updateCartUI() {
