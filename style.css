@@ -669,31 +669,40 @@ body {
   gap: 18px;
 }
 
-/* Bloque 1: marca (logo + nombre + tagline) */
+/* Bloque 1: marca (Dulce + logo + Antojo + tagline) */
 .footer-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+}
+
+.footer-name-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .footer-logo {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .footer-name {
   font-family: "Dancing Script", cursive;
-  font-size: 2.5rem;
+  font-size: 2.85rem;
   font-weight: 700;
   color: var(--text);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
 }
 
 .footer-tagline {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
   font-weight: 600;
 }
@@ -767,10 +776,14 @@ body {
     gap: 16px;
   }
   .footer-name {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
+  }
+  .footer-logo {
+    width: 50px;
+    height: 50px;
   }
   .footer-tagline {
-    font-size: 12px;
+    font-size: 14px;
   }
   .footer-cta {
     width: 44px;
@@ -787,11 +800,17 @@ body {
     padding: 18px 14px 16px;
   }
   .footer-logo {
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
+  }
+  .footer-name-wrap {
+    gap: 8px;
   }
   .footer-name {
-    font-size: 2rem;
+    font-size: 2.15rem;
+  }
+  .footer-tagline {
+    font-size: 14px;
   }
   .footer-cta {
     width: 44px;
