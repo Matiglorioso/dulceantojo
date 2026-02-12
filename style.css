@@ -1577,12 +1577,10 @@ body {
   position: sticky;
   bottom: 0;
   z-index: 2;
-  background: var(--surface);
   padding: 8px 0 4px;
   margin: 0 -14px 0 -14px;
   padding-left: 14px;
   padding-right: 14px;
-  box-shadow: 0 -4px 12px rgba(75, 58, 47, 0.06);
 }
 
 .cart-items-wrapper {
