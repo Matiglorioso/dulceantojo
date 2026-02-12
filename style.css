@@ -1600,15 +1600,14 @@ body {
 
 .cart-total {
   padding: 10px 14px;
-  background: rgba(251, 247, 243, 0.5);
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primaryHover) 100%);
   border-radius: 10px;
   text-align: center;
   font-size: 14px;
   margin: 0 14px 0 14px;
   display: flex;
   justify-content: center;
-  color: var(--text);
+  color: var(--primaryText);
 }
 
 .total-icon {
@@ -1893,9 +1892,10 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Dialog del carrito */
+/* Dialog del carrito: mismo fondo que el header del modal */
 .dialog-cart {
   width: min(560px, 94vw);
+  background: linear-gradient(to bottom, rgba(231, 169, 181, 0.08), rgba(251, 247, 243, 0.4));
 }
 
 /* Dialog de agradecimiento */
