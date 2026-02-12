@@ -18,7 +18,6 @@ const cartItemsEl = document.getElementById("cartItems");
 const cartIcon = document.getElementById("cartIcon");
 const cartBadge = document.getElementById("cartBadge");
 const siteHeader = document.querySelector(".site-header");
-const toastEl = document.getElementById("toast");
 const totalAmountEl = document.getElementById("totalAmount");
 const submitOrderBtn = document.getElementById("submitOrderBtn");
 
@@ -42,7 +41,6 @@ let PRODUCTS = {
   budines: [],
 };
 let CART = []; // Carrito de compras
-let toastTimeout = null;
 
 // Helpers
 const money = (n) => new Intl.NumberFormat("es-AR").format(n);
@@ -133,76 +131,83 @@ function addToCart(productId, quantity, addToCartBtn) {
     });
   }
 
-  // Micro-interacción: animación en botón y en ícono del carrito
   if (addToCartBtn) {
     addToCartBtn.classList.add("added");
     setTimeout(() => addToCartBtn.classList.remove("added"), 400);
   }
-  if (cartIcon) {
-    cartIcon.classList.remove("cart-bump");
-    void cartIcon.offsetWidth;
-    cartIcon.classList.add("cart-bump");
-    setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
-  }
 
-  showToast(product.name, quantity, product.price);
+  flyToCart(product, addToCartBtn);
   updateCartUI();
 }
 
-function showToast(productName, quantity, price) {
-  const total = price * quantity;
+function flyToCart(product, addToCartBtn) {
+  if (!cartIcon) return;
 
-  const tempToast = document.createElement("div");
-  tempToast.className = "toast";
-  tempToast.setAttribute("role", "status");
-  tempToast.setAttribute("aria-live", "polite");
-  tempToast.innerHTML = `
-    <div class="toast-inner">
-      <button type="button" class="toast-close" aria-label="Cerrar">×</button>
-      <p class="toast-message">
-        <strong class="toast-product">${productName}</strong> agregado
-        <span class="toast-detail"> · x${quantity} $ ${money(total)}</span>
-      </p>
-      <a href="#" class="toast-link">Ver carrito</a>
-    </div>
+  const menuItem = addToCartBtn ? addToCartBtn.closest(".menu-item") : null;
+  const sourceImg = menuItem ? menuItem.querySelector(".menu-item-img") : null;
+  const size = 52;
+
+  const flyEl = document.createElement("div");
+  flyEl.className = "fly-to-cart";
+  flyEl.setAttribute("aria-hidden", "true");
+
+  if (sourceImg && product.image) {
+    const img = document.createElement("img");
+    img.src = product.image;
+    img.alt = "";
+    img.width = size;
+    img.height = size;
+    flyEl.appendChild(img);
+  } else {
+    flyEl.classList.add("fly-to-cart-placeholder");
+    flyEl.textContent = product.name.charAt(0).toUpperCase();
+  }
+
+  const sourceRect = sourceImg ? sourceImg.getBoundingClientRect() : addToCartBtn.getBoundingClientRect();
+  const destRect = cartIcon.getBoundingClientRect();
+
+  const startX = sourceRect.left + sourceRect.width / 2 - size / 2;
+  const startY = sourceRect.top + sourceRect.height / 2 - size / 2;
+  const endX = destRect.left + destRect.width / 2 - size / 2;
+  const endY = destRect.top + destRect.height / 2 - size / 2;
+  const dx = endX - startX;
+  const dy = endY - startY;
+
+  flyEl.style.cssText = `
+    position: fixed;
+    left: ${startX}px;
+    top: ${startY}px;
+    width: ${size}px;
+    height: ${size}px;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(0, 0) scale(1);
+    transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   `;
-  document.body.appendChild(tempToast);
 
-  const closeToast = () => {
-    if (toastTimeout) clearTimeout(toastTimeout);
-    toastTimeout = null;
-    tempToast.classList.remove("show");
-    setTimeout(() => tempToast.remove(), 300);
+  document.body.appendChild(flyEl);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      flyEl.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
+    });
+  });
+
+  let done = false;
+  const onEnd = () => {
+    if (done) return;
+    done = true;
+    flyEl.remove();
+    if (cartIcon) {
+      cartIcon.classList.remove("cart-bump");
+      void cartIcon.offsetWidth;
+      cartIcon.classList.add("cart-bump");
+      setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
+    }
   };
 
-  tempToast.querySelector(".toast-close").addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    closeToast();
-  });
-
-  tempToast.querySelector(".toast-link").addEventListener("click", (e) => {
-    e.preventDefault();
-    closeToast();
-    if (CART.length > 0) {
-      renderCart();
-      initRadioButtons();
-      dlg.showModal();
-    }
-  });
-
-  tempToast.querySelector(".toast-inner").addEventListener("click", (e) => {
-    if (e.target.closest(".toast-close") || e.target.closest(".toast-link")) return;
-    closeToast();
-    if (CART.length > 0) {
-      renderCart();
-      initRadioButtons();
-      dlg.showModal();
-    }
-  });
-
-  setTimeout(() => tempToast.classList.add("show"), 10);
-  toastTimeout = setTimeout(closeToast, 4500);
+  flyEl.addEventListener("transitionend", onEnd);
+  setTimeout(onEnd, 620);
 }
 
 function updateCartUI() {
