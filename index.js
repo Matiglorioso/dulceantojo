@@ -145,40 +145,25 @@ function addToCart(productId, quantity, addToCartBtn) {
     setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
   }
 
-  showToast(product, quantity);
+  showToast(product.name, quantity, product.price);
   updateCartUI();
 }
 
-const TOAST_DURATION_MS = 6000; // 6s recomendado para lectura y accesibilidad
-
-function showToast(product, quantity) {
-  const total = product.price * quantity;
-  const productName = product.name;
-  const price = product.price;
-  const imgHtml = product.image
-    ? `<img class="toast-img" src="${product.image}" alt="" width="48" height="48" />`
-    : "";
+function showToast(productName, quantity, price) {
+  const total = price * quantity;
 
   const tempToast = document.createElement("div");
   tempToast.className = "toast";
   tempToast.setAttribute("role", "status");
   tempToast.setAttribute("aria-live", "polite");
-  tempToast.setAttribute("aria-label", "Producto agregado al carrito");
   tempToast.innerHTML = `
     <div class="toast-inner">
-      <button type="button" class="toast-close" aria-label="Cerrar notificación">✕</button>
-      <div class="toast-body">
-        ${imgHtml}
-        <div class="toast-text">
-          <span class="toast-label">Agregado al carrito</span>
-          <span class="toast-product">${productName}</span>
-          <span class="toast-detail">x${quantity} · $ ${money(total)}</span>
-        </div>
-      </div>
-      <div class="toast-actions">
-        <button type="button" class="toast-btn toast-btn-secondary">Seguir comprando</button>
-        <button type="button" class="toast-btn toast-btn-primary">Ver carrito</button>
-      </div>
+      <button type="button" class="toast-close" aria-label="Cerrar">×</button>
+      <p class="toast-message">
+        <strong class="toast-product">${productName}</strong> agregado
+        <span class="toast-detail"> · x${quantity} $ ${money(total)}</span>
+      </p>
+      <a href="#" class="toast-link">Ver carrito</a>
     </div>
   `;
   document.body.appendChild(tempToast);
@@ -187,21 +172,27 @@ function showToast(product, quantity) {
     if (toastTimeout) clearTimeout(toastTimeout);
     toastTimeout = null;
     tempToast.classList.remove("show");
-    setTimeout(() => tempToast.remove(), 400);
+    setTimeout(() => tempToast.remove(), 300);
   };
 
   tempToast.querySelector(".toast-close").addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
     closeToast();
   });
 
-  tempToast.querySelector(".toast-btn-secondary").addEventListener("click", (e) => {
-    e.stopPropagation();
+  tempToast.querySelector(".toast-link").addEventListener("click", (e) => {
+    e.preventDefault();
     closeToast();
+    if (CART.length > 0) {
+      renderCart();
+      initRadioButtons();
+      dlg.showModal();
+    }
   });
 
-  tempToast.querySelector(".toast-btn-primary").addEventListener("click", (e) => {
-    e.stopPropagation();
+  tempToast.querySelector(".toast-inner").addEventListener("click", (e) => {
+    if (e.target.closest(".toast-close") || e.target.closest(".toast-link")) return;
     closeToast();
     if (CART.length > 0) {
       renderCart();
@@ -211,8 +202,7 @@ function showToast(product, quantity) {
   });
 
   setTimeout(() => tempToast.classList.add("show"), 10);
-
-  toastTimeout = setTimeout(closeToast, TOAST_DURATION_MS);
+  toastTimeout = setTimeout(closeToast, 4500);
 }
 
 function updateCartUI() {
