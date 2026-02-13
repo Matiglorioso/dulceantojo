@@ -1266,8 +1266,8 @@ body {
   flex-wrap: wrap;
 }
 
-/* ——— Cards de producto con imagen (estilo referencia: imagen arriba, badge, nombre+precio, descripción, counter + Agregar) ——— */
-.menu-item:has(.menu-item-img) {
+/* ——— Cards de producto solo en TARTAS (imagen arriba, badge, nombre+precio, descripción, counter + Agregar) ——— */
+#section-tartas .menu-item {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -1281,17 +1281,17 @@ body {
   gap: 0;
 }
 
-.menu-item:has(.menu-item-img):last-child {
+#section-tartas .menu-item:last-child {
   margin-bottom: 0;
 }
 
-.menu-item:has(.menu-item-img):hover {
+#section-tartas .menu-item:hover {
   box-shadow: 0 4px 20px rgba(93, 64, 55, 0.12);
 }
 
-/* Imagen a ancho completo arriba */
-.menu-item:has(.menu-item-img) .menu-item-img-wrap,
-.menu-item:has(.menu-item-img) > .menu-item-img {
+/* Imagen a ancho completo arriba (solo tartas) */
+#section-tartas .menu-item .menu-item-img-wrap,
+#section-tartas .menu-item > .menu-item-img {
   width: 100%;
   min-width: 100%;
   height: 200px;
@@ -1303,12 +1303,12 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.menu-item:has(.menu-item-img) > .menu-item-img {
+#section-tartas .menu-item > .menu-item-img {
   object-fit: cover;
   object-position: center;
 }
 
-.menu-item:has(.menu-item-img-wrap) .menu-item-img-wrap .menu-item-img {
+#section-tartas .menu-item .menu-item-img-wrap .menu-item-img {
   width: 100%;
   height: 100%;
   min-width: 100%;
@@ -1319,8 +1319,8 @@ body {
   border-radius: 0;
 }
 
-/* Badge sobre la imagen: fondo claro, texto oscuro */
-.menu-item-img-wrap .menu-item-badge {
+/* Badge sobre la imagen (solo tartas): fondo claro, texto oscuro */
+#section-tartas .menu-item-img-wrap .menu-item-badge {
   top: 10px;
   left: 10px;
   color: var(--text);
@@ -1331,27 +1331,29 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenido debajo de la imagen */
-.menu-item:has(.menu-item-img) .menu-header {
+/* Contenido debajo de la imagen (solo tartas) */
+#section-tartas .menu-item .menu-header {
   padding: 12px 14px 8px;
   min-width: 0;
 }
 
-.menu-item:has(.menu-item-img) .menu-footer {
+#section-tartas .menu-item .menu-footer {
   padding: 8px 14px 14px;
   justify-content: space-between;
   flex-wrap: nowrap;
   border-top: none;
 }
 
-.menu-item:has(.menu-item-img) .menu-footer .counter {
+#section-tartas .menu-item .menu-footer .counter,
+#section-budines .menu-footer .counter {
   flex-shrink: 0;
   border-radius: 20px;
   border: 1px solid var(--border);
   background: var(--bg);
 }
 
-.menu-item:has(.menu-item-img) .menu-footer .btn-add {
+#section-tartas .menu-item .menu-footer .btn-add,
+#section-budines .menu-footer .btn-add {
   background: var(--primary);
   color: var(--primaryText);
   padding: 10px 16px;
@@ -1363,34 +1365,36 @@ body {
   font-size: var(--text-sm);
 }
 
-.menu-item:has(.menu-item-img) .menu-footer .btn-add-icon {
+#section-tartas .menu-item .menu-footer .btn-add-icon,
+#section-budines .menu-footer .btn-add-icon {
   display: inline-flex;
   color: var(--primaryText);
 }
 
-.menu-item:has(.menu-item-img) .menu-footer .btn-add-icon svg {
+#section-tartas .menu-item .menu-footer .btn-add-icon svg,
+#section-budines .menu-footer .btn-add-icon svg {
   width: 18px;
   height: 18px;
 }
 
-/* Budines sin imagen: mantener precio en footer si no hay menu-title-row (retrocompat) */
+/* Budines: mismo estilo de counter y botón que tartas (lista como antes, solo input y Agregar unificados) */
 .menu-item:not(:has(.menu-item-img)) .menu-title-row .menu-price {
   display: inline;
 }
 
-/* Móvil: ajustes de cards y botón Agregar con texto */
+/* Móvil: ajustes de cards (solo tartas) y botón Agregar con texto */
 @media (max-width: 768px) {
   .products-box,
   .menu {
     min-width: 0;
   }
-  .menu-item:has(.menu-item-img) .menu-item-img-wrap,
-  .menu-item:has(.menu-item-img) > .menu-item-img {
+  #section-tartas .menu-item .menu-item-img-wrap,
+  #section-tartas .menu-item > .menu-item-img {
     height: 180px;
     min-height: 180px;
     max-height: 180px;
   }
-  .menu-item:has(.menu-item-img) .menu-title {
+  #section-tartas .menu-item .menu-title {
     font-size: var(--text-base);
   }
   .menu-footer .btn-add-text {
@@ -1432,13 +1436,13 @@ body {
 }
 
 @media (max-width: 480px) {
-  .menu-item:has(.menu-item-img) .menu-item-img-wrap,
-  .menu-item:has(.menu-item-img) > .menu-item-img {
+  #section-tartas .menu-item .menu-item-img-wrap,
+  #section-tartas .menu-item > .menu-item-img {
     height: 160px;
     min-height: 160px;
     max-height: 160px;
   }
-  .menu-item:has(.menu-item-img) .menu-title {
+  #section-tartas .menu-item .menu-title {
     font-size: var(--text-base);
   }
   .menu-footer .btn-add {
@@ -1709,12 +1713,13 @@ body {
   touch-action: manipulation;
 }
 
-/* Ícono de carrito en botón Agregar: oculto en desktop salvo en cards con imagen */
+/* Ícono de carrito en botón Agregar: oculto en desktop salvo en tartas y budines */
 @media (min-width: 769px) {
   .menu-footer .btn-add-icon {
     display: none;
   }
-  .menu-item:has(.menu-item-img) .menu-footer .btn-add-icon {
+  #section-tartas .menu-footer .btn-add-icon,
+  #section-budines .menu-footer .btn-add-icon {
     display: inline-flex;
   }
 }
@@ -2878,22 +2883,37 @@ textarea {
     font-weight: 700;
     color: var(--mobile-primary);
   }
+  /* Counter y Agregar en budines: mismo estilo que tartas */
   #section-budines .counter {
-    background: var(--mobile-bg);
-    border-radius: 9999px;
-    padding: 0.2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    height: 26px;
   }
   #section-budines .btn-add {
-    background: rgba(248, 187, 208, 0.3);
-    color: var(--mobile-primary);
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0;
+    background: var(--primary);
+    color: var(--primaryText);
+    border-radius: 12px;
+    padding: 10px 16px;
     min-width: 0;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+  #section-budines .btn-add-icon {
+    display: inline-flex;
+    color: var(--primaryText);
+  }
+  #section-budines .btn-add-icon svg {
+    width: 18px;
+    height: 18px;
   }
   #section-budines .btn-add-text {
-    display: none;
+    display: inline;
   }
 
   /* Faja “¿O mejor un budincito?” */
