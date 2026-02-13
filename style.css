@@ -118,35 +118,6 @@ body {
   }
 }
 
-/* Menú horizontal categorías (mismo estilo que el header, fino) */
-.nav-categories {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 6px 16px;
-  background: rgba(251, 247, 243, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-categories-link {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--text);
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 6px;
-  transition: color var(--transition-fast), background var(--transition-fast);
-}
-.nav-categories-link:hover {
-  color: var(--primary);
-  background: rgba(231, 169, 181, 0.2);
-}
-.nav-categories-link:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
 /* Banner carrusel (3 tartas, 2 budines, 1 muffin) - autoreproducible */
 .hero-banner {
   width: 100%;
@@ -2615,38 +2586,6 @@ textarea {
   }
   .hero-banner .banner-dots {
     bottom: 0.75rem;
-  }
-
-  /* Categorías: pills horizontal scroll */
-  .nav-categories {
-    gap: 1rem;
-    padding: 1rem 1rem;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    background: rgba(250, 247, 242, 0.6);
-  }
-  .nav-categories::-webkit-scrollbar {
-    display: none;
-  }
-  .nav-categories-link {
-    flex: 0 0 auto;
-    padding: 0.625rem 1.5rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    background: #fff;
-    color: var(--mobile-primary);
-    border: 1px solid rgba(248, 187, 208, 0.4);
-  }
-  .nav-categories-link:first-of-type {
-    background: var(--mobile-primary);
-    color: #fff;
-    border-color: var(--mobile-primary);
-  }
-  .nav-categories-link:hover {
-    background: rgba(248, 187, 208, 0.2);
   }
 
   /* Main: max-width centrado */

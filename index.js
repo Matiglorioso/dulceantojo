@@ -491,8 +491,8 @@ cartIcon.addEventListener("click", () => {
   }
 });
 
-// Scroll suave para enlaces internos (fajas y menú categorías)
-document.querySelectorAll(".products-faja-link, .nav-categories-link").forEach((link) => {
+// Scroll suave para enlaces internos
+document.querySelectorAll(".products-faja-link").forEach((link) => {
   link.addEventListener("click", (e) => {
     const href = link.getAttribute("href");
     if (href && href.startsWith("#")) {
