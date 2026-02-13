@@ -429,12 +429,12 @@ body {
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   flex: 1;
   min-width: 0;
   max-width: 320px;
-  padding: 14px 24px;
+  padding: 8px 28px;
   border-radius: 9999px;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   background: #fff;
