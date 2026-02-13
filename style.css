@@ -1167,15 +1167,15 @@ body {
   flex-wrap: wrap;
 }
 
-/* ——— Cards de producto solo en TARTAS (imagen arriba, badge, nombre+precio, descripción, counter + Agregar) ——— */
+/* ——— Cards de producto solo en TARTAS (referencia: imagen, badge “MÁS PEDIDO”, nombre+precio, descripción, counter + Agregar) ——— */
 #section-tartas .menu-item {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(93, 64, 55, 0.08);
-  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(93, 64, 55, 0.06);
+  border: 1px solid #ebe6e1;
   padding: 0;
   margin: 0 0 16px 0;
   overflow: hidden;
@@ -1187,7 +1187,7 @@ body {
 }
 
 #section-tartas .menu-item:hover {
-  box-shadow: 0 4px 20px rgba(93, 64, 55, 0.12);
+  box-shadow: 0 4px 16px rgba(93, 64, 55, 0.1);
 }
 
 /* Imagen a ancho completo arriba (solo tartas) */
@@ -1201,7 +1201,7 @@ body {
   flex-shrink: 0;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #ebe6e1;
 }
 
 #section-tartas .menu-item > .menu-item-img {
@@ -1220,32 +1220,89 @@ body {
   border-radius: 0;
 }
 
-/* Badge sobre la imagen (solo tartas): fondo claro, texto oscuro */
+/* Badge sobre la imagen (estilo ref.: fondo gris claro, texto gris oscuro) */
 #section-tartas .menu-item-img-wrap .menu-item-badge {
   top: 10px;
   left: 10px;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.95);
-  font-size: 10px;
-  padding: 5px 10px;
+  color: #5c5349;
+  background: #eae8e5;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 6px 10px;
   border-radius: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  letter-spacing: 0.04em;
 }
 
-/* Contenido debajo de la imagen (solo tartas) */
+/* Contenido debajo de la imagen */
 #section-tartas .menu-item .menu-header {
-  padding: 12px 14px 8px;
+  padding: 14px 16px 6px;
   min-width: 0;
 }
 
+#section-tartas .menu-item .menu-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #5D4037;
+  line-height: 1.3;
+}
+
+#section-tartas .menu-item .menu-title-row .menu-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #5D4037;
+}
+
+#section-tartas .menu-item .menu-desc {
+  font-size: var(--text-sm);
+  color: #7a6f65;
+  line-height: 1.45;
+  margin: 6px 0 0 0;
+}
+
 #section-tartas .menu-item .menu-footer {
-  padding: 8px 14px 14px;
+  padding: 10px 16px 16px;
   justify-content: space-between;
   flex-wrap: nowrap;
   border-top: none;
 }
 
-#section-tartas .menu-item .menu-footer .counter,
+/* Counter: fondo blanco, borde gris claro (ref.) */
+#section-tartas .menu-item .menu-footer .counter {
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #e0dbd6;
+  background: #fff;
+}
+
+/* Botón Agregar: rosa-marrón suave, texto blanco, ícono marrón oscuro (ref.) */
+#section-tartas .menu-item .menu-footer .btn-add {
+  background: #c9a090;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+#section-tartas .menu-item .menu-footer .btn-add:hover {
+  background: #bf9484;
+}
+
+#section-tartas .menu-item .menu-footer .btn-add-icon {
+  display: inline-flex;
+  color: #4b3a2f;
+}
+
+#section-tartas .menu-item .menu-footer .btn-add-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budines: counter y botón (estilo unificado) */
 #section-budines .menu-footer .counter {
   flex-shrink: 0;
   border-radius: 20px;
@@ -1253,7 +1310,6 @@ body {
   background: var(--bg);
 }
 
-#section-tartas .menu-item .menu-footer .btn-add,
 #section-budines .menu-footer .btn-add {
   background: var(--primary);
   color: var(--primaryText);
@@ -1266,13 +1322,11 @@ body {
   font-size: var(--text-sm);
 }
 
-#section-tartas .menu-item .menu-footer .btn-add-icon,
 #section-budines .menu-footer .btn-add-icon {
   display: inline-flex;
   color: var(--primaryText);
 }
 
-#section-tartas .menu-item .menu-footer .btn-add-icon svg,
 #section-budines .menu-footer .btn-add-icon svg {
   width: 18px;
   height: 18px;
