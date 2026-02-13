@@ -453,7 +453,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Contenedores de productos apilados (Tartas, Budines, Muffins) */
+/* Contenedores de productos apilados (Tartas, Budines) */
 .products-stack {
   display: flex;
   flex-direction: column;
@@ -707,13 +707,13 @@ body {
   }
 }
 
-/* ─── Footer: identidad, CTAs, copyright (buenas prácticas) ─── */
+/* ─── Footer: identidad, CTAs, copyright (compacto) ─── */
 .site-footer {
-  padding: 24px 20px 20px;
+  padding: 16px 20px 16px;
   border-top: 3px solid var(--primary);
   background: #ede6df;
   color: var(--text);
-  margin-top: 36px;
+  margin-top: 24px;
   overflow-x: hidden;
   box-sizing: border-box;
   text-align: center;
@@ -726,7 +726,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 18px;
+  gap: 10px;
 }
 
 /* Bloque 1: marca (Dulce + logo + Antojo + tagline) */
@@ -813,8 +813,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding-top: 8px;
+  gap: 4px;
+  padding-top: 6px;
   border-top: 1px solid rgba(75, 58, 47, 0.12);
   width: 100%;
   text-align: center;
@@ -833,10 +833,10 @@ body {
 /* Footer responsive */
 @media (max-width: 640px) {
   .site-footer {
-    padding: 20px 16px 18px;
+    padding: 14px 16px 14px;
   }
   .footer-inner {
-    gap: 16px;
+    gap: 10px;
   }
   .footer-name {
     font-size: 2.5rem;
@@ -2819,18 +2819,19 @@ textarea {
     color: var(--mobile-primary);
   }
 
-  /* Footer mobile */
+  /* Footer mobile (compacto) */
   .site-footer {
     background: rgba(248, 187, 208, 0.08);
     border-top: 1px solid rgba(248, 187, 208, 0.2);
-    padding: 3rem 1.5rem 4rem;
+    padding: 1.5rem 1.5rem 2rem;
     text-align: center;
   }
   .footer-inner {
     max-width: 28rem;
+    gap: 8px;
   }
   .footer-brand {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
   .footer-name-wrap {
     display: none;
@@ -2856,7 +2857,7 @@ textarea {
     display: block;
   }
   .footer-ctas {
-    margin: 2rem 0;
+    margin: 0.75rem 0;
   }
   .footer-cta {
     width: 2.5rem;
@@ -2879,39 +2880,12 @@ textarea {
     letter-spacing: 0.15em;
     opacity: 0.6;
   }
-
-  /* FAB WhatsApp */
-  .whatsapp-fab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    background: #25D366;
-    color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    z-index: 40;
-    transition: transform 0.2s;
-  }
-  .whatsapp-fab:hover {
-    transform: scale(1.1);
-  }
-  .whatsapp-fab:active {
-    transform: scale(0.95);
-  }
 }
 
 /* Solo desktop: ocultar elementos mobile */
 @media (min-width: 769px) {
   .header-mobile-center,
   .header-menu-btn {
-    display: none;
-  }
-  .whatsapp-fab {
     display: none;
   }
 }
