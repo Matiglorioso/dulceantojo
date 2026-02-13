@@ -1266,6 +1266,20 @@ body {
   border-radius: 20px;
   border: 1px solid var(--border);
   background: var(--bg);
+  height: 34px;
+}
+
+#section-tartas .menu-item .menu-footer .counter .counter-btn,
+#section-budines .menu-footer .counter .counter-btn {
+  width: 28px;
+  height: 34px;
+}
+
+#section-tartas .menu-item .menu-footer .counter .counter-input,
+#section-budines .menu-footer .counter .counter-input {
+  height: 34px;
+  width: 28px;
+  font-size: 12px;
 }
 
 #section-tartas .menu-item .menu-footer .btn-add,
@@ -1344,18 +1358,18 @@ body {
     gap: 6px;
   }
   .menu-footer .counter {
-    height: 26px;
+    height: 34px;
     border-radius: 20px;
   }
   .menu-footer .counter-btn {
-    width: 24px;
-    height: 26px;
+    width: 28px;
+    height: 34px;
     font-size: 12px;
   }
   .menu-footer .counter-input {
-    width: 26px;
+    width: 28px;
     font-size: 12px;
-    height: 26px;
+    height: 34px;
   }
 }
 
@@ -1378,17 +1392,17 @@ body {
     stroke-width: 2.5;
   }
   .menu-footer .counter {
-    height: 26px;
+    height: 34px;
   }
   .menu-footer .counter-btn {
-    width: 24px;
-    height: 26px;
+    width: 28px;
+    height: 34px;
     font-size: 12px;
   }
   .menu-footer .counter-input {
-    width: 26px;
+    width: 28px;
     font-size: 12px;
-    height: 26px;
+    height: 34px;
   }
 }
 
