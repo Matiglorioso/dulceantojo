@@ -1742,14 +1742,14 @@ body {
 
 .cart-total {
   padding: 10px 14px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primaryHover) 100%);
+  background: linear-gradient(135deg, #6B4A3A 0%, #5d4032 100%);
   border-radius: 10px;
   text-align: center;
   font-size: 14px;
   margin: 0 14px 0 14px;
   display: flex;
   justify-content: center;
-  color: var(--primaryText);
+  color: #fff;
 }
 
 .total-icon {
@@ -1878,6 +1878,18 @@ body {
   background: #f5f5f5;
 }
 
+/* Modal carrito: botón quitar ítem en marrón */
+.dialog-cart .btn-remove {
+  background: #6B4A3A;
+  border-color: #6B4A3A;
+  color: #fff;
+}
+.dialog-cart .btn-remove:hover {
+  background: #5d4032;
+  border-color: #5d4032;
+  color: #fff;
+}
+
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -1906,6 +1918,16 @@ body {
   position: absolute;
   right: 16px;
   top: 16px;
+}
+
+/* Modal carrito: botón cerrar en marrón */
+.dialog-cart .modal-header .close-btn {
+  background: #6B4A3A;
+  color: #fff;
+}
+.dialog-cart .modal-header .close-btn:hover {
+  background: #5d4032;
+  color: #fff;
 }
 
 .close-btn {
@@ -1985,6 +2007,24 @@ body {
 .btn.primary:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(231, 169, 181, 0.3);
+}
+
+/* Modal carrito: botón Enviar pedido en marrón */
+.dialog-cart .btn.primary,
+.dialog-cart .btn-submit-order {
+  background: #6B4A3A;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(107, 74, 58, 0.3);
+}
+.dialog-cart .btn.primary:hover,
+.dialog-cart .btn-submit-order:hover {
+  background: #5d4032;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(107, 74, 58, 0.4);
+}
+.dialog-cart .btn.primary:active,
+.dialog-cart .btn-submit-order:active {
+  box-shadow: 0 2px 8px rgba(107, 74, 58, 0.3);
 }
 
 /* Estado de carga del botón Enviar pedido */
