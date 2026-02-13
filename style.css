@@ -48,7 +48,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
   background: rgba(251, 247, 243, 0.95);
   backdrop-filter: blur(10px);
@@ -58,6 +58,8 @@ body {
   gap: 20px;
   transition: padding 0.25s ease, gap 0.25s ease;
   margin-bottom: 0;
+  min-height: 52px;
+  box-sizing: border-box;
 }
 
 .site-header.scrolled {
@@ -2490,11 +2492,12 @@ textarea {
     font-family: "Plus Jakarta Sans", sans-serif;
   }
 
-  /* Header: menú izq, logo centro, carrito der */
+  /* Header: Instagram izq, centro Dulce Antojo, carrito der */
   .site-header {
     justify-content: space-between;
-    padding: 12px 16px;
-    background: rgba(250, 247, 242, 0.9);
+    padding: 14px 16px;
+    min-height: 64px;
+    background: rgba(250, 247, 242, 0.98);
     backdrop-filter: blur(12px);
   }
   .site-header .header-logo-link {
