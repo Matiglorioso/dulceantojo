@@ -63,12 +63,14 @@ function renderSection(grid, products) {
       <div class="menu-header">
         <div class="menu-title-desc">
           ${badgeBlock}
-          <strong class="menu-title">${p.name}</strong>
+          <div class="menu-title-row">
+            <strong class="menu-title">${p.name}</strong>
+            <span class="menu-price">$ ${money(p.price)}</span>
+          </div>
           <div class="menu-desc">${p.desc}</div>
         </div>
       </div>
       <div class="menu-footer">
-        <div class="menu-price">$ ${money(p.price)}</div>
         <div class="counter">
           <button class="counter-btn" type="button" data-action="minus" data-id="${p.id}">−</button>
           <input class="counter-input" type="number" min="1" value="1" data-id="${p.id}" readonly />
