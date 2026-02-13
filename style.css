@@ -452,6 +452,98 @@ body {
   line-height: 1.2;
 }
 
+/* Hero budines: imagen izquierda, título derecha, fondo rosa faja */
+.hero-budines {
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+  background: rgba(231, 169, 181, 0.35);
+  border-radius: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hero-budines-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 200px;
+}
+
+.hero-budines-img-wrap {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 180px;
+}
+
+.hero-budines-img {
+  max-width: 100%;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero-budines-text-wrap {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero-budines-title {
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1.5rem, 4vw, var(--text-3xl));
+  font-weight: 800;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-budines-inner {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .hero-budines-img-wrap {
+    flex: none;
+    min-height: 160px;
+    padding: 16px 20px 0;
+  }
+  .hero-budines-img {
+    max-height: 180px;
+  }
+  .hero-budines-text-wrap {
+    flex: none;
+    padding: 16px 20px 24px;
+  }
+  .hero-budines-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-budines-img-wrap {
+    min-height: 140px;
+    padding: 14px 16px 0;
+  }
+  .hero-budines-img {
+    max-height: 150px;
+  }
+  .hero-budines-text-wrap {
+    padding: 14px 16px 20px;
+  }
+  .hero-budines-title {
+    font-size: 1.35rem;
+  }
+}
+
 /* ─── Banner partido: carrusel izquierda, texto + botón derecha ─── */
 .banner-section {
   width: 100%;
