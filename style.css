@@ -231,6 +231,51 @@ body {
   .hero-banner .banner-track { transition-duration: 0.2s; }
 }
 
+/* Overlay del banner: texto superpuesto (todas las pantallas) */
+.hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent 45%);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 1.5rem 1.5rem;
+  box-sizing: border-box;
+}
+.hero-banner-overlay-label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #fff;
+  opacity: 0.95;
+  margin: 0 0 0.2rem 0;
+}
+.hero-banner-overlay-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+@media (min-width: 769px) {
+  .hero-banner-overlay {
+    padding: 0 2rem 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 50%);
+  }
+  .hero-banner-overlay-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+  .hero-banner-overlay-title {
+    font-size: 2rem;
+  }
+}
+
 /* Logo del header como enlace */
 .header-logo-link {
   display: inline-flex;
@@ -2926,11 +2971,8 @@ textarea {
   }
 }
 
-/* FAB WhatsApp: oculto en desktop */
+/* Solo desktop: ocultar elementos mobile */
 @media (min-width: 769px) {
-  .hero-banner-overlay {
-    display: none;
-  }
   .header-mobile-center,
   .header-menu-btn {
     display: none;
