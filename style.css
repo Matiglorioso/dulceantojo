@@ -707,13 +707,13 @@ body {
   }
 }
 
-/* ─── Footer: identidad, CTAs, copyright (compacto) ─── */
+/* ─── Footer: identidad, CTAs, copyright (muy compacto) ─── */
 .site-footer {
-  padding: 16px 20px 16px;
+  padding: 10px 20px 12px;
   border-top: 3px solid var(--primary);
   background: #ede6df;
   color: var(--text);
-  margin-top: 24px;
+  margin-top: 16px;
   overflow-x: hidden;
   box-sizing: border-box;
   text-align: center;
@@ -726,7 +726,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 6px;
 }
 
 /* Bloque 1: marca (Dulce + logo + Antojo + tagline) */
@@ -735,7 +735,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
   text-align: center;
 }
 
@@ -743,13 +743,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .footer-logo {
-  width: 72px;
-  height: 72px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   border-radius: 50%;
   flex-shrink: 0;
@@ -757,14 +757,14 @@ body {
 
 .footer-name {
   font-family: "Dancing Script", cursive;
-  font-size: 2.85rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.06em;
 }
 
 .footer-tagline {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--muted);
   font-weight: 600;
 }
@@ -779,8 +779,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   border-radius: 50%;
   text-decoration: none;
@@ -813,33 +813,33 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding-top: 6px;
+  gap: 2px;
+  padding-top: 4px;
   border-top: 1px solid rgba(75, 58, 47, 0.12);
   width: 100%;
   text-align: center;
 }
 
 .footer-info {
-  font-size: var(--text-xs);
+  font-size: 10px;
   color: var(--muted);
 }
 
 .footer-copy {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
 }
 
 /* Footer responsive */
 @media (max-width: 640px) {
   .site-footer {
-    padding: 14px 16px 14px;
+    padding: 10px 16px 12px;
   }
   .footer-inner {
-    gap: 10px;
+    gap: 6px;
   }
   .footer-name {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .footer-logo {
     width: 62px;
@@ -2819,19 +2819,19 @@ textarea {
     color: var(--mobile-primary);
   }
 
-  /* Footer mobile (compacto) */
+  /* Footer mobile (muy compacto) */
   .site-footer {
     background: rgba(248, 187, 208, 0.08);
     border-top: 1px solid rgba(248, 187, 208, 0.2);
-    padding: 1.5rem 1.5rem 2rem;
+    padding: 1rem 1.25rem 1.25rem;
     text-align: center;
   }
   .footer-inner {
     max-width: 28rem;
-    gap: 8px;
+    gap: 4px;
   }
   .footer-brand {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
   .footer-name-wrap {
     display: none;
@@ -2842,26 +2842,26 @@ textarea {
   .footer-brand::before {
     content: "Dulce Antojo";
     font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
     font-style: italic;
     color: var(--mobile-primary);
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.15rem;
   }
   .footer-brand::after {
     content: "Pastelería artesanal cordobesa";
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     opacity: 0.7;
     color: var(--mobile-primary);
     display: block;
   }
   .footer-ctas {
-    margin: 0.75rem 0;
+    margin: 0.5rem 0;
   }
   .footer-cta {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
     background: var(--mobile-primary);
     color: #fff;
     border: none;
