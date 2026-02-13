@@ -6,9 +6,9 @@
   --text: #4b3a2f; /* marrón suave */
   --muted: #8a7a70;
 
-  --primary: #e7a9b5; /* rosa pastel */
-  --primaryHover: #de9aa7;
-  --primaryText: #4b3a2f;
+  --primary: #6B4A3A; /* marrón */
+  --primaryHover: #5d4032;
+  --primaryText: #fff;
 
   --border: #efe3da;
   --radius: 16px;
@@ -89,7 +89,7 @@ body {
 .trust-bar {
   overflow: hidden;
   padding: 8px 0;
-  background: rgba(231, 169, 181, 0.12);
+  background: rgba(107, 74, 58, 0.12);
   border-bottom: 1px solid var(--border);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -282,7 +282,7 @@ body {
   transition: background var(--transition-fast), transform var(--transition-fast);
 }
 .products-faja-link:hover {
-  background: rgba(231, 169, 181, 0.5);
+  background: rgba(107, 74, 58, 0.35);
   transform: scale(1.01);
 }
 .products-faja-link:focus-visible {
@@ -509,7 +509,7 @@ body {
   margin: 0 auto;
   width: 100%;
   padding: 16px 24px;
-  background: rgba(231, 169, 181, 0.35);
+  background: rgba(107, 74, 58, 0.2);
   border: none;
   border-radius: 0;
   text-align: center;
@@ -668,7 +668,7 @@ body {
 }
 
 .banner-btn-pedir:hover {
-  background: rgba(231, 169, 181, 0.2);
+  background: rgba(107, 74, 58, 0.12);
   color: var(--text);
 }
 
@@ -1878,16 +1878,22 @@ body {
   background: #f5f5f5;
 }
 
-/* Modal carrito: botón quitar ítem en marrón */
+/* Modal carrito: botón quitar ítem = tachito marrón, sin fondo */
 .dialog-cart .btn-remove {
-  background: #6B4A3A;
-  border-color: #6B4A3A;
-  color: #fff;
+  background: none;
+  border-color: transparent;
+  color: #6B4A3A;
+  padding: 0;
 }
 .dialog-cart .btn-remove:hover {
-  background: #5d4032;
-  border-color: #5d4032;
-  color: #fff;
+  background: rgba(107, 74, 58, 0.1);
+  border-color: transparent;
+  color: #5d4032;
+}
+.dialog-cart .btn-remove-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .modal-header {
@@ -1896,7 +1902,7 @@ body {
   align-items: center;
   margin: 0 0 14px 0;
   padding: 20px 20px 12px 20px;
-  background: linear-gradient(to bottom, rgba(231, 169, 181, 0.08), rgba(251, 247, 243, 0.4));
+  background: linear-gradient(to bottom, rgba(107, 74, 58, 0.08), rgba(251, 247, 243, 0.4));
   border-bottom: 1px solid var(--border);
 }
 
@@ -1920,14 +1926,14 @@ body {
   top: 16px;
 }
 
-/* Modal carrito: botón cerrar en marrón */
+/* Modal carrito: botón cerrar sin fondo */
 .dialog-cart .modal-header .close-btn {
-  background: #6B4A3A;
-  color: #fff;
+  background: none;
+  color: var(--text);
 }
 .dialog-cart .modal-header .close-btn:hover {
-  background: #5d4032;
-  color: #fff;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .close-btn {
@@ -1989,7 +1995,7 @@ body {
 .btn.primary {
   background: var(--primary);
   color: var(--primaryText);
-  box-shadow: 0 4px 12px rgba(231, 169, 181, 0.3);
+  box-shadow: 0 4px 12px rgba(107, 74, 58, 0.3);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -2000,13 +2006,13 @@ body {
 
 .btn.primary:hover {
   background: var(--primaryHover);
-  box-shadow: 0 6px 16px rgba(231, 169, 181, 0.4);
+  box-shadow: 0 6px 16px rgba(107, 74, 58, 0.4);
   transform: translateY(-1px);
 }
 
 .btn.primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(231, 169, 181, 0.3);
+  box-shadow: 0 2px 8px rgba(107, 74, 58, 0.3);
 }
 
 /* Modal carrito: botón Enviar pedido en marrón */
@@ -2159,7 +2165,7 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(231, 169, 181, 0.1);
+  box-shadow: 0 0 0 3px rgba(107, 74, 58, 0.1);
 }
 
 /* Focus visible para teclado (accesibilidad) */
@@ -2171,7 +2177,7 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 0;
-  box-shadow: 0 0 0 3px rgba(231, 169, 181, 0.2);
+  box-shadow: 0 0 0 3px rgba(107, 74, 58, 0.12);
 }
 
 .input-wrapper {
@@ -2220,7 +2226,7 @@ textarea:focus-visible {
 
 .radio-label:hover {
   color: var(--primary);
-  background: rgba(231, 169, 181, 0.08);
+  background: rgba(107, 74, 58, 0.08);
 }
 
 .radio-label input[type="radio"] {
@@ -2242,7 +2248,7 @@ textarea:focus-visible {
 }
 
 .radio-label:has(input[type="radio"]:checked) {
-  background: rgba(231, 169, 181, 0.12);
+  background: rgba(107, 74, 58, 0.12);
   color: var(--primary);
 }
 
