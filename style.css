@@ -411,7 +411,7 @@ body {
   margin: 0 auto;
 }
 
-/* Tabs categorías (Tartas / Budines) justo después del banner */
+/* Tabs categorías (Tartas / Budines): pill design — activo marrón con sombra, inactivo blanco con borde rosa */
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -429,27 +429,34 @@ body {
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
-  padding: 12px 24px;
+  padding: 12px 28px;
   border-radius: 9999px;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  background: #FAF7F2;
-  color: var(--text);
-  border: 1px solid rgba(248, 187, 208, 0.6);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
+  color: #6B4D45;
+  border: 1px solid #FFDDDD;
 }
 
 .category-tab:hover {
-  background: rgba(248, 187, 208, 0.2);
-  border-color: rgba(248, 187, 208, 0.8);
+  background: #fffbfa;
+  border-color: #f5c6c6;
 }
 
 .category-tab.is-active {
-  background: var(--primary);
-  color: var(--primaryText);
-  border-color: var(--primary);
+  background: #6B4D45;
+  color: #fff;
+  border-color: #6B4D45;
+  box-shadow: 0 2px 8px rgba(107, 77, 69, 0.25);
+}
+
+.category-tab.is-active:hover {
+  background: #5d433c;
+  border-color: #5d433c;
+  box-shadow: 0 2px 10px rgba(107, 77, 69, 0.3);
 }
 
 .category-tab:focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid #6B4D45;
   outline-offset: 2px;
 }
 
