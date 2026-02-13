@@ -86,20 +86,20 @@
         <div class="banner-dots" id="bannerDots" aria-hidden="true"></div>
       </section>
 
+      <nav class="category-tabs" role="tablist" aria-label="Categorías de productos">
+        <button type="button" class="category-tab is-active" data-tab="tartas" role="tab" aria-selected="true">Tartas</button>
+        <button type="button" class="category-tab" data-tab="budines" role="tab" aria-selected="false">Budines</button>
+      </nav>
+
       <div class="container products-stack">
-      <a href="#section-tartas" class="products-faja products-faja-link">
-        <span class="products-faja-text">¡Pedí tu antojo tartero!</span>
-      </a>
-      <div class="products-box products-section" id="section-tartas">
+      <div class="products-box products-section tab-panel tab-panel-tartas" id="section-tartas">
         <h2 class="products-box-title">Tartas</h2>
         <p class="section-subtitle">
           De 24 cm que rinden 8/12 porciones
         </p>
         <div class="menu" id="grid-tartas"></div>
       </div>
-      <a href="#section-budines" class="products-faja products-faja-link">
-        <span class="products-faja-text">¿O mejor un budincito?</span>
-      </a>
+      <div class="tab-panel tab-panel-budines" id="panel-budines" hidden>
       <section class="hero-budines" aria-label="Nuestros budines">
         <div class="hero-budines-inner">
           <div class="hero-budines-img-wrap">
@@ -116,6 +116,7 @@
           De aproximadamente 1kg
         </p>
         <div class="menu" id="grid-budines"></div>
+      </div>
       </div>
 
       <div class="products-box products-section" id="section-muffins">

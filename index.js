@@ -740,3 +740,23 @@ if (bannerTrack && bannerDotsEl) {
     }
   }
 }
+
+// Tabs Tartas / Budines: mostrar solo la sección seleccionada
+const sectionTartas = document.getElementById("section-tartas");
+const panelBudines = document.getElementById("panel-budines");
+document.querySelectorAll(".category-tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const tabName = tab.dataset.tab;
+    document.querySelectorAll(".category-tab").forEach((t) => {
+      t.classList.toggle("is-active", t.dataset.tab === tabName);
+      t.setAttribute("aria-selected", t.dataset.tab === tabName ? "true" : "false");
+    });
+    if (tabName === "tartas") {
+      if (sectionTartas) sectionTartas.removeAttribute("hidden");
+      if (panelBudines) panelBudines.setAttribute("hidden", "");
+    } else {
+      if (sectionTartas) sectionTartas.setAttribute("hidden", "");
+      if (panelBudines) panelBudines.removeAttribute("hidden");
+    }
+  });
+});
