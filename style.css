@@ -2492,11 +2492,10 @@ textarea {
     background: rgba(250, 247, 242, 0.9);
     backdrop-filter: blur(12px);
   }
-  .site-header .header-instagram,
   .site-header .header-logo-link {
     display: none;
   }
-  .site-header .header-menu-btn { order: 1; }
+  .site-header .header-instagram { order: 1; }
   .site-header .header-mobile-center { order: 2; }
   .site-header .cart-icon { order: 3; }
   .header-mobile-center {
@@ -2522,22 +2521,12 @@ textarea {
     color: var(--mobile-primary);
     opacity: 0.7;
   }
-  .header-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: none;
-    background: none;
+  .site-header .header-instagram {
     color: var(--mobile-primary);
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.2s;
   }
-  .header-menu-btn:hover {
-    background: rgba(248, 187, 208, 0.2);
+  .site-header .header-instagram .instagram-icon {
+    width: 24px;
+    height: 24px;
   }
   .site-header .cart-icon {
     color: var(--mobile-primary);
@@ -2897,8 +2886,7 @@ textarea {
 
 /* Solo desktop: ocultar elementos mobile */
 @media (min-width: 769px) {
-  .header-mobile-center,
-  .header-menu-btn {
+  .header-mobile-center {
     display: none;
   }
 }
