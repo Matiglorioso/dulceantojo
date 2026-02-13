@@ -2603,8 +2603,8 @@ textarea {
     color: var(--mobile-primary);
   }
   .site-header .cart-badge {
-    background: var(--mobile-accent);
-    color: var(--mobile-primary);
+    background: #6B4A3A;
+    color: #fff;
   }
 
   /* Ocultar trust bar en mobile */
