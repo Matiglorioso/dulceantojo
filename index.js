@@ -318,6 +318,13 @@ if (thankYouCta) {
   thankYouCta.addEventListener("click", () => thankYouDlg.close());
 }
 
+const headerMenuBtn = document.getElementById("headerMenuBtn");
+if (headerMenuBtn) {
+  headerMenuBtn.addEventListener("click", () => {
+    document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
+  });
+}
+
 // Lightbox: abrir imagen de producto al tocar/clicar la miniatura
 function getSecondImagePath(path) {
   if (!path) return null;
