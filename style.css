@@ -1272,13 +1272,16 @@ body {
 #section-budines .menu-footer .btn-add {
   background: #6B4A3A;
   color: #fff;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-weight: 600;
   font-size: var(--text-sm);
+  height: 34px;
+  flex-shrink: 0;
+  width: max-content;
 }
 
 #section-tartas .menu-item .menu-footer .btn-add:hover,
@@ -1294,8 +1297,8 @@ body {
 
 #section-tartas .menu-item .menu-footer .btn-add-icon svg,
 #section-budines .menu-footer .btn-add-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 /* Budines: mismo estilo de counter y botón que tartas (lista como antes, solo input y Agregar unificados) */
@@ -2798,10 +2801,10 @@ textarea {
     background: #6B4A3A;
     color: #fff;
     border-radius: 12px;
-    padding: 10px 16px;
+    padding: 8px 14px;
     min-width: 0;
-    width: auto;
-    height: auto;
+    width: max-content;
+    height: 34px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -2813,8 +2816,8 @@ textarea {
     color: #fff;
   }
   #section-budines .btn-add-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
   #section-budines .btn-add-text {
     display: inline;
