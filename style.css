@@ -241,24 +241,25 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 0.75rem;
-  padding: 10px 20px;
-  background: #6B4A3A;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
   text-decoration: none;
-  border-radius: 12px;
-  border: none;
-  font-family: inherit;
-  transition: background 0.2s ease, transform 0.2s ease;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   width: max-content;
-  box-shadow: 0 4px 12px rgba(107, 74, 58, 0.35);
+  backdrop-filter: blur(6px);
 }
 .hero-banner-overlay-cta:hover {
-  background: #5d4032;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #fff;
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(107, 74, 58, 0.4);
 }
 @media (min-width: 769px) {
   .hero-banner-overlay {
@@ -274,8 +275,8 @@ body {
   }
   .hero-banner-overlay-cta {
     margin-top: 1rem;
-    padding: 12px 24px;
-    font-size: 1rem;
+    padding: 12px 28px;
+    font-size: 1.05rem;
   }
 }
 
