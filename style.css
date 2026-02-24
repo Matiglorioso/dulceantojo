@@ -249,9 +249,14 @@ body {
   }
 }
 
-/* Logo del header como enlace */
+/* Logo del header: Dulce + logo + Antojo */
 .header-logo-link {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: inherit;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 .header-logo-link:hover {
@@ -261,7 +266,16 @@ body {
 .header-logo-link:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
-  border-radius: 50%;
+  border-radius: 12px;
+}
+.header-name {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--text);
+}
+.header-logo-link .header-logo {
+  flex-shrink: 0;
 }
 
 /* Ícono de carrito en header (SVG) */
@@ -929,9 +943,37 @@ body {
   font-size: 1.25rem;
 }
 
+/* Notificación "Agregado al carrito" (toast) */
+.toast-added-cart {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1rem);
+  background: #6B4A3A;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(107, 74, 58, 0.4);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+  max-width: min(90vw, 320px);
+  text-align: center;
+}
+.toast-added-cart.toast-added-cart-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fly-to-cart {
     transition-duration: 0.2s;
+  }
+  .toast-added-cart {
+    transition: opacity 0.2s ease;
   }
 }
 
@@ -2546,7 +2588,21 @@ textarea {
     backdrop-filter: blur(12px);
   }
   .site-header .header-logo-link {
-    display: none;
+    display: inline-flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    order: 2;
+    gap: 0.25rem;
+    pointer-events: auto;
+  }
+  .site-header .header-name {
+    font-size: 1.25rem;
+    color: var(--mobile-primary);
+  }
+  .site-header .header-logo-link .header-logo {
+    width: 36px;
+    height: 36px;
   }
   .site-header .header-instagram { order: 1; }
   .site-header .header-mobile-center { order: 2; }
@@ -2559,13 +2615,7 @@ textarea {
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-  }
-  .header-mobile-brand {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--mobile-primary);
-    letter-spacing: 0.02em;
+    margin-top: 1.6rem;
   }
   .header-mobile-sub {
     font-size: 10px;
@@ -2951,28 +3001,20 @@ textarea {
     margin-bottom: 0.25rem;
   }
   .footer-name-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    margin-bottom: 0.15rem;
-  }
-  .footer-name-wrap .footer-name {
-    font-family: "Dancing Script", cursive;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #fff;
-  }
-  .footer-name-wrap .footer-logo {
-    width: 2rem;
-    height: 2rem;
-    object-fit: contain;
+    display: none;
   }
   .footer-tagline {
     display: none;
   }
   .footer-brand::before {
-    content: none;
+    content: "Dulce Antojo";
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.15rem;
   }
   .footer-brand::after {
     content: "Pastelería artesanal cordobesa";

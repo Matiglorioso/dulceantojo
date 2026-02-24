@@ -138,78 +138,36 @@ function addToCart(productId, quantity, addToCartBtn) {
     setTimeout(() => addToCartBtn.classList.remove("added"), 400);
   }
 
-  flyToCart(product, addToCartBtn);
+  showAddedToCartNotification(product.name, quantity);
+  if (cartIcon) {
+    cartIcon.classList.remove("cart-bump");
+    void cartIcon.offsetWidth;
+    cartIcon.classList.add("cart-bump");
+    setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
+  }
   updateCartUI();
 }
 
-function flyToCart(product, addToCartBtn) {
-  if (!cartIcon) return;
-
-  const menuItem = addToCartBtn ? addToCartBtn.closest(".menu-item") : null;
-  const sourceImg = menuItem ? menuItem.querySelector(".menu-item-img") : null;
-  const size = 52;
-
-  const flyEl = document.createElement("div");
-  flyEl.className = "fly-to-cart";
-  flyEl.setAttribute("aria-hidden", "true");
-
-  if (sourceImg && product.image) {
-    const img = document.createElement("img");
-    img.src = product.image;
-    img.alt = "";
-    img.width = size;
-    img.height = size;
-    flyEl.appendChild(img);
-  } else {
-    flyEl.classList.add("fly-to-cart-placeholder");
-    flyEl.textContent = product.name.charAt(0).toUpperCase();
-  }
-
-  const sourceRect = sourceImg ? sourceImg.getBoundingClientRect() : addToCartBtn.getBoundingClientRect();
-  const destRect = cartIcon.getBoundingClientRect();
-
-  const startX = sourceRect.left + sourceRect.width / 2 - size / 2;
-  const startY = sourceRect.top + sourceRect.height / 2 - size / 2;
-  const endX = destRect.left + destRect.width / 2 - size / 2;
-  const endY = destRect.top + destRect.height / 2 - size / 2;
-  const dx = endX - startX;
-  const dy = endY - startY;
-
-  flyEl.style.cssText = `
-    position: fixed;
-    left: ${startX}px;
-    top: ${startY}px;
-    width: ${size}px;
-    height: ${size}px;
-    z-index: 9999;
-    pointer-events: none;
-    transform: translate(0, 0) scale(1);
-    transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  `;
-
-  document.body.appendChild(flyEl);
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      flyEl.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
-    });
+function showAddedToCartNotification(productName, quantity) {
+  const msg = quantity > 1
+    ? `${productName} · ${quantity} agregados al carrito`
+    : `${productName} agregado al carrito`;
+  const toast = document.createElement("div");
+  toast.className = "toast-added-cart";
+  toast.setAttribute("role", "status");
+  toast.setAttribute("aria-live", "polite");
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add("toast-added-cart-visible"));
+  const t = setTimeout(() => {
+    toast.classList.remove("toast-added-cart-visible");
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+  toast.addEventListener("click", () => {
+    clearTimeout(t);
+    toast.classList.remove("toast-added-cart-visible");
+    setTimeout(() => toast.remove(), 300);
   });
-
-  let done = false;
-  const onEnd = () => {
-    if (done) return;
-    done = true;
-    flyEl.remove();
-    if (cartIcon) {
-      cartIcon.classList.remove("cart-bump");
-      void cartIcon.offsetWidth;
-      cartIcon.classList.add("cart-bump");
-      setTimeout(() => cartIcon.classList.remove("cart-bump"), 450);
-    }
-  };
-
-  flyEl.addEventListener("transitionend", onEnd);
-  setTimeout(onEnd, 620);
 }
 
 function updateCartUI() {
