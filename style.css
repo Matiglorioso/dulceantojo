@@ -279,10 +279,9 @@ body {
   padding: 10px 22px;
   background: transparent;
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  font-family: "Playfair Display", serif;
-  font-style: italic;
+  font-family: "Dancing Script", cursive !important;
   text-decoration: none;
   border-radius: 999px;
   border: 2px solid rgba(255, 255, 255, 0.95);
@@ -311,6 +310,7 @@ body {
     margin-top: 1rem;
     padding: 12px 28px;
     font-size: 1.35rem;
+    font-family: "Dancing Script", cursive !important;
   }
 }
 
@@ -2793,6 +2793,10 @@ textarea {
     color: #fff;
     margin: 0;
     line-height: 1.2;
+  }
+  .hero-banner-overlay-cta {
+    font-family: "Dancing Script", cursive !important;
+    font-size: 1.35rem;
   }
   .hero-banner .banner-dots {
     bottom: 0.75rem;
