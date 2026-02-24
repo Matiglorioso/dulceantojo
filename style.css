@@ -2582,8 +2582,8 @@ textarea {
   /* Header: Instagram izq, centro Dulce Antojo, carrito der */
   .site-header {
     justify-content: space-between;
-    padding: 14px 16px 12px;
-    min-height: 80px;
+    padding: 8px 16px 10px;
+    min-height: 72px;
     background: rgba(250, 247, 242, 0.98);
     backdrop-filter: blur(12px);
     transition: padding 0.25s ease, min-height 0.25s ease;
@@ -2635,7 +2635,7 @@ textarea {
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-    margin-top: 2.75rem;
+    margin-top: 2.25rem;
     transition: margin 0.25s ease, opacity 0.25s ease;
   }
   .header-mobile-sub {
