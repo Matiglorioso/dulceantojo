@@ -280,8 +280,8 @@ body {
   background: transparent;
   color: #fff;
   font-size: 1.1rem;
-  font-weight: 700;
-  font-family: "Playfair Display", serif !important;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-style: normal;
   text-decoration: none;
   border-radius: 999px;
@@ -311,7 +311,7 @@ body {
     margin-top: 1rem;
     padding: 12px 28px;
     font-size: 1.2rem;
-    font-family: "Playfair Display", serif !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
     font-style: normal;
   }
 }
@@ -2797,7 +2797,7 @@ textarea {
     line-height: 1.2;
   }
   .hero-banner-overlay-cta {
-    font-family: "Playfair Display", serif !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
     font-style: normal;
     font-size: 1.2rem;
   }
