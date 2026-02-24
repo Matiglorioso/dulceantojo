@@ -1320,20 +1320,11 @@ body {
   display: inline;
 }
 
-/* Móvil: ajustes de cards (solo tartas) y botón Agregar con texto */
+/* Móvil: botón Agregar con texto y counter (tartas en mobile = mismo layout que budines, sin imágenes) */
 @media (max-width: 768px) {
   .products-box,
   .menu {
     min-width: 0;
-  }
-  #section-tartas .menu-item .menu-item-img-wrap,
-  #section-tartas .menu-item > .menu-item-img {
-    height: 180px;
-    min-height: 180px;
-    max-height: 180px;
-  }
-  #section-tartas .menu-item .menu-title {
-    font-size: var(--text-base);
   }
   .menu-footer .btn-add-text {
     display: inline;
@@ -1374,15 +1365,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  #section-tartas .menu-item .menu-item-img-wrap,
-  #section-tartas .menu-item > .menu-item-img {
-    height: 160px;
-    min-height: 160px;
-    max-height: 160px;
-  }
-  #section-tartas .menu-item .menu-title {
-    font-size: var(--text-base);
-  }
   .menu-footer .btn-add {
     padding: 8px 14px;
   }
@@ -2686,7 +2668,11 @@ textarea {
     font-style: italic;
   }
 
-  /* Cards TARTAS: imagen arriba, card redondeada */
+  /* Tartas en mobile: mismo listado que budines (sin imágenes) */
+  #section-tartas .menu-item-img-wrap,
+  #section-tartas .menu-item-img {
+    display: none !important;
+  }
   #section-tartas .menu,
   #section-tartas .products-box-title,
   #section-tartas .section-subtitle {
@@ -2695,76 +2681,106 @@ textarea {
   #section-tartas .menu {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   #section-tartas .menu-item {
     background: #fff;
     border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(93, 64, 55, 0.08);
-    border: 1px solid rgba(248, 187, 208, 0.15);
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-  }
-  #section-tartas .menu-item-img-wrap,
-  #section-tartas .menu-item-img {
-    width: 100%;
-    height: 12rem;
-    object-fit: cover;
-    border-radius: 0;
-  }
-  #section-tartas .menu-item-img-wrap {
-    overflow: hidden;
+    align-items: stretch;
+    gap: 0.75rem;
+    box-shadow: 0 1px 3px rgba(93, 64, 55, 0.08);
+    border: 1px solid rgba(248, 187, 208, 0.15);
   }
   #section-tartas .menu-header {
-    padding: 1.25rem 1.25rem 0;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  #section-tartas .menu-title-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+  #section-tartas .menu-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 0;
+    margin: 0 0 4px 0;
   }
   #section-tartas .menu-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--mobile-primary);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #section-tartas .menu-desc {
+    font-size: 0.75rem;
+    color: #6b5b52;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    line-height: 1.3;
   }
   #section-tartas .menu-footer {
-    padding: 1rem 1.25rem 1.25rem;
+    flex-shrink: 0;
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
+    padding: 0;
+    border-top: none;
+    margin-top: 0;
   }
-  #section-tartas .menu-footer .menu-price {
-    order: 0;
-    width: 100%;
-    text-align: right;
-    font-size: 1.125rem;
+  #section-tartas .menu-price {
+    font-size: 1rem;
     font-weight: 700;
     color: var(--mobile-primary);
-  }
-  #section-tartas .menu-desc {
-    font-size: 0.875rem;
-    color: #6b5b52;
-    margin-bottom: 1rem;
+    flex-shrink: 0;
   }
   #section-tartas .counter {
-    order: 1;
-    background: var(--mobile-bg);
-    border: 1px solid rgba(248, 187, 208, 0.3);
-    border-radius: 9999px;
-    padding: 0.25rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    height: 34px;
   }
   #section-tartas .btn-add {
-    order: 2;
     background: #6B4A3A;
     color: #fff;
-    border-radius: 9999px;
-    padding: 0.625rem 1.5rem;
-    font-weight: 700;
+    border-radius: 12px;
+    padding: 8px 14px;
+    min-width: 0;
+    width: max-content;
+    height: 34px;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 6px;
+    font-weight: 600;
+    font-size: var(--text-sm);
   }
   #section-tartas .btn-add-icon {
+    display: inline-flex;
     color: #fff;
+  }
+  #section-tartas .btn-add-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  #section-tartas .btn-add-text {
+    display: inline;
   }
 
   /* Cards BUDINES: contenido arriba (nombre, precio, desc), counter + Agregar abajo en fila */
