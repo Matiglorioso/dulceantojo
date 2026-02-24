@@ -1838,7 +1838,7 @@ main#productos {
 .cart-items {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.75rem;
 }
 
 .cart-total {
@@ -1881,13 +1881,14 @@ main#productos {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--border);
   transition: background 0.2s ease;
 }
 
 .cart-item:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
 .cart-item:hover {
@@ -2589,7 +2590,7 @@ textarea {
   }
   
   .cart-item {
-    padding: 0;
+    padding: 0.5rem 0;
     flex-wrap: wrap;
   }
   
