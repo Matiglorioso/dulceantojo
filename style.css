@@ -171,8 +171,8 @@ body {
   width: 100%;
   min-width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 60vh;
-  max-height: 70vh;
+  min-height: 68vh;
+  max-height: 82vh;
   overflow: hidden;
 }
 .banner-slide img {
@@ -185,8 +185,8 @@ body {
 @media (min-width: 769px) {
   .hero-banner .banner-slide {
     aspect-ratio: 16 / 10;
-    min-height: 520px;
-    max-height: 85vh;
+    min-height: 560px;
+    max-height: 90vh;
   }
   .hero-banner .banner-slide img {
     object-fit: cover;
@@ -200,7 +200,7 @@ body {
 @media (max-width: 768px) {
   .hero-banner .banner-slide {
     aspect-ratio: 4 / 3;
-    max-height: 50vh;
+    max-height: none;
   }
 }
 .banner-dots {
@@ -310,7 +310,7 @@ body {
   .hero-banner-overlay-cta {
     margin-top: 1rem;
     padding: 12px 28px;
-    font-size: 1.05rem;
+    font-size: 1.35rem;
   }
 }
 
@@ -2651,7 +2651,7 @@ textarea {
   .site-header {
     justify-content: space-between;
     padding: 8px 16px 10px;
-    min-height: 72px;
+    min-height: 88px;
     background: transparent;
     backdrop-filter: none;
     transition: padding 0.25s ease, min-height 0.25s ease, background 0.25s ease, backdrop-filter 0.25s ease;
@@ -2708,7 +2708,7 @@ textarea {
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-    margin-top: 2.25rem;
+    margin-top: 3.5rem;
     transition: margin 0.25s ease, opacity 0.25s ease;
   }
   .header-mobile-sub {
@@ -2749,10 +2749,10 @@ textarea {
     display: none;
   }
 
-  /* Hero: overlay y texto; banner más estirado */
+  /* Hero: overlay y texto; banner bien estirado hacia abajo */
   .hero-banner {
     position: relative;
-    height: 26rem;
+    height: 34rem;
   }
   .hero-banner .banner-track {
     height: 100%;
@@ -2760,7 +2760,7 @@ textarea {
   .hero-banner .banner-slide {
     aspect-ratio: auto;
     max-height: none;
-    height: 26rem;
+    height: 34rem;
   }
   .hero-banner .banner-slide img {
     height: 100%;
