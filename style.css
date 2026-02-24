@@ -45,27 +45,54 @@ body {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(251, 247, 243, 0.95);
-  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: none;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  transition: padding 0.25s ease, gap 0.25s ease;
+  transition: padding 0.25s ease, gap 0.25s ease, background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
   margin-bottom: 0;
   min-height: 52px;
   box-sizing: border-box;
+}
+.site-header .header-name,
+.site-header .header-instagram,
+.site-header .cart-icon,
+.site-header .cart-icon-svg,
+.site-header .cart-badge,
+.site-header .header-logo-link {
+  color: #fff;
+}
+.site-header .header-instagram { color: #fff; }
+.site-header .cart-icon { color: #fff; }
+.site-header .header-mobile-sub { color: rgba(255, 255, 255, 0.9); }
+.site-header:not(.scrolled) .header-logo {
+  filter: brightness(0) invert(1);
+}
+.site-header.scrolled .header-logo {
+  filter: none;
 }
 
 .site-header.scrolled {
   padding: 2px 6px;
   gap: 12px;
+  background: rgba(251, 247, 243, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--border);
 }
+.site-header.scrolled .header-name,
+.site-header.scrolled .header-instagram,
+.site-header.scrolled .cart-icon { color: var(--text); }
+.site-header.scrolled .header-mobile-sub { color: var(--mobile-primary); opacity: 0.7; }
+.site-header.scrolled .cart-badge { color: #fff; }
 
 .site-header.scrolled .header-logo {
   width: 52px;
@@ -138,7 +165,8 @@ body {
   width: 100%;
   min-width: 100%;
   aspect-ratio: 16 / 10;
-  max-height: 42vh;
+  min-height: 50vh;
+  max-height: 55vh;
   overflow: hidden;
 }
 .banner-slide img {
@@ -151,8 +179,8 @@ body {
 @media (min-width: 769px) {
   .hero-banner .banner-slide {
     aspect-ratio: 16 / 10;
-    max-height: 72vh;
     min-height: 480px;
+    max-height: 80vh;
   }
   .hero-banner .banner-slide img {
     object-fit: cover;
@@ -204,7 +232,7 @@ body {
   .hero-banner .banner-track { transition-duration: 0.2s; }
 }
 
-/* Overlay del banner: texto superpuesto (todas las pantallas) */
+/* Overlay del banner: texto superpuesto; padding-top para que quede bajo el header fijo */
 .hero-banner-overlay {
   position: absolute;
   inset: 0;
@@ -215,6 +243,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.5rem 1.5rem;
+  padding-top: 60px;
   box-sizing: border-box;
 }
 .hero-banner-overlay-label {
@@ -336,6 +365,9 @@ body {
 }
 
 /* Separación entre secciones de productos */
+main#productos {
+  scroll-margin-top: 80px;
+}
 .products-section {
   scroll-margin-top: 120px;
 }
@@ -2610,18 +2642,20 @@ textarea {
     font-family: "Plus Jakarta Sans", sans-serif;
   }
 
-  /* Header: Instagram izq, centro Dulce Antojo, carrito der */
+  /* Header: transparente sobre banner; al scrollear fondo crema y contrae */
   .site-header {
     justify-content: space-between;
     padding: 8px 16px 10px;
     min-height: 72px;
-    background: rgba(250, 247, 242, 0.98);
-    backdrop-filter: blur(12px);
-    transition: padding 0.25s ease, min-height 0.25s ease;
+    background: transparent;
+    backdrop-filter: none;
+    transition: padding 0.25s ease, min-height 0.25s ease, background 0.25s ease, backdrop-filter 0.25s ease;
   }
   .site-header.scrolled {
     padding: 6px 16px 6px;
     min-height: 52px;
+    background: rgba(250, 247, 242, 0.98);
+    backdrop-filter: blur(12px);
   }
   .site-header.scrolled .header-mobile-center {
     margin-top: 0;
@@ -2647,8 +2681,11 @@ textarea {
   }
   .site-header .header-name {
     font-size: 1.25rem;
+    color: #fff;
+    transition: font-size 0.25s ease, color 0.25s ease;
+  }
+  .site-header.scrolled .header-name {
     color: var(--mobile-primary);
-    transition: font-size 0.25s ease;
   }
   .site-header .header-logo-link .header-logo {
     width: 36px;
@@ -2673,10 +2710,18 @@ textarea {
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    transition: color 0.25s ease;
+  }
+  .site-header.scrolled .header-mobile-sub {
     color: var(--mobile-primary);
     opacity: 0.7;
   }
   .site-header .header-instagram {
+    color: #fff;
+  }
+  .site-header.scrolled .header-instagram {
     color: var(--mobile-primary);
   }
   .site-header .header-instagram .instagram-icon {
@@ -2684,6 +2729,9 @@ textarea {
     height: 24px;
   }
   .site-header .cart-icon {
+    color: #fff;
+  }
+  .site-header.scrolled .cart-icon {
     color: var(--mobile-primary);
   }
   .site-header .cart-badge {
@@ -2718,11 +2766,11 @@ textarea {
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 50%);
     pointer-events: none;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 1.5rem;
+    padding-top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 1.5rem;
   }
   .hero-banner-overlay-label {
     font-size: 0.75rem;
