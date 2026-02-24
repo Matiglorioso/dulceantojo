@@ -279,8 +279,9 @@ body {
   padding: 10px 22px;
   background: transparent;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  line-height: 1.35;
   font-family: "Roboto", sans-serif !important;
   font-style: normal;
   text-align: center;
@@ -311,7 +312,7 @@ body {
   .hero-banner-overlay-cta {
     margin-top: 1rem;
     padding: 12px 28px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "Roboto", sans-serif !important;
     font-style: normal;
     text-align: center;
@@ -2802,7 +2803,7 @@ textarea {
     font-family: "Roboto", sans-serif !important;
     font-style: normal;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .hero-banner .banner-dots {
     bottom: 0.75rem;
