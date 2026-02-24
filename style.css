@@ -65,20 +65,26 @@ body {
 }
 .site-header .header-name,
 .site-header .header-instagram,
-.site-header .cart-icon,
-.site-header .cart-icon-svg,
-.site-header .cart-badge,
 .site-header .header-logo-link {
   color: #fff;
 }
 .site-header .header-instagram { color: #fff; }
-.site-header .cart-icon { color: #fff; }
 .site-header .header-mobile-sub { color: rgba(255, 255, 255, 0.9); }
-.site-header:not(.scrolled) .header-logo {
-  filter: brightness(0) invert(1);
+.site-header .cart-icon,
+.site-header .cart-icon-svg {
+  color: #6B4A3A;
 }
-.site-header.scrolled .header-logo {
-  filter: none;
+.site-header .cart-badge {
+  background: #6B4A3A;
+  color: #fff;
+}
+.site-header.scrolled .cart-icon,
+.site-header.scrolled .cart-icon-svg {
+  color: var(--text);
+}
+.site-header.scrolled .cart-badge {
+  background: #6B4A3A;
+  color: #fff;
 }
 
 .site-header.scrolled {
@@ -165,8 +171,8 @@ body {
   width: 100%;
   min-width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 50vh;
-  max-height: 55vh;
+  min-height: 60vh;
+  max-height: 70vh;
   overflow: hidden;
 }
 .banner-slide img {
@@ -179,8 +185,8 @@ body {
 @media (min-width: 769px) {
   .hero-banner .banner-slide {
     aspect-ratio: 16 / 10;
-    min-height: 480px;
-    max-height: 80vh;
+    min-height: 520px;
+    max-height: 85vh;
   }
   .hero-banner .banner-slide img {
     object-fit: cover;
@@ -271,21 +277,20 @@ body {
   justify-content: center;
   margin-top: 0.75rem;
   padding: 10px 22px;
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
   color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   font-family: "Playfair Display", serif;
   font-style: italic;
   text-decoration: none;
   border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.95);
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   width: max-content;
-  backdrop-filter: blur(6px);
 }
 .hero-banner-overlay-cta:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
   border-color: #fff;
   color: #fff;
   transform: translateY(-1px);
@@ -2729,7 +2734,7 @@ textarea {
     height: 24px;
   }
   .site-header .cart-icon {
-    color: #fff;
+    color: #6B4A3A;
   }
   .site-header.scrolled .cart-icon {
     color: var(--mobile-primary);
@@ -2744,10 +2749,10 @@ textarea {
     display: none;
   }
 
-  /* Hero: overlay y texto */
+  /* Hero: overlay y texto; banner más estirado */
   .hero-banner {
     position: relative;
-    height: 18rem;
+    height: 26rem;
   }
   .hero-banner .banner-track {
     height: 100%;
@@ -2755,7 +2760,7 @@ textarea {
   .hero-banner .banner-slide {
     aspect-ratio: auto;
     max-height: none;
-    height: 18rem;
+    height: 26rem;
   }
   .hero-banner .banner-slide img {
     height: 100%;
