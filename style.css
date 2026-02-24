@@ -2586,6 +2586,24 @@ textarea {
     min-height: 80px;
     background: rgba(250, 247, 242, 0.98);
     backdrop-filter: blur(12px);
+    transition: padding 0.25s ease, min-height 0.25s ease;
+  }
+  .site-header.scrolled {
+    padding: 6px 16px 6px;
+    min-height: 52px;
+  }
+  .site-header.scrolled .header-mobile-center {
+    margin-top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: margin 0.25s ease, opacity 0.25s ease;
+  }
+  .site-header.scrolled .header-name {
+    font-size: 1rem;
+  }
+  .site-header.scrolled .header-logo-link .header-logo {
+    width: 28px;
+    height: 28px;
   }
   .site-header .header-logo-link {
     display: inline-flex;
@@ -2599,10 +2617,12 @@ textarea {
   .site-header .header-name {
     font-size: 1.25rem;
     color: var(--mobile-primary);
+    transition: font-size 0.25s ease;
   }
   .site-header .header-logo-link .header-logo {
     width: 36px;
     height: 36px;
+    transition: width 0.25s ease, height 0.25s ease;
   }
   .site-header .header-instagram { order: 1; }
   .site-header .header-mobile-center { order: 2; }
@@ -2616,6 +2636,7 @@ textarea {
     transform: translateX(-50%);
     pointer-events: none;
     margin-top: 2.75rem;
+    transition: margin 0.25s ease, opacity 0.25s ease;
   }
   .header-mobile-sub {
     font-size: 10px;
