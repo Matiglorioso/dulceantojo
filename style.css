@@ -2684,6 +2684,10 @@ textarea {
     width: 28px;
     height: 28px;
   }
+  .site-header.scrolled .header-logo-link {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
   .site-header .header-logo-link {
     display: inline-flex;
     position: absolute;
@@ -2718,7 +2722,7 @@ textarea {
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-    margin-top: 3.5rem;
+    margin-top: 2rem;
     transition: margin 0.25s ease, opacity 0.25s ease;
   }
   .header-mobile-sub {
