@@ -2951,20 +2951,28 @@ textarea {
     margin-bottom: 0.25rem;
   }
   .footer-name-wrap {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-bottom: 0.15rem;
+  }
+  .footer-name-wrap .footer-name {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .footer-name-wrap .footer-logo {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
   }
   .footer-tagline {
     display: none;
   }
   .footer-brand::before {
-    content: "Dulce Antojo";
-    font-family: "Playfair Display", serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    font-style: italic;
-    color: #fff;
-    display: block;
-    margin-bottom: 0.15rem;
+    content: none;
   }
   .footer-brand::after {
     content: "Pastelería artesanal cordobesa";
