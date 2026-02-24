@@ -2757,6 +2757,15 @@ textarea {
     background: var(--bg);
     height: 34px;
   }
+  #section-tartas .counter .counter-btn {
+    width: 28px;
+    height: 34px;
+  }
+  #section-tartas .counter .counter-input {
+    width: 28px;
+    height: 34px;
+    font-size: 12px;
+  }
   #section-tartas .btn-add {
     background: #6B4A3A;
     color: #fff;
@@ -2783,7 +2792,12 @@ textarea {
     display: inline;
   }
 
-  /* Cards BUDINES: contenido arriba (nombre, precio, desc), counter + Agregar abajo en fila */
+  /* Cards BUDINES: mismo layout que tartas (espacios, tamaños, botones idénticos) */
+  #section-budines .menu,
+  #section-budines .products-box-title,
+  #section-budines .section-subtitle {
+    margin-bottom: 1rem;
+  }
   #section-budines .menu {
     display: flex;
     flex-direction: column;
@@ -2802,12 +2816,7 @@ textarea {
   }
   #section-budines .menu-item-img-wrap,
   #section-budines .menu-item-img {
-    width: 5rem;
-    min-width: 5rem;
-    height: 5rem;
-    border-radius: 0.5rem;
-    object-fit: cover;
-    flex-shrink: 0;
+    display: none !important;
   }
   #section-budines .menu-header {
     flex: 1;
@@ -2866,12 +2875,21 @@ textarea {
     color: var(--mobile-primary);
     flex-shrink: 0;
   }
-  /* Counter y Agregar en budines: mismo estilo que tartas */
+  /* Counter y Agregar en budines: idéntico a tartas */
   #section-budines .counter {
     border-radius: 20px;
     border: 1px solid var(--border);
     background: var(--bg);
-    height: 26px;
+    height: 34px;
+  }
+  #section-budines .counter .counter-btn {
+    width: 28px;
+    height: 34px;
+  }
+  #section-budines .counter .counter-input {
+    width: 28px;
+    height: 34px;
+    font-size: 12px;
   }
   #section-budines .btn-add {
     background: #6B4A3A;
