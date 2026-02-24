@@ -281,8 +281,9 @@ body {
   color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   font-style: normal;
+  text-align: center;
   text-decoration: none;
   border-radius: 999px;
   border: 2px solid rgba(255, 255, 255, 0.95);
@@ -311,8 +312,9 @@ body {
     margin-top: 1rem;
     padding: 12px 28px;
     font-size: 1.2rem;
-    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-family: "Roboto", sans-serif !important;
     font-style: normal;
+    text-align: center;
   }
 }
 
@@ -2797,8 +2799,9 @@ textarea {
     line-height: 1.2;
   }
   .hero-banner-overlay-cta {
-    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-family: "Roboto", sans-serif !important;
     font-style: normal;
+    text-align: center;
     font-size: 1.2rem;
   }
   .hero-banner .banner-dots {
