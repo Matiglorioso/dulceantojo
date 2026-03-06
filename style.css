@@ -1054,6 +1054,20 @@ main#productos {
   }
 }
 
+/* Solo mobile: sin animación del ícono del carrito; toast más descriptivo */
+@media (max-width: 768px) {
+  .cart-icon.cart-bump {
+    animation: none;
+  }
+  .toast-added-cart {
+    padding: 1rem 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    max-width: min(92vw, 340px);
+    bottom: 1.25rem;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

@@ -139,7 +139,8 @@ function addToCart(productId, quantity, addToCartBtn) {
   }
 
   showAddedToCartNotification(product.name, quantity);
-  if (cartIcon) {
+  const isMobile = window.innerWidth <= 768;
+  if (cartIcon && !isMobile) {
     cartIcon.classList.remove("cart-bump");
     void cartIcon.offsetWidth;
     cartIcon.classList.add("cart-bump");
@@ -149,9 +150,14 @@ function addToCart(productId, quantity, addToCartBtn) {
 }
 
 function showAddedToCartNotification(productName, quantity) {
-  const msg = quantity > 1
-    ? `${productName} · ${quantity} agregados al carrito`
-    : `${productName} agregado al carrito`;
+  const isMobile = window.innerWidth <= 768;
+  const msg = isMobile
+    ? quantity > 1
+      ? `Se agregaron ${quantity} "${productName}" al carrito. Tocá para ver tu pedido.`
+      : `Se agregó "${productName}" al carrito. Tocá para ver tu pedido.`
+    : quantity > 1
+      ? `${productName} · ${quantity} agregados al carrito`
+      : `${productName} agregado al carrito`;
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
   toast.setAttribute("role", "status");
@@ -162,11 +168,14 @@ function showAddedToCartNotification(productName, quantity) {
   const t = setTimeout(() => {
     toast.classList.remove("toast-added-cart-visible");
     setTimeout(() => toast.remove(), 300);
-  }, 2500);
+  }, isMobile ? 3500 : 2500);
   toast.addEventListener("click", () => {
     clearTimeout(t);
     toast.classList.remove("toast-added-cart-visible");
-    setTimeout(() => toast.remove(), 300);
+    setTimeout(() => {
+      toast.remove();
+      if (isMobile && typeof dlg !== "undefined" && dlg) dlg.showModal();
+    }, 300);
   });
 }
 
