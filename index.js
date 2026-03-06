@@ -153,31 +153,37 @@ function showAddedToCartNotification(product, quantity) {
   const isMobile = window.innerWidth <= 768;
   const subtotal = product.price * quantity;
   const subtotalStr = `$ ${money(subtotal)}`;
-  const agregado = quantity === 1 ? "fue agregada" : "fueron agregadas";
+  const detailStr = quantity > 1
+    ? `${product.name} · Cantidad ${quantity} · ${subtotalStr}`
+    : `${product.name} · ${subtotalStr}`;
 
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
   toast.setAttribute("role", "status");
   toast.setAttribute("aria-live", "polite");
 
-  if (isMobile) {
-    toast.innerHTML = `
-      <span class="toast-added-cart-icon" aria-hidden="true">✓</span>
-      <div class="toast-added-cart-content">
-        <span class="toast-added-cart-title">${product.name} ${agregado} al carrito</span>
-        <span class="toast-added-cart-detail">Cantidad: ${quantity} · ${subtotalStr}</span>
-      </div>`;
-  } else {
-    const msg = `${product.name} ${agregado} al carrito · Cantidad: ${quantity} · ${subtotalStr}`;
-    toast.textContent = msg;
-  }
+  toast.innerHTML = `
+    <span class="toast-added-cart-icon" aria-hidden="true">✓</span>
+    <div class="toast-added-cart-content">
+      <span class="toast-added-cart-title">¡Agregado al carrito!</span>
+      <span class="toast-added-cart-detail">${detailStr}</span>
+    </div>
+    <button type="button" class="toast-added-cart-btn">Ver carrito</button>`;
 
   document.body.appendChild(toast);
-  requestAnimationFrame(() => toast.classList.add("toast-added-cart-visible"));
-  setTimeout(() => {
+
+  const btn = toast.querySelector(".toast-added-cart-btn");
+  const closeToast = () => {
     toast.classList.remove("toast-added-cart-visible");
     setTimeout(() => toast.remove(), 300);
-  }, isMobile ? 3200 : 2500);
+  };
+  btn.addEventListener("click", () => {
+    if (typeof dlg !== "undefined" && dlg) dlg.showModal();
+    closeToast();
+  });
+
+  requestAnimationFrame(() => toast.classList.add("toast-added-cart-visible"));
+  setTimeout(closeToast, isMobile ? 4000 : 3500);
 }
 
 function updateCartUI() {
