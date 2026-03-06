@@ -1987,12 +1987,7 @@ main#productos {
   align-items: center;
   gap: 12px;
   padding: 0;
-  border-bottom: 1px solid var(--border);
   transition: background 0.2s ease;
-}
-
-.cart-item:last-child {
-  border-bottom: none;
 }
 
 .cart-item:hover {
