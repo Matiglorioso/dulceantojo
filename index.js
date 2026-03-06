@@ -154,8 +154,8 @@ function showAddedToCartNotification(product, quantity) {
   const subtotal = product.price * quantity;
   const subtotalStr = `$ ${money(subtotal)}`;
   const detailStr = quantity > 1
-    ? `${product.name} · Cantidad ${quantity} · ${subtotalStr}`
-    : `${product.name} · ${subtotalStr}`;
+    ? `${product.name} · x${quantity} · ${subtotalStr}`
+    : `${product.name} · x1 · ${subtotalStr}`;
 
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
