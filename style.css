@@ -1986,14 +1986,13 @@ main#productos {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 0.75rem 0;
+  padding: 0;
   border-bottom: 1px solid var(--border);
   transition: background 0.2s ease;
 }
 
 .cart-item:last-child {
   border-bottom: none;
-  padding-bottom: 0.75rem;
 }
 
 .cart-item:hover {
@@ -2002,21 +2001,19 @@ main#productos {
 
 .cart-item-info {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   min-height: 0;
 }
 
 .cart-item-info strong {
   display: block;
   font-size: 14px;
-  margin-bottom: 2px;
+  margin: 0;
 }
 
 .cart-item-info span {
   font-size: 13px;
   color: var(--muted);
+  margin: 0;
 }
 
 .cart-item-actions {
@@ -2699,12 +2696,12 @@ textarea {
   }
   
   .cart-item {
-    padding: 0.75rem 0;
+    padding: 0;
     flex-wrap: wrap;
   }
 
   .cart-item:last-child {
-    padding-bottom: 0.75rem;
+    padding-bottom: 0;
   }
   
   .cart-total {
