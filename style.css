@@ -1084,6 +1084,10 @@ main#productos {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .toast-added-cart-btn {

@@ -178,7 +178,11 @@ function showAddedToCartNotification(product, quantity) {
     setTimeout(() => toast.remove(), 300);
   };
   btn.addEventListener("click", () => {
-    if (typeof dlg !== "undefined" && dlg) dlg.showModal();
+    if (typeof dlg !== "undefined" && dlg) {
+      renderCart();
+      if (typeof initRadioButtons === "function") initRadioButtons();
+      dlg.showModal();
+    }
     closeToast();
   });
 
