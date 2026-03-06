@@ -153,7 +153,7 @@ function showAddedToCartNotification(product, quantity) {
   const isMobile = window.innerWidth <= 768;
   const subtotal = product.price * quantity;
   const subtotalStr = `$ ${money(subtotal)}`;
-  const quantityStr = quantity > 1 ? `x${quantity}` : "";
+  const agregado = quantity === 1 ? "fue agregada" : "fueron agregadas";
 
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
@@ -164,13 +164,11 @@ function showAddedToCartNotification(product, quantity) {
     toast.innerHTML = `
       <span class="toast-added-cart-icon" aria-hidden="true">✓</span>
       <div class="toast-added-cart-content">
-        <span class="toast-added-cart-title">Agregado al carrito</span>
-        <span class="toast-added-cart-detail">${product.name}${quantityStr ? ` · ${quantityStr}` : ""} · ${subtotalStr}</span>
+        <span class="toast-added-cart-title">${product.name} ${agregado} al carrito</span>
+        <span class="toast-added-cart-detail">Cantidad: ${quantity} · ${subtotalStr}</span>
       </div>`;
   } else {
-    const msg = quantity > 1
-      ? `${product.name} · ${quantity} · ${subtotalStr} — agregado al carrito`
-      : `${product.name} · ${subtotalStr} — agregado al carrito`;
+    const msg = `${product.name} ${agregado} al carrito · Cantidad: ${quantity} · ${subtotalStr}`;
     toast.textContent = msg;
   }
 
