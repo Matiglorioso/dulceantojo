@@ -138,7 +138,7 @@ function addToCart(productId, quantity, addToCartBtn) {
     setTimeout(() => addToCartBtn.classList.remove("added"), 400);
   }
 
-  showAddedToCartNotification(product.name, quantity);
+  showAddedToCartNotification(product, quantity);
   const isMobile = window.innerWidth <= 768;
   if (cartIcon && !isMobile) {
     cartIcon.classList.remove("cart-bump");
@@ -149,34 +149,37 @@ function addToCart(productId, quantity, addToCartBtn) {
   updateCartUI();
 }
 
-function showAddedToCartNotification(productName, quantity) {
+function showAddedToCartNotification(product, quantity) {
   const isMobile = window.innerWidth <= 768;
-  const msg = isMobile
-    ? quantity > 1
-      ? `Se agregaron ${quantity} "${productName}" al carrito. Tocá para ver tu pedido.`
-      : `Se agregó "${productName}" al carrito. Tocá para ver tu pedido.`
-    : quantity > 1
-      ? `${productName} · ${quantity} agregados al carrito`
-      : `${productName} agregado al carrito`;
+  const subtotal = product.price * quantity;
+  const subtotalStr = `$ ${money(subtotal)}`;
+  const quantityStr = quantity > 1 ? `x${quantity}` : "";
+
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
   toast.setAttribute("role", "status");
   toast.setAttribute("aria-live", "polite");
-  toast.textContent = msg;
+
+  if (isMobile) {
+    toast.innerHTML = `
+      <span class="toast-added-cart-icon" aria-hidden="true">✓</span>
+      <div class="toast-added-cart-content">
+        <span class="toast-added-cart-title">Agregado al carrito</span>
+        <span class="toast-added-cart-detail">${product.name}${quantityStr ? ` · ${quantityStr}` : ""} · ${subtotalStr}</span>
+      </div>`;
+  } else {
+    const msg = quantity > 1
+      ? `${product.name} · ${quantity} · ${subtotalStr} — agregado al carrito`
+      : `${product.name} · ${subtotalStr} — agregado al carrito`;
+    toast.textContent = msg;
+  }
+
   document.body.appendChild(toast);
   requestAnimationFrame(() => toast.classList.add("toast-added-cart-visible"));
-  const t = setTimeout(() => {
+  setTimeout(() => {
     toast.classList.remove("toast-added-cart-visible");
     setTimeout(() => toast.remove(), 300);
-  }, isMobile ? 3500 : 2500);
-  toast.addEventListener("click", () => {
-    clearTimeout(t);
-    toast.classList.remove("toast-added-cart-visible");
-    setTimeout(() => {
-      toast.remove();
-      if (isMobile && typeof dlg !== "undefined" && dlg) dlg.showModal();
-    }, 300);
-  });
+  }, isMobile ? 3200 : 2500);
 }
 
 function updateCartUI() {
