@@ -133,19 +133,19 @@
       "id": "torta-matilda",
       "name": "Matilda",
       "price": 65000,
-      "desc": "Tres capas de bizcochuelo de vainilla y dos rellenos: uno de dulce de leche con duraznos en almíbar y otro con dulce de leche y merenguitos"
+      "desc": "Tres bizcochuelos de chocolate rellenos y cubiertos de crema bariloche. Decoración con frutos rojos"
     },
     {
       "id": "torta-chaja",
       "name": "Chajá",
       "price": 60000,
-      "desc": "Tres capas de bizcochuelo de chocolate y dos rellenos de crema chantilly y cerezas en almíbar"
+      "desc": "Tres capas de bizcochuelo de vainilla y dos rellenos. Uno de dulce de leche con duraznos en almíbar y otro con dulce de leche y merenguitos"
     },
     {
       "id": "torta-selva-negra",
       "name": "Selva Negra",
       "price": 60000,
-      "desc": "Tres bizcochuelos de chocolate rellenos y cubiertos de crema bariloche. Decoración con frutos rojos"
+      "desc": "Tres capas de bizcochuelo de chocolate con crema chantilly y cerezas en almíbar. Decorada con virutas de chocolate"
     },
     {
       "id": "torta-marquise-clasica",
