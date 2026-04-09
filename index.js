@@ -670,10 +670,10 @@ function updateHeaderScroll() {
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll(); // estado inicial
 
-// Banner carrusel: auto-play 3 tartas, 2 budines, 1 muffin
+// Banner carrusel: 2 tartas, 2 budines, Cheesecake NY
 const bannerTrack = document.getElementById("bannerTrack");
 const bannerDotsEl = document.getElementById("bannerDots");
-const BANNER_SLIDES = 6;
+const BANNER_SLIDES = 5;
 const BANNER_INTERVAL_MS = 4500;
 let bannerIndex = 0;
 let bannerTimer = null;
