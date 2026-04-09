@@ -11,14 +11,14 @@
     {
       "id": "tarta-coco",
       "name": "Coco",
-      "price": 26000,
+      "price": 27000,
       "desc": "Masa sablée de vainilla, dulce de leche y coco",
       "image": "img/tartas/coco.jpeg"
     },
     {
       "id": "tarta-frutilla",
       "name": "Frutilla",
-      "price": 27000,
+      "price": 29000,
       "badge": "Recomendada",
       "desc": "Masa sablée de vainilla, dulce de leche, crema chantilly y frutillas frescas",
       "image": "img/tartas/frutilla.jpeg"
@@ -33,21 +33,21 @@
     {
       "id": "tarta-lemon-pie",
       "name": "Lemon Pie",
-      "price": 27000,
+      "price": 29000,
       "desc": "Masa sablée de vainilla, curd de limón y merengue suizo",
       "image": "img/tartas/lemonpie2.jpeg"
     },
     {
       "id": "tarta-durazno",
       "name": "Durazno",
-      "price": 26000,
+      "price": 27000,
       "desc": "Masa sablée de vainilla, crema chantilly y duraznos en almíbar",
       "image": "img/tartas/durazno.jpeg"
     },
     {
       "id": "tarta-key-lime-pie",
       "name": "Key Lime Pie",
-      "price": 27000,
+      "price": 29000,
       "desc": "Base de galletitas de vainilla con relleno cremoso de leche condensada y lima. Decorada con crema chantilly",
       "image": "img/tartas/keylime.jpeg"
     }
@@ -56,49 +56,49 @@
     {
       "id": "budin-limon",
       "name": "Limón",
-      "price": 8000,
+      "price": 8500,
       "desc": "Masa de vainilla y limón cubierto de glaseado de azúcar"
     },
     {
       "id": "budin-naranja",
       "name": "Naranja",
-      "price": 8000,
+      "price": 8500,
       "desc": "Masa de vainilla y naranja cubierto de glaseado de azúcar"
     },
     {
       "id": "budin-vainilla-chocolate",
       "name": "Vainilla y Chips de Chocolate",
-      "price": 8500,
+      "price": 9000,
       "desc": "Masa de vainilla y con chips de chocolate semiamargo"
     },
     {
       "id": "budin-naranja-chocolate",
       "name": "Naranja y Chocolate",
-      "price": 8500,
+      "price": 9000,
       "desc": "Masa de chocolate con naranja. Decorado con una cobertura de chocolate semiamargo"
     },
     {
       "id": "budin-limon-amapolas",
       "name": "Limón y Amapolas",
-      "price": 8000,
+      "price": 9000,
       "desc": "Masa de vainilla con limón y semillas de amapola. Cubierto por un glaseado de azúcar"
     },
     {
       "id": "budin-marmolado",
       "name": "Budín Marmolado",
-      "price": 8000,
+      "price": 9000,
       "desc": "Masa de vainilla y chocolate con cobertura de chocolate"
     },
     {
       "id": "budin-banana-chocolate",
       "name": "Integral de Banana con Chocolate",
-      "price": 8000,
+      "price": 8500,
       "desc": "Masa integral de vainilla con banana y chips de chocolate semiamargo"
     },
     {
       "id": "budin-carrot-cake",
       "name": "Integral Carrot Cake con Nueces",
-      "price": 8000,
+      "price": 8500,
       "desc": "Masa de integral de naranja y zanahoria con nueces"
     }
   ]
