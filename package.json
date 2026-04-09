@@ -1,0 +1,20 @@
+{
+  "name": "dulceantojo",
+  "private": true,
+  "description": "Sitio catálogo Dulce Antojo. Desarrollo: npm run dev. Próximo paso: API + pedidos/stock.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"**/*.{html,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{html,js,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "vite": "^6.4.2",
+    "vite-plugin-static-copy": "^4.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

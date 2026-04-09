@@ -6,15 +6,15 @@ Resumen de fuentes (Shopify, Trusted Shops, guías UX ecommerce, Onilab, Invesp)
 
 ## 1. Lo que los expertos recomiendan “above the fold” (primera pantalla)
 
-| Recomendación | Fuente | Qué significa |
-|---------------|--------|----------------|
-| **Headline + propuesta de valor** | Varios | Que en 2–5 segundos se entienda qué vendés y por qué. Corto y claro. |
-| **Un solo CTA principal** | Shopify, Trusted Shops | Un botón o enlace claro: “Comprar”, “Ver catálogo”, “Ver productos”. Evitar varios CTAs que compitan. |
-| **Imagen o video hero** | Varios | Foto de producto o estilo de vida que apoye el mensaje. Evitar sliders automáticos; mejor una sola imagen probada. |
-| **Descubrimiento de producto pronto** | GoInFlow, Onilab | Mostrar categorías o productos destacados cerca (4–7 categorías o accesos directos al catálogo). |
-| **Señales de confianza** | Trusted Shops, Platzi | Envío, plazos, devoluciones, reseñas o contacto visibles si reducen fricción. |
-| **Sin saturación** | Shopify | Poca información arriba, bien priorizada. El espacio en blanco ayuda a destacar lo importante. |
-| **Navegación y carrito visibles** | Varios | Logo, menú/categorías, carrito y/o contacto accesibles. |
+| Recomendación                         | Fuente                 | Qué significa                                                                                                      |
+| ------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Headline + propuesta de valor**     | Varios                 | Que en 2–5 segundos se entienda qué vendés y por qué. Corto y claro.                                               |
+| **Un solo CTA principal**             | Shopify, Trusted Shops | Un botón o enlace claro: “Comprar”, “Ver catálogo”, “Ver productos”. Evitar varios CTAs que compitan.              |
+| **Imagen o video hero**               | Varios                 | Foto de producto o estilo de vida que apoye el mensaje. Evitar sliders automáticos; mejor una sola imagen probada. |
+| **Descubrimiento de producto pronto** | GoInFlow, Onilab       | Mostrar categorías o productos destacados cerca (4–7 categorías o accesos directos al catálogo).                   |
+| **Señales de confianza**              | Trusted Shops, Platzi  | Envío, plazos, devoluciones, reseñas o contacto visibles si reducen fricción.                                      |
+| **Sin saturación**                    | Shopify                | Poca información arriba, bien priorizada. El espacio en blanco ayuda a destacar lo importante.                     |
+| **Navegación y carrito visibles**     | Varios                 | Logo, menú/categorías, carrito y/o contacto accesibles.                                                            |
 
 ---
 

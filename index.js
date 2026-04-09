@@ -55,9 +55,9 @@ function renderSection(grid, products) {
     const hasImg = !!p.image;
     const hasBadge = !!p.badge;
     const imgBlock = hasImg
-      ? (hasBadge
+      ? hasBadge
         ? `<div class="menu-item-img-wrap"><img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" /><span class="menu-item-badge">${p.badge}</span></div>`
-        : `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`)
+        : `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`
       : "";
     const badgeBlock = !hasImg && hasBadge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
     item.innerHTML = `
@@ -100,9 +100,7 @@ function renderSection(grid, products) {
   grid.querySelectorAll("button.btn-add").forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.id;
-      const qty = parseInt(
-        btn.closest(".menu-item").querySelector(".counter-input").value,
-      );
+      const qty = parseInt(btn.closest(".menu-item").querySelector(".counter-input").value);
       addToCart(id, qty, btn);
     });
   });
@@ -159,9 +157,10 @@ function showAddedToCartNotification(product, quantity) {
   const isMobile = window.innerWidth <= 768;
   const subtotal = product.price * quantity;
   const subtotalStr = `$ ${money(subtotal)}`;
-  const detailStr = quantity > 1
-    ? `${product.name} · x${quantity} · ${subtotalStr}`
-    : `${product.name} · x1 · ${subtotalStr}`;
+  const detailStr =
+    quantity > 1
+      ? `${product.name} · x${quantity} · ${subtotalStr}`
+      : `${product.name} · x1 · ${subtotalStr}`;
 
   const toast = document.createElement("div");
   toast.className = "toast-added-cart";
@@ -285,12 +284,16 @@ function renderCart() {
 function renderThankYouSummary(orderSummary, total) {
   thankYouSummary.innerHTML = `
     <h3>Resumen del pedido</h3>
-    ${orderSummary.map(item => `
+    ${orderSummary
+      .map(
+        (item) => `
       <div class="thank-you-summary-item">
         <span>${item.name} x${item.qty}</span>
         <span>$ ${money(item.total)}</span>
       </div>
-    `).join('')}
+    `
+      )
+      .join("")}
     <div class="thank-you-summary-item">
       <span>Total</span>
       <span>$ ${money(total)}</span>
@@ -396,7 +399,8 @@ if (imageLightbox) {
     lightboxPrev.addEventListener("click", (e) => {
       e.stopPropagation();
       if (lightboxTotalSlides <= 1) return;
-      lightboxSlideIndex = lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
+      lightboxSlideIndex =
+        lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
       updateLightboxCarousel();
     });
   }
@@ -404,7 +408,8 @@ if (imageLightbox) {
     lightboxNext.addEventListener("click", (e) => {
       e.stopPropagation();
       if (lightboxTotalSlides <= 1) return;
-      lightboxSlideIndex = lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
+      lightboxSlideIndex =
+        lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
       updateLightboxCarousel();
     });
   }
@@ -416,10 +421,12 @@ if (imageLightbox) {
     }
     if (lightboxTotalSlides > 1) {
       if (e.key === "ArrowLeft") {
-        lightboxSlideIndex = lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
+        lightboxSlideIndex =
+          lightboxSlideIndex === 0 ? lightboxTotalSlides - 1 : lightboxSlideIndex - 1;
         updateLightboxCarousel();
       } else if (e.key === "ArrowRight") {
-        lightboxSlideIndex = lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
+        lightboxSlideIndex =
+          lightboxSlideIndex >= lightboxTotalSlides - 1 ? 0 : lightboxSlideIndex + 1;
         updateLightboxCarousel();
       }
     }
@@ -440,12 +447,16 @@ function handleProductImageOpen(e) {
   openImageLightbox(img.src, img.alt, secondSrc);
 }
 document.addEventListener("click", handleProductImageOpen);
-document.addEventListener("touchend", (e) => {
-  if (e.target && e.target.classList.contains("menu-item-img")) {
-    handleProductImageOpen(e);
-    e.preventDefault();
-  }
-}, { passive: false });
+document.addEventListener(
+  "touchend",
+  (e) => {
+    if (e.target && e.target.classList.contains("menu-item-img")) {
+      handleProductImageOpen(e);
+      e.preventDefault();
+    }
+  },
+  { passive: false }
+);
 
 // Cerrar modal del carrito al hacer clic fuera
 dlg.addEventListener("click", (e) => {
@@ -488,21 +499,21 @@ document.querySelectorAll(".products-faja-link").forEach((link) => {
 // Inicializar radio buttons - asegurar que ninguno esté seleccionado por defecto
 function initRadioButtons() {
   // Deseleccionar todos los radio buttons
-  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach(radio => {
+  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach((radio) => {
     radio.checked = false;
   });
-  document.querySelectorAll('input[type="radio"][name="payment"]').forEach(radio => {
+  document.querySelectorAll('input[type="radio"][name="payment"]').forEach((radio) => {
     radio.checked = false;
   });
-  
+
   // Ocultar campo de dirección inicialmente
   addrWrap.classList.add("hide");
   addressEl.required = false;
   addressEl.value = "";
-  
+
   // Agregar listeners para mostrar/ocultar dirección según entrega
-  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach(radio => {
-    radio.addEventListener('change', () => {
+  document.querySelectorAll('input[type="radio"][name="delivery"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
       const isShip = radio.value === "Envío";
       if (addrWrap) {
         addrWrap.classList.toggle("hide", !isShip);
@@ -517,11 +528,11 @@ orderForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const data = new FormData(orderForm);
-  
+
   // Obtener valores de los radio buttons
   const delivery = data.get("delivery");
   const payment = data.get("payment");
-  
+
   // Validar que se hayan seleccionado los radio buttons
   if (!delivery) {
     alert("Por favor selecciona una opción de entrega");
@@ -531,7 +542,7 @@ orderForm.addEventListener("submit", (e) => {
     alert("Por favor selecciona una forma de pago");
     return;
   }
-  
+
   const address = data.get("address") || "";
   const name = data.get("name").trim();
   const phone = data.get("phone").trim();
@@ -556,14 +567,14 @@ orderForm.addEventListener("submit", (e) => {
     alert("Por favor ingresa un número de WhatsApp válido");
     return;
   }
-  
+
   // Validar dirección si es envío
   if (delivery === "Envío" && !address.trim()) {
     alert("Por favor ingresa la dirección de entrega");
     return;
   }
 
-  const totalPrice = CART.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const totalPrice = CART.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   // Payload de pedido reutilizable (WhatsApp hoy; API/DB después)
   const orderPayload = {
@@ -583,7 +594,7 @@ orderForm.addEventListener("submit", (e) => {
 
   // Envío por WhatsApp (cuando tengas API: enviar orderPayload a CONFIG.API_ORDERS_URL)
   const productLines = orderPayload.items.map(
-    (item) => `• ${item.name} x${item.qty} = $${money(item.total)}`,
+    (item) => `• ${item.name} x${item.qty} = $${money(item.total)}`
   );
   const lines = [
     "Hola! Quiero hacer un pedido en *Dulce Antojo* 💕",
@@ -629,11 +640,9 @@ orderForm.addEventListener("submit", (e) => {
 
 // Load products
 async function init() {
-
   try {
     const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
-    if (!res.ok)
-      throw new Error(`No se pudo cargar products.json (${res.status})`);
+    if (!res.ok) throw new Error(`No se pudo cargar products.json (${res.status})`);
     PRODUCTS = await res.json();
     render();
   } catch (err) {

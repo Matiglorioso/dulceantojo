@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.cursor
+.agents
+img
+*.png
+*.jpg
+*.jpeg
+*.ico
+*.webp
+package-lock.json
