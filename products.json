@@ -71,7 +71,8 @@
       "id": "budin-limon",
       "name": "Limón",
       "price": 8500,
-      "desc": "Masa de vainilla y limón cubierto de glaseado de azúcar"
+      "desc": "Masa de vainilla y limón cubierto de glaseado de azúcar",
+      "image": "img/budines/budines-variedad-glaseados-marmol-amapola.png"
     },
     {
       "id": "budin-naranja",
@@ -83,7 +84,8 @@
       "id": "budin-vainilla-chocolate",
       "name": "Vainilla y Chips de Chocolate",
       "price": 9000,
-      "desc": "Masa de vainilla y con chips de chocolate semiamargo"
+      "desc": "Masa de vainilla y con chips de chocolate semiamargo",
+      "image": "img/budines/budines-variedad-nueces-chips.png"
     },
     {
       "id": "budin-naranja-chocolate",
@@ -95,13 +97,15 @@
       "id": "budin-limon-amapolas",
       "name": "Limón y Amapolas",
       "price": 9000,
-      "desc": "Masa de vainilla con limón y semillas de amapola. Cubierto por un glaseado de azúcar"
+      "desc": "Masa de vainilla con limón y semillas de amapola. Cubierto por un glaseado de azúcar",
+      "image": "img/budines/budines-variedad-glaseados-marmol-amapola.png"
     },
     {
       "id": "budin-marmolado",
       "name": "Budín Marmolado",
       "price": 9000,
-      "desc": "Masa de vainilla y chocolate con cobertura de chocolate"
+      "desc": "Masa de vainilla y chocolate con cobertura de chocolate",
+      "image": "img/budines/budines-variedad-glaseados-marmol-amapola.png"
     },
     {
       "id": "budin-banana-chocolate",
@@ -113,13 +117,15 @@
       "id": "budin-carrot-cake",
       "name": "Integral Carrot Cake con Nueces",
       "price": 8500,
-      "desc": "Masa de integral de naranja y zanahoria con nueces"
+      "desc": "Masa de integral de naranja y zanahoria con nueces",
+      "image": "img/budines/budines-variedad-nueces-chips.png"
     },
     {
       "id": "budin-manzana",
       "name": "Integral de Manzana",
       "price": 8500,
-      "desc": "Masa integral de vainilla con manzana rallada. Decorado con nueces picadas"
+      "desc": "Masa integral de vainilla con manzana rallada. Decorado con nueces picadas",
+      "image": "img/budines/budines-variedad-nueces-chips.png"
     },
     {
       "id": "budin-limon-arandanos",
@@ -175,7 +181,8 @@
       "id": "torta-cheesecake-ny",
       "name": "Cheesecake NY",
       "price": 50000,
-      "desc": "Base de galletitas de vainilla, crema de queso y reducción de frutos rojos. Decorado con frutos rojos enteros"
+      "desc": "Base de galletitas de vainilla, crema de queso y reducción de frutos rojos. Decorado con frutos rojos enteros",
+      "image": "img/tortas/cheesecake-ny.png"
     },
     {
       "id": "torta-chocotorta",
