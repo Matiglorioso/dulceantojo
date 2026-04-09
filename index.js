@@ -10,6 +10,7 @@ const CONFIG = {
 
 // DOM
 const gridTartas = document.getElementById("grid-tartas");
+const gridTortas = document.getElementById("grid-tortas");
 const gridBudines = document.getElementById("grid-budines");
 const dlg = document.getElementById("dlg");
 const closeBtn = document.getElementById("closeBtn");
@@ -38,6 +39,7 @@ const lightboxNext = document.getElementById("lightboxNext");
 const lightboxDotsEl = document.getElementById("lightboxDots");
 let PRODUCTS = {
   tartas: [],
+  tortas: [],
   budines: [],
 };
 let CART = []; // Carrito de compras
@@ -108,12 +110,16 @@ function renderSection(grid, products) {
 
 function render() {
   renderSection(gridTartas, PRODUCTS.tartas);
+  renderSection(gridTortas, PRODUCTS.tortas || []);
   renderSection(gridBudines, PRODUCTS.budines);
 }
 
 function addToCart(productId, quantity, addToCartBtn) {
   // Buscar en ambas secciones
   let product = PRODUCTS.tartas.find((p) => p.id === productId);
+  if (!product) {
+    product = (PRODUCTS.tortas || []).find((p) => p.id === productId);
+  }
   if (!product) {
     product = PRODUCTS.budines.find((p) => p.id === productId);
   }
@@ -633,6 +639,7 @@ async function init() {
   } catch (err) {
     const errorMsg = `<p class="muted">Error cargando productos. Revisá products.json o el deploy.</p>`;
     gridTartas.innerHTML = errorMsg;
+    if (gridTortas) gridTortas.innerHTML = errorMsg;
     gridBudines.innerHTML = errorMsg;
     console.error(err);
   }
@@ -716,6 +723,7 @@ if (bannerTrack && bannerDotsEl) {
 
 // Tabs Tartas / Budines: mostrar solo la sección seleccionada
 const sectionTartas = document.getElementById("section-tartas");
+const panelTortas = document.getElementById("panel-tortas");
 const panelBudines = document.getElementById("panel-budines");
 document.querySelectorAll(".category-tab").forEach((tab) => {
   tab.addEventListener("click", () => {
@@ -726,9 +734,15 @@ document.querySelectorAll(".category-tab").forEach((tab) => {
     });
     if (tabName === "tartas") {
       if (sectionTartas) sectionTartas.removeAttribute("hidden");
+      if (panelTortas) panelTortas.setAttribute("hidden", "");
+      if (panelBudines) panelBudines.setAttribute("hidden", "");
+    } else if (tabName === "tortas") {
+      if (sectionTartas) sectionTartas.setAttribute("hidden", "");
+      if (panelTortas) panelTortas.removeAttribute("hidden");
       if (panelBudines) panelBudines.setAttribute("hidden", "");
     } else {
       if (sectionTartas) sectionTartas.setAttribute("hidden", "");
+      if (panelTortas) panelTortas.setAttribute("hidden", "");
       if (panelBudines) panelBudines.removeAttribute("hidden");
     }
   });

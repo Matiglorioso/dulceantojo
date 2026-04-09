@@ -504,7 +504,7 @@ main#productos {
   margin: 0 auto;
 }
 
-/* Tabs categorías (Tartas / Budines): ref. — estirados, activo marrón + sombra, inactivo blanco + borde rosa */
+/* Tabs categorías (Tartas / Tortas / Budines): estirados, activo marrón + sombra, inactivo blanco + borde rosa */
 .category-tabs {
   display: flex;
   flex-direction: row;
@@ -527,7 +527,7 @@ main#productos {
   flex: 1;
   min-width: 0;
   max-width: 320px;
-  padding: 8px 28px;
+  padding: 8px 16px;
   border-radius: 9999px;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   background: #fff;
@@ -1485,7 +1485,8 @@ main#productos {
 }
 
 #section-tartas .menu-item .menu-footer .counter,
-#section-budines .menu-footer .counter {
+#section-budines .menu-footer .counter,
+#section-tortas-grandes .menu-footer .counter {
   flex-shrink: 0;
   border-radius: 20px;
   border: 1px solid var(--border);
@@ -1494,20 +1495,23 @@ main#productos {
 }
 
 #section-tartas .menu-item .menu-footer .counter .counter-btn,
-#section-budines .menu-footer .counter .counter-btn {
+#section-budines .menu-footer .counter .counter-btn,
+#section-tortas-grandes .menu-footer .counter .counter-btn {
   width: 28px;
   height: 34px;
 }
 
 #section-tartas .menu-item .menu-footer .counter .counter-input,
-#section-budines .menu-footer .counter .counter-input {
+#section-budines .menu-footer .counter .counter-input,
+#section-tortas-grandes .menu-footer .counter .counter-input {
   height: 34px;
   width: 28px;
   font-size: 12px;
 }
 
 #section-tartas .menu-item .menu-footer .btn-add,
-#section-budines .menu-footer .btn-add {
+#section-budines .menu-footer .btn-add,
+#section-tortas-grandes .menu-footer .btn-add {
   background: #6B4A3A;
   color: #fff;
   padding: 8px 14px;
@@ -1523,18 +1527,21 @@ main#productos {
 }
 
 #section-tartas .menu-item .menu-footer .btn-add:hover,
-#section-budines .menu-footer .btn-add:hover {
+#section-budines .menu-footer .btn-add:hover,
+#section-tortas-grandes .menu-footer .btn-add:hover {
   background: #5d4032;
 }
 
 #section-tartas .menu-item .menu-footer .btn-add-icon,
-#section-budines .menu-footer .btn-add-icon {
+#section-budines .menu-footer .btn-add-icon,
+#section-tortas-grandes .menu-footer .btn-add-icon {
   display: inline-flex;
   color: #fff;
 }
 
 #section-tartas .menu-item .menu-footer .btn-add-icon svg,
-#section-budines .menu-footer .btn-add-icon svg {
+#section-budines .menu-footer .btn-add-icon svg,
+#section-tortas-grandes .menu-footer .btn-add-icon svg {
   width: 16px;
   height: 16px;
 }
@@ -1863,7 +1870,8 @@ main#productos {
     display: none;
   }
   #section-tartas .menu-footer .btn-add-icon,
-  #section-budines .menu-footer .btn-add-icon {
+  #section-budines .menu-footer .btn-add-icon,
+  #section-tortas-grandes .menu-footer .btn-add-icon {
     display: inline-flex;
   }
 }
@@ -3081,18 +3089,23 @@ textarea {
     display: inline;
   }
 
-  /* Cards BUDINES: mismo layout que tartas (espacios, tamaños, botones idénticos) */
+  /* Cards BUDINES y TORTAS: mismo layout (espacios, tamaños, botones idénticos) */
   #section-budines .menu,
+  #section-tortas-grandes .menu,
   #section-budines .products-box-title,
-  #section-budines .section-subtitle {
+  #section-tortas-grandes .products-box-title,
+  #section-budines .section-subtitle,
+  #section-tortas-grandes .section-subtitle {
     margin-bottom: 1rem;
   }
-  #section-budines .menu {
+  #section-budines .menu,
+  #section-tortas-grandes .menu {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  #section-budines .menu-item {
+  #section-budines .menu-item,
+  #section-tortas-grandes .menu-item {
     background: #fff;
     border-radius: 1rem;
     padding: 1rem;
@@ -3104,21 +3117,26 @@ textarea {
     border: 1px solid rgba(248, 187, 208, 0.15);
   }
   #section-budines .menu-item-img-wrap,
-  #section-budines .menu-item-img {
+  #section-budines .menu-item-img,
+  #section-tortas-grandes .menu-item-img-wrap,
+  #section-tortas-grandes .menu-item-img {
     display: none !important;
   }
-  #section-budines .menu-header {
+  #section-budines .menu-header,
+  #section-tortas-grandes .menu-header {
     flex: 1;
     min-width: 0;
     overflow: hidden;
   }
-  #section-budines .menu-title-desc {
+  #section-budines .menu-title-desc,
+  #section-tortas-grandes .menu-title-desc {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     min-width: 0;
   }
-  #section-budines .menu-title-row {
+  #section-budines .menu-title-row,
+  #section-tortas-grandes .menu-title-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -3126,7 +3144,8 @@ textarea {
     min-width: 0;
     margin: 0 0 4px 0;
   }
-  #section-budines .menu-title {
+  #section-budines .menu-title,
+  #section-tortas-grandes .menu-title {
     font-size: 1rem;
     font-weight: 700;
     color: var(--mobile-primary);
@@ -3135,7 +3154,8 @@ textarea {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  #section-budines .menu-desc {
+  #section-budines .menu-desc,
+  #section-tortas-grandes .menu-desc {
     font-size: 0.75rem;
     color: #6b5b52;
     display: -webkit-box;
@@ -3146,7 +3166,12 @@ textarea {
     margin: 0;
     line-height: 1.3;
   }
-  #section-budines .menu-footer {
+  #section-tortas-grandes .menu-desc {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+  #section-budines .menu-footer,
+  #section-tortas-grandes .menu-footer {
     flex-shrink: 0;
     display: flex;
     flex-direction: row;
@@ -3158,29 +3183,34 @@ textarea {
     border-top: none;
     margin-top: 0;
   }
-  #section-budines .menu-price {
+  #section-budines .menu-price,
+  #section-tortas-grandes .menu-price {
     font-size: 1rem;
     font-weight: 700;
     color: var(--mobile-primary);
     flex-shrink: 0;
   }
-  /* Counter y Agregar en budines: idéntico a tartas */
-  #section-budines .counter {
+  /* Counter y Agregar en budines y tortas: idéntico a tartas */
+  #section-budines .counter,
+  #section-tortas-grandes .counter {
     border-radius: 20px;
     border: 1px solid var(--border);
     background: var(--bg);
     height: 34px;
   }
-  #section-budines .counter .counter-btn {
+  #section-budines .counter .counter-btn,
+  #section-tortas-grandes .counter .counter-btn {
     width: 28px;
     height: 34px;
   }
-  #section-budines .counter .counter-input {
+  #section-budines .counter .counter-input,
+  #section-tortas-grandes .counter .counter-input {
     width: 28px;
     height: 34px;
     font-size: 12px;
   }
-  #section-budines .btn-add {
+  #section-budines .btn-add,
+  #section-tortas-grandes .btn-add {
     background: #6B4A3A;
     color: #fff;
     border-radius: 12px;
@@ -3194,15 +3224,18 @@ textarea {
     font-weight: 600;
     font-size: var(--text-sm);
   }
-  #section-budines .btn-add-icon {
+  #section-budines .btn-add-icon,
+  #section-tortas-grandes .btn-add-icon {
     display: inline-flex;
     color: #fff;
   }
-  #section-budines .btn-add-icon svg {
+  #section-budines .btn-add-icon svg,
+  #section-tortas-grandes .btn-add-icon svg {
     width: 16px;
     height: 16px;
   }
-  #section-budines .btn-add-text {
+  #section-budines .btn-add-text,
+  #section-tortas-grandes .btn-add-text {
     display: inline;
   }
 

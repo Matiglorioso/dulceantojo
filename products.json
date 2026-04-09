@@ -127,5 +127,67 @@
       "price": 9000,
       "desc": "Masa de limón con arándanos por dentro. Decorado con un crumble crocante"
     }
+  ],
+  "tortas": [
+    {
+      "id": "torta-matilda",
+      "name": "Matilda",
+      "price": 65000,
+      "desc": "Tres capas de bizcochuelo de vainilla y dos rellenos: uno de dulce de leche con duraznos en almíbar y otro con dulce de leche y merenguitos"
+    },
+    {
+      "id": "torta-chaja",
+      "name": "Chajá",
+      "price": 60000,
+      "desc": "Tres capas de bizcochuelo de chocolate y dos rellenos de crema chantilly y cerezas en almíbar"
+    },
+    {
+      "id": "torta-selva-negra",
+      "name": "Selva Negra",
+      "price": 60000,
+      "desc": "Tres bizcochuelos de chocolate rellenos y cubiertos de crema bariloche. Decoración con frutos rojos"
+    },
+    {
+      "id": "torta-marquise-clasica",
+      "name": "Marquise clásica",
+      "price": 50000,
+      "desc": "Brownie húmedo hecho con chocolate cobertura, dulce de leche, crema chantilly y merengue suizo"
+    },
+    {
+      "id": "torta-marquise-frutos-rojos",
+      "name": "Marquise con frutos rojos",
+      "price": 52000,
+      "desc": "Brownie húmedo hecho con chocolate cobertura, dulce de leche, crema chantilly y frutos rojos"
+    },
+    {
+      "id": "torta-tiramisu",
+      "name": "Tiramisú",
+      "price": 40000,
+      "desc": "Crema mascarpone intercalada con vainillas embebidas en café"
+    },
+    {
+      "id": "torta-pavlova",
+      "name": "Pavlova",
+      "price": 45000,
+      "desc": "Base crujiente de merengue francés cocido y por encima dulce de leche y crema chantilly. Decorada con frutos rojos"
+    },
+    {
+      "id": "torta-cheesecake-ny",
+      "name": "Cheesecake NY",
+      "price": 50000,
+      "desc": "Base de galletitas de vainilla, crema de queso y reducción de frutos rojos. Decorado con frutos rojos enteros"
+    },
+    {
+      "id": "torta-chocotorta",
+      "name": "Chocotorta",
+      "price": 55000,
+      "desc": "Galletitas chocolinas embebidas en café con relleno de crema chocotorta"
+    },
+    {
+      "id": "torta-cheesecake-maracuya",
+      "name": "Cheesecake maracuyá",
+      "price": 50000,
+      "desc": "Base crocante de galletitas de vainilla, por encima crema de queso. Decorada con mermelada de maracuyá"
+    }
   ]
 }
