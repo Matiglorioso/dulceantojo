@@ -52,16 +52,9 @@ function renderSection(grid, products) {
   products.forEach((p) => {
     const item = document.createElement("div");
     item.className = "menu-item";
-    const hasImg = !!p.image;
     const hasBadge = !!p.badge;
-    const imgBlock = hasImg
-      ? hasBadge
-        ? `<div class="menu-item-img-wrap"><img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" /><span class="menu-item-badge">${p.badge}</span></div>`
-        : `<img class="menu-item-img" src="${p.image}" alt="${p.name}" loading="lazy" data-src="${p.image}" />`
-      : "";
-    const badgeBlock = !hasImg && hasBadge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
+    const badgeBlock = hasBadge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
     item.innerHTML = `
-      ${imgBlock}
       <div class="menu-header">
         <div class="menu-title-desc">
           ${badgeBlock}
@@ -309,13 +302,6 @@ if (thankYouCta) {
   thankYouCta.addEventListener("click", () => thankYouDlg.close());
 }
 
-// Lightbox: abrir imagen de producto al tocar/clicar la miniatura
-function getSecondImagePath(path) {
-  if (!path) return null;
-  if (/2\.(jpe?g)$/i.test(path)) return path.replace(/2\.(jpe?g)$/i, ".$1");
-  return path.replace(/(\.(jpe?g))$/i, "2$1");
-}
-
 let lightboxSlideIndex = 0;
 let lightboxTotalSlides = 1;
 const LIGHTBOX_SLIDE_GAP_PX = 20;
@@ -432,32 +418,6 @@ if (imageLightbox) {
     }
   });
 }
-function hasSecondImage(dataSrc) {
-  if (!dataSrc) return false;
-  const noSecond = ["keylime", "choco", "pastafrola"];
-  return !noSecond.some((name) => dataSrc.toLowerCase().includes(name));
-}
-
-function handleProductImageOpen(e) {
-  const img = e.target && e.target.classList.contains("menu-item-img") ? e.target : null;
-  if (!img || !img.src) return;
-  e.preventDefault();
-  const dataSrc = img.getAttribute("data-src");
-  const secondSrc = dataSrc && hasSecondImage(dataSrc) ? getSecondImagePath(dataSrc) : null;
-  openImageLightbox(img.src, img.alt, secondSrc);
-}
-document.addEventListener("click", handleProductImageOpen);
-document.addEventListener(
-  "touchend",
-  (e) => {
-    if (e.target && e.target.classList.contains("menu-item-img")) {
-      handleProductImageOpen(e);
-      e.preventDefault();
-    }
-  },
-  { passive: false }
-);
-
 // Cerrar modal del carrito al hacer clic fuera
 dlg.addEventListener("click", (e) => {
   if (e.target === dlg) {
