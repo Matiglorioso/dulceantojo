@@ -1241,25 +1241,29 @@ main#productos {
   border-bottom: none;
 }
 
-/* Etiqueta "Recomendada": misma familia cromática que la card (crema / borde / marrón suave) */
-.menu-title-desc .menu-item-badge {
+/* Etiqueta esquina sup. izq. (estilo referencia: melocotón suave + sans mayúsculas) */
+.menu-item > .menu-item-badge {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
   display: inline-flex;
   align-items: center;
-  align-self: flex-start;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: #6b5b52;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 4px 11px;
-  border-radius: 999px;
-  margin: 0 0 6px 0;
-  line-height: 1.35;
+  justify-content: center;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8b5e3c;
+  background: #fde0c3;
+  padding: 0.5rem 1rem 0.45rem 1rem;
+  line-height: 1.2;
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 10px;
   box-shadow: none;
+  pointer-events: none;
 }
 
 .menu-header {
@@ -1381,6 +1385,20 @@ main#productos {
 #section-budines .menu-item:last-child,
 #section-tortas-grandes .menu-item:last-child {
   margin-bottom: 0;
+}
+
+/* Espacio bajo etiqueta RECOMENDADO (esquina sup. izq.); va después del padding base de las cards */
+#section-tartas .menu-item:has(> .menu-item-badge),
+#section-budines .menu-item:has(> .menu-item-badge),
+#section-tortas-grandes .menu-item:has(> .menu-item-badge) {
+  position: relative;
+  padding-top: 2.85rem;
+}
+
+#section-tartas .menu-item:has(> .menu-item-badge) .menu-header,
+#section-budines .menu-item:has(> .menu-item-badge) .menu-header,
+#section-tortas-grandes .menu-item:has(> .menu-item-badge) .menu-header {
+  padding-top: 0;
 }
 
 #section-tartas .menu-item .menu-footer .counter,
@@ -2974,6 +2992,21 @@ textarea {
     gap: 0.75rem;
     box-shadow: 0 1px 3px rgba(93, 64, 55, 0.08);
     border: 1px solid rgba(248, 187, 208, 0.15);
+  }
+  /* Tras el padding shorthand móvil: asegurar hueco bajo la etiqueta y radio alineado a la card */
+  #section-tartas .menu-item:has(> .menu-item-badge),
+  #section-budines .menu-item:has(> .menu-item-badge),
+  #section-tortas-grandes .menu-item:has(> .menu-item-badge) {
+    position: relative;
+    padding-top: 2.85rem;
+  }
+  #section-tartas .menu-item:has(> .menu-item-badge) .menu-header,
+  #section-budines .menu-item:has(> .menu-item-badge) .menu-header,
+  #section-tortas-grandes .menu-item:has(> .menu-item-badge) .menu-header {
+    padding-top: 0;
+  }
+  .menu-item > .menu-item-badge {
+    border-top-left-radius: 1rem;
   }
   #section-budines .menu-header,
   #section-tortas-grandes .menu-header {

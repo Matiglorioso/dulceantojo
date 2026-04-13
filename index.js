@@ -55,9 +55,9 @@ function renderSection(grid, products) {
     const hasBadge = !!p.badge;
     const badgeBlock = hasBadge ? `<span class="menu-item-badge">${p.badge}</span>` : "";
     item.innerHTML = `
+      ${badgeBlock}
       <div class="menu-header">
         <div class="menu-title-desc">
-          ${badgeBlock}
           <div class="menu-title-row">
             <strong class="menu-title">${p.name}</strong>
             <span class="menu-price">$ ${money(p.price)}</span>
