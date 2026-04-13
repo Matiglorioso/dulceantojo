@@ -4,7 +4,6 @@
       "id": "tarta-cabsha",
       "name": "Cabsha",
       "price": 27000,
-      "badge": "Más pedido",
       "desc": "Masa sablée de vainilla, dulce de leche y ganache de chocolate semiamargo"
     },
     {
@@ -86,6 +85,7 @@
       "id": "budin-limon-amapolas",
       "name": "Limón y Amapolas",
       "price": 9000,
+      "badge": "Recomendada",
       "desc": "Masa de vainilla con limón y semillas de amapola. Cubierto por un glaseado de azúcar"
     },
     {
@@ -166,6 +166,7 @@
       "id": "torta-cheesecake-ny",
       "name": "Cheesecake NY",
       "price": 50000,
+      "badge": "Recomendada",
       "desc": "Base de galletitas de vainilla, crema de queso y reducción de frutos rojos. Decorado con frutos rojos enteros"
     },
     {
