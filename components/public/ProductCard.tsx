@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPriceAr } from "@/lib/format";
+import { PRODUCT_IMAGE_BY_SLUG } from "@/lib/product-images";
 import { cn } from "@/lib/utils";
 
 type ProductCardProps = {
@@ -20,7 +21,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const [qty, setQty] = React.useState(1);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const out = product.is_out_of_stock;
-  const hasImage = Boolean(product.image_url);
+  const imageUrl = product.image_url ?? PRODUCT_IMAGE_BY_SLUG[product.slug];
+  const hasImage = Boolean(imageUrl);
 
   const dec = () => setQty((q) => Math.max(1, q - 1));
   const inc = () => setQty((q) => Math.min(20, q + 1));
@@ -32,11 +34,11 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
-        {hasImage && product.image_url ? (
+        {hasImage && imageUrl ? (
           <>
             {!imgLoaded && <Skeleton className="absolute inset-0 z-[1] rounded-none" />}
             <Image
-              src={product.image_url}
+              src={imageUrl}
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

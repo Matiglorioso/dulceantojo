@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CategoryTabs } from "@/components/public/CategoryTabs";
 import { HeroCarousel } from "@/components/public/HeroCarousel";
+import { HERO_IMAGE_FALLBACKS } from "@/lib/product-images";
 import { getSiteUrl } from "@/lib/site-url";
 import type { HeroSlide } from "@/lib/types";
 import { getCategories, getProductsByCategory, getSettings } from "@/lib/queries";
@@ -9,7 +10,7 @@ import { getCategories, getProductsByCategory, getSettings } from "@/lib/queries
 export const revalidate = 60;
 
 const DEFAULT_HERO: HeroSlide[] = Array.from({ length: 4 }, (_, i) => ({
-  image: null,
+  image: HERO_IMAGE_FALLBACKS[i] ?? null,
   alt: `Especialidades de la casa — slide ${i + 1}`,
   title: "¡Conocé nuestros productos!",
   subtitle: "ESPECIALIDADES DE LA CASA",
@@ -26,8 +27,9 @@ function normalizeHeroSlides(raw: unknown): HeroSlide[] {
       continue;
     }
     const o = item as Record<string, unknown>;
+    const fallback = HERO_IMAGE_FALLBACKS[slides.length] ?? null;
     slides.push({
-      image: typeof o.image === "string" ? o.image : null,
+      image: typeof o.image === "string" ? o.image : fallback,
       alt: typeof o.alt === "string" ? o.alt : "Dulce Antojo",
       title: typeof o.title === "string" ? o.title : "¡Conocé nuestros productos!",
       subtitle:
