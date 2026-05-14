@@ -13,13 +13,19 @@ export function SiteFooter({ whatsappNumber }: SiteFooterProps) {
   const whatsappHref = whatsappDigits ? `https://wa.me/${whatsappDigits}` : null;
 
   return (
-    <footer className="mt-16 bg-primary px-4 py-10 text-primary-foreground sm:px-6">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+    <footer className="mt-16 border-t border-primary-foreground/15 bg-primary px-4 py-10 text-primary-foreground sm:px-6 md:py-12">
+      <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-semibold">Dulce Antojo</p>
-          <p className="mt-1 text-sm text-primary-foreground/90">Pastelería artesanal</p>
+          <p className="font-display text-3xl font-semibold">Dulce Antojo</p>
+          <p className="mt-2 text-sm leading-relaxed text-primary-foreground/90">
+            Pastelería artesanal en Córdoba
+          </p>
         </div>
+
         <div className="flex flex-col gap-3 text-sm text-primary-foreground/95">
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground/70">
+            Contacto
+          </h2>
           <Link
             href={INSTAGRAM_URL}
             target="_blank"
@@ -35,14 +41,21 @@ export function SiteFooter({ whatsappNumber }: SiteFooterProps) {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-2 font-medium underline-offset-4 hover:underline"
             >
               <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
-              Pedidos con 48 hs de anticipación
+              WhatsApp
             </Link>
           ) : (
-            <p>Pedidos con 48 hs de anticipación</p>
+            <p>WhatsApp</p>
           )}
+        </div>
+
+        <div className="flex flex-col gap-3 text-sm text-primary-foreground/95">
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground/70">
+            Pedidos
+          </h2>
+          <p>48hs de anticipación</p>
           <p>Envíos a Córdoba capital</p>
           <p className="text-primary-foreground/80">© {year} Dulce Antojo</p>
         </div>

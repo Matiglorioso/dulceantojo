@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CategoryTabs } from "@/components/public/CategoryTabs";
 import { HeroCarousel } from "@/components/public/HeroCarousel";
+import { HowToOrder } from "@/components/public/HowToOrder";
 import { HERO_IMAGE_FALLBACKS } from "@/lib/product-images";
 import { getSiteUrl } from "@/lib/site-url";
 import type { HeroSlide } from "@/lib/types";
@@ -9,12 +10,35 @@ import { getCategories, getProductsByCategory, getSettings } from "@/lib/queries
 
 export const revalidate = 60;
 
+const HERO_COPY = [
+  {
+    title: "Tartas artesanales",
+    subtitle: "Masa sablée con rellenos únicos",
+    cta: "Ver tartas",
+  },
+  {
+    title: "Tortas de ocasión",
+    subtitle: "Diseñadas especialmente para vos",
+    cta: "Ver tortas",
+  },
+  {
+    title: "Budines de autor",
+    subtitle: "Recetas con ingredientes seleccionados",
+    cta: "Ver budines",
+  },
+  {
+    title: "Especialidades de la casa",
+    subtitle: "Lo mejor de nuestra pastelería",
+    cta: "Ver todo",
+  },
+] as const;
+
 const DEFAULT_HERO: HeroSlide[] = Array.from({ length: 4 }, (_, i) => ({
   image: HERO_IMAGE_FALLBACKS[i] ?? null,
-  alt: `Especialidades de la casa — slide ${i + 1}`,
-  title: "¡Conocé nuestros productos!",
-  subtitle: "ESPECIALIDADES DE LA CASA",
-  cta: "Ver más",
+  alt: `${HERO_COPY[i]?.title ?? "Dulce Antojo"} — slide ${i + 1}`,
+  title: HERO_COPY[i]?.title ?? "Especialidades de la casa",
+  subtitle: HERO_COPY[i]?.subtitle ?? "Lo mejor de nuestra pastelería",
+  cta: HERO_COPY[i]?.cta ?? "Ver todo",
 }));
 
 function normalizeHeroSlides(raw: unknown): HeroSlide[] {
@@ -27,14 +51,15 @@ function normalizeHeroSlides(raw: unknown): HeroSlide[] {
       continue;
     }
     const o = item as Record<string, unknown>;
-    const fallback = HERO_IMAGE_FALLBACKS[slides.length] ?? null;
+    const index = slides.length;
+    const fallback = HERO_IMAGE_FALLBACKS[index] ?? null;
+    const copy = HERO_COPY[index] ?? HERO_COPY[3];
     slides.push({
       image: typeof o.image === "string" ? o.image : fallback,
-      alt: typeof o.alt === "string" ? o.alt : "Dulce Antojo",
-      title: typeof o.title === "string" ? o.title : "¡Conocé nuestros productos!",
-      subtitle:
-        typeof o.subtitle === "string" ? o.subtitle : "ESPECIALIDADES DE LA CASA",
-      cta: typeof o.cta === "string" ? o.cta : "Ver más",
+      alt: typeof o.alt === "string" ? o.alt : copy.title,
+      title: copy.title,
+      subtitle: copy.subtitle,
+      cta: copy.cta,
     });
   }
   return slides.length > 0 ? slides : DEFAULT_HERO;
@@ -81,9 +106,9 @@ export default async function HomePage() {
   const productsBySlug = Object.fromEntries(
     await Promise.all(
       categories.map((c) =>
-        getProductsByCategory(c.slug).then((products) => [c.slug, products] as const),
-      ),
-    ),
+        getProductsByCategory(c.slug).then((products) => [c.slug, products] as const)
+      )
+    )
   );
 
   const tabCategories = categories.map((c) => ({ slug: c.slug, name: c.name }));
@@ -117,7 +142,9 @@ export default async function HomePage() {
 
         <HeroCarousel slides={heroSlides} />
 
-        <div id="productos" className="mt-10 scroll-mt-24">
+        <HowToOrder />
+
+        <div id="productos" className="scroll-mt-24 py-12 md:py-16">
           <CategoryTabs categories={tabCategories} productsBySlug={productsBySlug} />
         </div>
       </div>

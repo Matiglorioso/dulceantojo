@@ -42,38 +42,47 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
 
   const products = productsBySlug[active] ?? [];
   const headingId = `cat-${active}`;
-  const activeCategoryName =
-    categories.find((c) => c.slug === active)?.name ?? "Productos";
+  const activeCategoryName = categories.find((c) => c.slug === active)?.name ?? "Productos";
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <div
-        className="scrollbar-hide sticky top-16 z-30 -mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth border-b border-border/80 bg-background/90 px-4 py-2 backdrop-blur-md sm:-mx-6 sm:px-6"
-        role="tablist"
-        aria-label="Categorías de productos"
-      >
-        {categories.map((cat) => {
-          const isActive = cat.slug === active;
-          return (
-            <button
-              key={cat.slug}
-              id={`tab-${cat.slug}`}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              aria-controls={headingId}
-              className={cn(
-                "min-h-[44px] shrink-0 scroll-mx-4 snap-center rounded-full px-[18px] py-2.5 text-sm font-medium transition-colors",
-                isActive
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "border border-border bg-card text-foreground hover:bg-muted",
-              )}
-              onClick={() => setActive(cat.slug)}
-            >
-              {cat.name}
-            </button>
-          );
-        })}
+      <div className="sticky top-16 z-30 -mx-4 border-b border-border/80 bg-background/90 backdrop-blur-md sm:-mx-6">
+        <div
+          className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth px-4 py-2 sm:px-6"
+          role="tablist"
+          aria-label="Categorías de productos"
+        >
+          {categories.map((cat) => {
+            const isActive = cat.slug === active;
+            const count = productsBySlug[cat.slug]?.length ?? 0;
+            return (
+              <button
+                key={cat.slug}
+                id={`tab-${cat.slug}`}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={headingId}
+                className={cn(
+                  "min-h-[44px] shrink-0 snap-center scroll-mx-4 rounded-full px-[18px] py-2.5 text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "border border-border bg-card text-foreground hover:bg-muted"
+                )}
+                onClick={() => setActive(cat.slug)}
+              >
+                <span>{cat.name}</span>
+                <span className="ml-1 hidden rounded-full bg-background/20 px-1.5 text-xs font-semibold md:inline-flex">
+                  ({count})
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-background to-transparent md:hidden"
+          aria-hidden="true"
+        />
       </div>
 
       <div
