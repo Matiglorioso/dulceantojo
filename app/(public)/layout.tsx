@@ -1,4 +1,3 @@
-import { FloatingWhatsAppButton } from "@/components/public/FloatingWhatsAppButton";
 import { SiteFooter } from "@/components/public/SiteFooter";
 import { SiteHeader } from "@/components/public/SiteHeader";
 import { Marquee } from "@/components/public/Marquee";
@@ -25,7 +24,6 @@ export default async function PublicLayout({
       <Marquee message={opening} />
       {children}
       <SiteFooter whatsappNumber={whatsappNumber} />
-      <FloatingWhatsAppButton whatsappNumber={whatsappNumber} />
       <div role="status" aria-live="polite" className="sr-only" />
       <Toaster position="top-center" />
     </>
