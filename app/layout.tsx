@@ -3,6 +3,7 @@ import "sonner/dist/styles.css";
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 
+import { getSiteUrl } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
 
 const display = Cormorant_Garamond({
@@ -18,7 +19,7 @@ const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

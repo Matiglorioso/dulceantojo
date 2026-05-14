@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CategoryTabs } from "@/components/public/CategoryTabs";
 import { HeroCarousel } from "@/components/public/HeroCarousel";
+import { getSiteUrl } from "@/lib/site-url";
 import type { HeroSlide } from "@/lib/types";
 import { getCategories, getProductsByCategory, getSettings } from "@/lib/queries";
 
@@ -38,7 +39,7 @@ function normalizeHeroSlides(raw: unknown): HeroSlide[] {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dulceantojo.vercel.app";
+  const site = getSiteUrl();
   const title = "Inicio";
   const description =
     "Pastelería artesanal en Córdoba. Tartas, tortas y budines con envío a Córdoba capital. Pedidos con 48 horas de anticipación.";
@@ -93,7 +94,7 @@ export default async function HomePage() {
     "@type": "Bakery",
     name: "Dulce Antojo",
     description: "Pastelería artesanal en Córdoba.",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dulceantojo.vercel.app",
+    url: getSiteUrl(),
     address: {
       "@type": "PostalAddress",
       addressLocality: businessLocation?.city ?? "Córdoba",
