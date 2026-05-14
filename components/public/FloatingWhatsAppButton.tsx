@@ -10,6 +10,7 @@ type FloatingWhatsAppButtonProps = {
 
 export function FloatingWhatsAppButton({ whatsappNumber }: FloatingWhatsAppButtonProps) {
   const [showLabel, setShowLabel] = React.useState(true);
+  const [footerVisible, setFooterVisible] = React.useState(false);
   const digits = whatsappNumber.replace(/\D/g, "");
 
   React.useEffect(() => {
@@ -22,6 +23,21 @@ export function FloatingWhatsAppButton({ whatsappNumber }: FloatingWhatsAppButto
     };
   }, []);
 
+  React.useEffect(() => {
+    const footer = document.getElementById("site-footer");
+    if (!footer) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(Boolean(entry?.isIntersecting)),
+      {
+        threshold: 0.05,
+      }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   if (!digits) {
     return null;
   }
@@ -31,7 +47,10 @@ export function FloatingWhatsAppButton({ whatsappNumber }: FloatingWhatsAppButto
       href={`https://wa.me/${digits}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-24 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-green-500 p-4 text-white shadow-lg transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 md:bottom-6"
+      className={cn(
+        "group fixed bottom-24 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-green-500 p-4 text-white shadow-lg transition-all duration-200 hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 md:bottom-6",
+        footerVisible ? "pointer-events-none translate-y-3 opacity-0" : "translate-y-0 opacity-100"
+      )}
       aria-label="Contactar por WhatsApp"
     >
       <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-green-500 opacity-40" />
