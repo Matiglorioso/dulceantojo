@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Marca — valores HSL sin función, para usar con hsl(var(--token))) */
+    --background: 30 43% 97%;
+    --foreground: 24 24% 24%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 24% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 24% 24%;
+    --primary: 18 29% 33%;
+    --primary-hover: 17 30% 28%;
+    --primary-foreground: 30 43% 97%;
+    --secondary: 30 30% 94%;
+    --secondary-foreground: 24 24% 24%;
+    --muted: 28 20% 93%;
+    --muted-foreground: 24 10% 49%;
+    --accent: 340 82% 85%;
+    --accent-foreground: 24 24% 24%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 35% 91%;
+    --input: 25 35% 91%;
+    --ring: 18 29% 33%;
+    --radius: 1rem;
+    /* Referencia literal (sombra de marca) */
+    --shadow-soft: 0 10px 24px rgba(75, 58, 47, 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Foco visible consistente (WCAG) — anillo marrón 2px */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+}
+
+/* Marquee: pista duplicada + translate -50%; el componente Marquee aplicará la clase */
+@keyframes da-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .animate-da-marquee {
+    animation: da-marquee 30s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-da-marquee {
+      animation: none;
+    }
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
