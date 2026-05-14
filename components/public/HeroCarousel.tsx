@@ -55,7 +55,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                 key={index}
                 className="relative min-w-0 shrink-0 grow-0 basis-full"
               >
-                <div className="relative aspect-[4/3] max-h-[60vh] w-full overflow-hidden bg-primary sm:mx-auto sm:max-w-4xl">
+                <div className="relative aspect-[4/3] max-h-[60vh] w-full overflow-hidden bg-primary sm:mx-auto sm:aspect-[16/7] sm:max-w-4xl">
                   {slide.image ? (
                     <Image
                       src={slide.image}
@@ -67,14 +67,12 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                     />
                   ) : (
                     <div
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary px-6 text-center text-primary-foreground"
-                      role="img"
-                      aria-label={slide.alt || slide.title}
-                    >
-                      <span className="font-display text-2xl font-semibold text-balance sm:text-3xl">
-                        {slide.title}
-                      </span>
-                    </div>
+                      className={cn(
+                        "absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary px-6 text-center text-primary-foreground transition-opacity",
+                        selected === index ? "opacity-0" : "opacity-100",
+                      )}
+                      aria-hidden="true"
+                    />
                   )}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5 pb-6 text-primary-foreground sm:p-8">

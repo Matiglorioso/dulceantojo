@@ -1,3 +1,4 @@
+import { FloatingWhatsAppButton } from "@/components/public/FloatingWhatsAppButton";
 import { SiteFooter } from "@/components/public/SiteFooter";
 import { SiteHeader } from "@/components/public/SiteHeader";
 import { Marquee } from "@/components/public/Marquee";
@@ -9,16 +10,22 @@ export default async function PublicLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [openingRaw, whatsappNumberRaw] = await Promise.all([
+    getSettings("opening_message"),
+    getSettings("whatsapp_number"),
+  ]);
   const opening =
-    (await getSettings("opening_message")) ??
-    "ENVÍOS A CÓRDOBA CAPITAL · PEDIDOS CON 48HS DE ANTICIPACIÓN";
+    openingRaw ?? "ENVÍOS A CÓRDOBA CAPITAL · PEDIDOS CON 48HS DE ANTICIPACIÓN";
+  const whatsappNumber =
+    whatsappNumberRaw ?? process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
   return (
     <>
       <SiteHeader />
       <Marquee message={opening} />
       {children}
-      <SiteFooter />
+      <SiteFooter whatsappNumber={whatsappNumber} />
+      <FloatingWhatsAppButton whatsappNumber={whatsappNumber} />
       <div role="status" aria-live="polite" className="sr-only" />
       <Toaster position="top-center" />
     </>

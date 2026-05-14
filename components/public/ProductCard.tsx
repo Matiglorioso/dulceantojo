@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, Utensils } from "lucide-react";
 
 import type { ProductRow } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
@@ -48,10 +48,11 @@ export function ProductCard({ product }: ProductCardProps) {
           </>
         ) : (
           <div
-            className="absolute inset-0 flex items-center justify-center bg-primary/15 text-sm font-medium text-primary"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary/10"
             aria-hidden
           >
-            Imagen próximamente
+            <Utensils className="h-10 w-10 text-primary/30" />
+            <span className="text-xs text-muted-foreground">Imagen próximamente</span>
           </div>
         )}
 
@@ -61,7 +62,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <Badge
                 key={b}
                 variant="secondary"
-                className="border-0 bg-accent text-accent-foreground shadow-sm"
+                className="border-0 bg-accent font-bold text-accent-foreground shadow-md ring-1 ring-white/60"
               >
                 {b}
               </Badge>
@@ -81,15 +82,15 @@ export function ProductCard({ product }: ProductCardProps) {
           <h3 className="min-w-0 flex-1 truncate font-display text-lg font-semibold text-foreground">
             {product.name}
           </h3>
-          <p className="shrink-0 text-sm font-semibold tabular-nums text-primary">
+          <p className="shrink-0 text-base font-bold tabular-nums text-primary">
             {formatPriceAr(product.price)}
           </p>
         </div>
         {product.description ? (
-          <p className="line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
+          <p className="line-clamp-3 text-sm text-muted-foreground">{product.description}</p>
         ) : null}
 
-        <div className="mt-auto flex flex-wrap items-center gap-2 pt-3">
+        <div className="mt-auto flex flex-wrap items-center gap-2 pb-1 pt-4">
           <div className="flex items-center rounded-full border border-border bg-background">
             <button
               type="button"

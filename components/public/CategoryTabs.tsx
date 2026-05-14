@@ -42,6 +42,8 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
 
   const products = productsBySlug[active] ?? [];
   const headingId = `cat-${active}`;
+  const activeCategoryName =
+    categories.find((c) => c.slug === active)?.name ?? "Productos";
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -81,8 +83,12 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
         aria-labelledby={`tab-${active}`}
       >
         <section>
-          <h2 className="sr-only">
-            {categories.find((c) => c.slug === active)?.name ?? "Productos"}
+          <h2 className="sr-only">{activeCategoryName}</h2>
+          <h2
+            className="mb-4 font-display text-xl font-semibold text-foreground"
+            aria-hidden="true"
+          >
+            {activeCategoryName}
           </h2>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {products.map((p) => (

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Instagram, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 
@@ -60,7 +61,7 @@ export function SiteHeader() {
           type="button"
           className="flex h-11 w-11 items-center justify-center rounded-full text-primary hover:bg-muted"
           aria-label="Carrito (próximamente)"
-          disabled
+          onClick={() => toast("Próximamente disponible 🎂")}
         >
           <ShoppingCart className="h-5 w-5" aria-hidden />
         </button>
