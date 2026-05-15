@@ -30,8 +30,12 @@ export const metadata: Metadata = {
   description:
     "Pastelería artesanal en Córdoba. Tartas, tortas y budines. Envíos a Córdoba capital; pedidos con 48 horas de anticipación.",
   icons: {
-    icon: [{ url: "/icon-192.svg", sizes: "192x192", type: "image/svg+xml" }],
-    apple: [{ url: "/icon-192.svg", sizes: "180x180", type: "image/svg+xml" }],
+    icon: [
+      { url: "/dulceantojo.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/dulceantojo.jpeg", sizes: "192x192", type: "image/jpeg" },
+    ],
+    shortcut: "/dulceantojo.ico",
+    apple: [{ url: "/dulceantojo.jpeg", sizes: "180x180", type: "image/jpeg" }],
   },
 };
 

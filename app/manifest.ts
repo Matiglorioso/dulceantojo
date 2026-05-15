@@ -12,16 +12,21 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "es",
     icons: [
       {
-        src: "/icon-192.svg",
+        src: "/dulceantojo.jpeg",
         sizes: "192x192",
-        type: "image/svg+xml",
+        type: "image/jpeg",
         purpose: "any",
       },
       {
-        src: "/icon-512.svg",
+        src: "/dulceantojo.jpeg",
         sizes: "512x512",
-        type: "image/svg+xml",
+        type: "image/jpeg",
         purpose: "any",
+      },
+      {
+        src: "/dulceantojo.ico",
+        sizes: "48x48",
+        type: "image/x-icon",
       },
     ],
   };
