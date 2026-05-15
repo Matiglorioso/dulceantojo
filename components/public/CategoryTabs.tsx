@@ -16,8 +16,18 @@ type CategoryTabsProps = {
   productsBySlug: Record<string, ProductRow[]>;
 };
 
-function scrollToProducts() {
-  document.getElementById("productos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToTabs() {
+  const tabs = document.getElementById("catalogo-tabs");
+  if (!tabs) return;
+  tabs.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function changePage(
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+  updater: (p: number) => number
+) {
+  setPage(updater);
+  requestAnimationFrame(() => scrollToTabs());
 }
 
 export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) {
@@ -64,15 +74,17 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <div className="sticky top-16 z-30 -mx-4 border-b border-border/80 bg-background/90 backdrop-blur-md sm:-mx-6">
+      <div
+        id="catalogo-tabs"
+        className="sticky top-16 z-30 -mx-4 scroll-mt-28 border-b border-border/80 bg-background/90 backdrop-blur-md sm:-mx-6"
+      >
         <div
-          className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth px-4 py-2 sm:px-6"
+          className="mx-auto flex w-full max-w-3xl justify-center gap-2 px-4 py-2.5 sm:gap-3 sm:px-6"
           role="tablist"
           aria-label="Categorías de productos"
         >
           {categories.map((cat) => {
             const isActive = cat.slug === active;
-            const count = productsBySlug[cat.slug]?.length ?? 0;
             return (
               <button
                 key={cat.slug}
@@ -82,25 +94,21 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
                 aria-selected={isActive}
                 aria-controls={headingId}
                 className={cn(
-                  "min-h-[44px] shrink-0 snap-center scroll-mx-4 rounded-full px-[18px] py-2.5 text-sm font-medium transition-colors",
+                  "min-h-[44px] flex-1 rounded-full px-4 py-3 text-sm font-medium transition-colors sm:px-6 sm:text-base",
                   isActive
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "border border-border bg-card text-foreground hover:bg-muted"
                 )}
-                onClick={() => setActive(cat.slug)}
+                onClick={() => {
+                  setActive(cat.slug);
+                  requestAnimationFrame(() => scrollToTabs());
+                }}
               >
-                <span>{cat.name}</span>
-                <span className="ml-1 hidden rounded-full bg-background/20 px-1.5 text-xs font-semibold md:inline-flex">
-                  ({count})
-                </span>
+                {cat.name}
               </button>
             );
           })}
         </div>
-        <div
-          className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-background to-transparent md:hidden"
-          aria-hidden="true"
-        />
       </div>
 
       <div
@@ -122,9 +130,9 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
             <div className="mt-8 flex items-center justify-center gap-3">
               <button
                 type="button"
-                onClick={() => {
-                  setPage((p) => p - 1);
-                  scrollToProducts();
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  changePage(setPage, (p) => p - 1);
                 }}
                 disabled={safePage === 1}
                 className="rounded-full border border-border px-4 py-2 text-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
@@ -136,9 +144,9 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
               </span>
               <button
                 type="button"
-                onClick={() => {
-                  setPage((p) => p + 1);
-                  scrollToProducts();
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  changePage(setPage, (p) => p + 1);
                 }}
                 disabled={safePage === totalPages}
                 className="rounded-full border border-border px-4 py-2 text-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
@@ -152,3 +160,5 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
     </div>
   );
 }
+
+
