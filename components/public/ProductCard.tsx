@@ -98,50 +98,53 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex min-w-0 items-baseline justify-between gap-2">
-          <h3 className="min-w-0 flex-1 truncate font-display text-lg font-semibold text-foreground">
+          <h3 className="min-w-0 flex-1 truncate font-display text-xl font-semibold leading-tight text-foreground">
             {product.name}
           </h3>
-          <p className="shrink-0 text-xl font-semibold tabular-nums text-primary">
+          <p className="shrink-0 font-display text-xl font-semibold tabular-nums text-primary">
             {formatPriceAr(product.price)}
           </p>
         </div>
-        {product.description ? (
-          <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-            {product.description}
-          </p>
-        ) : null}
+        <div className="min-h-[4.25rem] flex-1">
+          {product.description ? (
+            <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+              {product.description}
+            </p>
+          ) : null}
+        </div>
 
-        <div className="mt-3 flex flex-col gap-2 border-t border-border/40 pt-4 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-auto flex flex-col gap-2 border-t border-border/40 pt-3 sm:flex-row sm:items-center">
           <div className="flex items-center rounded-full border border-border bg-background">
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-l-full text-primary hover:bg-muted"
+              className="flex h-9 w-9 items-center justify-center rounded-l-full text-primary hover:bg-muted"
               aria-label="Disminuir cantidad"
               onClick={dec}
               disabled={out}
             >
-              <Minus className="h-4 w-4" aria-hidden />
+              <Minus className="h-3.5 w-3.5" aria-hidden />
             </button>
             <Input
               readOnly
               value={qty}
               tabIndex={-1}
-              className="h-11 w-12 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums focus-visible:ring-0"
+              className="h-9 w-9 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums focus-visible:ring-0"
               aria-label="Cantidad"
             />
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-r-full text-primary hover:bg-muted"
+              className="flex h-9 w-9 items-center justify-center rounded-r-full text-primary hover:bg-muted"
               aria-label="Aumentar cantidad"
               onClick={inc}
               disabled={out}
             >
-              <Plus className="h-4 w-4" aria-hidden />
+              <Plus className="h-3.5 w-3.5" aria-hidden />
             </button>
           </div>
           <Button
             type="button"
-            className="h-11 w-full min-w-[7.5rem] rounded-full sm:flex-1"
+            size="sm"
+            className="h-9 w-full rounded-full px-4 text-sm sm:flex-1"
             disabled={out}
             onClick={onAdd}
           >
