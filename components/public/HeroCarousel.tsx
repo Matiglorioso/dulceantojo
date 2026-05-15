@@ -13,8 +13,6 @@ type HeroCarouselProps = {
   slides: HeroSlide[];
 };
 
-const HERO_IMAGE_POSITION = "object-[72%_center]";
-
 export function HeroCarousel({ slides }: HeroCarouselProps) {
   const autoplay = React.useMemo(
     () =>
@@ -60,13 +58,13 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
           <div className="flex">
             {slides.map((slide, index) => (
               <div key={index} className="relative min-w-0 shrink-0 grow-0 basis-full">
-                <div className="relative h-[min(52vw,280px)] w-full overflow-hidden sm:h-[min(38vw,360px)] md:h-[380px]">
+                <div className="relative aspect-[988/580] max-h-[min(58vw,420px)] w-full overflow-hidden sm:max-h-[400px]">
                   {slide.image ? (
                     <Image
                       src={slide.image}
                       alt={slide.alt}
                       fill
-                      className={cn("object-cover", HERO_IMAGE_POSITION)}
+                      className="object-cover object-center"
                       sizes="100vw"
                       priority={index === 0}
                     />

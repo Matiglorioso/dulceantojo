@@ -1,10 +1,11 @@
 import type { HeroSlide } from "@/lib/types";
 
+/** Fotos originales del catálogo (solo fondo; el texto va en el carrusel). */
 export const HERO_SLIDE_IMAGES = [
-  "/img/hero/slide-chocolate.png",
-  "/img/hero/slide-frutilla.png",
-  "/img/hero/slide-clasicos.png",
-  "/img/hero/slide-compartir.png",
+  "/img/tartas/choco.jpeg",
+  "/img/tartas/frutilla.jpeg",
+  "/img/tortas/cheesecake-ny.png",
+  "/img/budines/budines.jpeg",
 ] as const;
 
 export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
