@@ -9,10 +9,6 @@ import { cartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/use-cart";
 
-type SiteHeaderProps = {
-  announcement: string;
-};
-
 type NavId = "inicio" | "productos" | "quienes-somos";
 
 const NAV_ITEMS: { id: NavId; label: string; hash: string }[] = [
@@ -32,7 +28,7 @@ function scrollToHash(hash: string) {
   }
 }
 
-export function SiteHeader({ announcement }: SiteHeaderProps) {
+export function SiteHeader() {
   const items = useCartStore((s) => s.items);
   const openCart = useCartStore((s) => s.openCart);
   const totalItems = cartItemCount(items);
@@ -96,18 +92,22 @@ export function SiteHeader({ announcement }: SiteHeaderProps) {
       <div
         className={cn(
           "overflow-hidden bg-primary transition-[max-height] duration-300 ease-out motion-reduce:transition-none",
-          announcementVisible ? "max-h-14" : "max-h-0"
+          announcementVisible ? "max-h-16" : "max-h-0"
         )}
         aria-hidden={!announcementVisible}
       >
         <p
-          className="px-4 py-2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]"
+          className="flex flex-wrap items-center justify-center px-4 py-2.5 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:tracking-[0.16em]"
           style={{
             paddingLeft: "max(1rem, env(safe-area-inset-left))",
             paddingRight: "max(1rem, env(safe-area-inset-right))",
           }}
         >
-          {announcement}
+          <span>📦 Envíos a Córdoba Capital</span>
+          <span className="mx-3 opacity-40" aria-hidden>
+            ·
+          </span>
+          <span>⏰ Pedidos con 48hs de anticipación</span>
         </p>
       </div>
 
@@ -182,7 +182,7 @@ function BrandLockup({
   size?: "sm" | "md";
   className?: string;
 }) {
-  const logoClass = size === "md" ? "h-9 w-9 lg:h-10 lg:w-10" : "h-8 w-8";
+  const logoClass = size === "md" ? "h-10 w-10 lg:h-11 lg:w-11" : "h-8 w-8";
   const textClass =
     size === "md"
       ? "text-xl lg:text-2xl"
@@ -198,7 +198,7 @@ function BrandLockup({
       )}
       aria-label="Ir al inicio — Dulce Antojo"
     >
-      <span className={cn("whitespace-nowrap", textClass)}>Dulce</span>
+      <span className={cn("whitespace-nowrap md:hidden", textClass)}>Dulce</span>
       <Image
         src="/dulceantojo.jpeg"
         alt=""
@@ -207,7 +207,7 @@ function BrandLockup({
         className={cn("shrink-0 rounded-full object-cover ring-1 ring-primary/15", logoClass)}
         priority
       />
-      <span className={cn("whitespace-nowrap", textClass)}>Antojo</span>
+      <span className={cn("whitespace-nowrap md:hidden", textClass)}>Antojo</span>
     </button>
   );
 }

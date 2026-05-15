@@ -9,18 +9,13 @@ export default async function PublicLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [openingRaw, whatsappNumberRaw] = await Promise.all([
-    getSettings("opening_message"),
-    getSettings("whatsapp_number"),
-  ]);
-  const opening =
-    openingRaw ?? "ENVÍOS A CÓRDOBA CAPITAL · PEDIDOS CON 48HS DE ANTICIPACIÓN";
+  const whatsappNumberRaw = await getSettings("whatsapp_number");
   const whatsappNumber =
     whatsappNumberRaw ?? process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
   return (
     <>
-      <SiteHeader announcement={opening} />
+      <SiteHeader />
       {children}
       <SiteFooter whatsappNumber={whatsappNumber} />
       <div role="status" aria-live="polite" className="sr-only" />

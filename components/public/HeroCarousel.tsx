@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -28,6 +28,14 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [autoplay]);
   const [selected, setSelected] = React.useState(0);
   const [showSwipeHint, setShowSwipeHint] = React.useState(true);
+
+  const scrollPrev = React.useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = React.useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
 
   React.useEffect(() => {
     const id = window.setTimeout(() => setShowSwipeHint(false), 3000);
@@ -74,13 +82,29 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                       aria-hidden="true"
                     />
                   )}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                  <button
+                    type="button"
+                    onClick={scrollPrev}
+                    className="absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
+                    aria-label="Slide anterior"
+                  >
+                    <ChevronLeft className="h-5 w-5" aria-hidden />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={scrollNext}
+                    className="absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
+                    aria-label="Slide siguiente"
+                  >
+                    <ChevronRight className="h-5 w-5" aria-hidden />
+                  </button>
                   <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5 pb-6 text-primary-foreground sm:p-8">
                     <div>
                       <p className="text-balance font-display text-2xl font-semibold leading-tight sm:text-3xl">
                         {slide.title}
                       </p>
-                      <p className="mt-1 text-sm font-medium uppercase tracking-wide text-white/90">
+                      <p className="mt-1 text-sm font-medium tracking-wide text-white/90">
                         {slide.subtitle}
                       </p>
                     </div>
@@ -123,8 +147,8 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
           >
             <span
               className={cn(
-                "block h-3 w-3 rounded-full transition-colors",
-                selected === i ? "bg-primary" : "bg-muted-foreground/40"
+                "block rounded-full transition-all duration-300",
+                selected === i ? "h-1.5 w-6 bg-primary" : "h-1.5 w-3 bg-primary/30"
               )}
             />
           </button>

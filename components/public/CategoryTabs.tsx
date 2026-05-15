@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 
 import { ProductCard } from "./ProductCard";
 
+const ITEMS_PER_PAGE = 6;
+
 export type CategoryTabItem = Pick<CategoryRow, "slug" | "name">;
 
 type CategoryTabsProps = {
@@ -14,8 +16,13 @@ type CategoryTabsProps = {
   productsBySlug: Record<string, ProductRow[]>;
 };
 
+function scrollToProducts() {
+  document.getElementById("productos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) {
   const [active, setActive] = React.useState(() => categories[0]?.slug ?? "");
+  const [page, setPage] = React.useState(1);
   const [fadeIn, setFadeIn] = React.useState(true);
   const skipFade = React.useRef(true);
 
@@ -31,6 +38,10 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
   }, [categories]);
 
   React.useEffect(() => {
+    setPage(1);
+  }, [active]);
+
+  React.useEffect(() => {
     if (skipFade.current) {
       skipFade.current = false;
       return;
@@ -41,6 +52,13 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
   }, [active]);
 
   const products = productsBySlug[active] ?? [];
+  const totalPages = Math.max(1, Math.ceil(products.length / ITEMS_PER_PAGE));
+  const safePage = Math.min(page, totalPages);
+  const paginatedProducts = products.slice(
+    (safePage - 1) * ITEMS_PER_PAGE,
+    safePage * ITEMS_PER_PAGE
+  );
+
   const headingId = `cat-${active}`;
   const activeCategoryName = categories.find((c) => c.slug === active)?.name ?? "Productos";
 
@@ -93,17 +111,42 @@ export function CategoryTabs({ categories, productsBySlug }: CategoryTabsProps) 
       >
         <section>
           <h2 className="sr-only">{activeCategoryName}</h2>
-          <h2
-            className="mb-4 font-display text-xl font-semibold text-foreground"
-            aria-hidden="true"
-          >
-            {activeCategoryName}
-          </h2>
+          <div className="mb-6 border-t border-border/40" aria-hidden="true" />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {products.map((p) => (
+            {paginatedProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
+
+          {totalPages > 1 ? (
+            <div className="mt-8 flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setPage((p) => p - 1);
+                  scrollToProducts();
+                }}
+                disabled={safePage === 1}
+                className="rounded-full border border-border px-4 py-2 text-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+              >
+                ← Anterior
+              </button>
+              <span className="text-sm text-muted-foreground">
+                Página {safePage} de {totalPages}
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setPage((p) => p + 1);
+                  scrollToProducts();
+                }}
+                disabled={safePage === totalPages}
+                className="rounded-full border border-border px-4 py-2 text-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+              >
+                Siguiente →
+              </button>
+            </div>
+          ) : null}
         </section>
       </div>
     </div>

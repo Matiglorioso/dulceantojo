@@ -24,7 +24,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const openCart = useCartStore((s) => s.openCart);
   const [qty, setQty] = React.useState(1);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const [controlsOpen, setControlsOpen] = React.useState(false);
   const out = product.is_out_of_stock;
   const imageUrl = product.image_url ?? PRODUCT_IMAGE_BY_SLUG[product.slug];
   const hasImage = Boolean(imageUrl);
@@ -33,12 +32,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const inc = () => setQty((q) => Math.min(20, q + 1));
 
   const onAdd = () => {
-    const isMobile = window.matchMedia("(max-width: 639px)").matches;
-    if (isMobile && !controlsOpen) {
-      setControlsOpen(true);
-      return;
-    }
-
     addItem({
       id: product.id,
       slug: product.slug,
@@ -47,16 +40,8 @@ export function ProductCard({ product }: ProductCardProps) {
       qty,
     });
 
-    showAddedToCartToast(
-      { name: product.name, price: product.price },
-      qty,
-      openCart
-    );
-
-    if (isMobile) {
-      setControlsOpen(false);
-      setQty(1);
-    }
+    showAddedToCartToast({ name: product.name, price: product.price }, qty, openCart);
+    setQty(1);
   };
 
   return (
@@ -95,10 +80,10 @@ export function ProductCard({ product }: ProductCardProps) {
               <Badge
                 key={b}
                 variant="secondary"
-                className="gap-1 border-0 bg-amber-400 font-bold text-amber-900 shadow-md ring-1 ring-white/60 md:rounded-l-none md:rounded-r-full md:pl-3 md:pr-4"
+                className="gap-1 border-0 bg-primary font-semibold text-primary-foreground shadow-md ring-1 ring-white/30 md:rounded-l-none md:rounded-r-full md:pl-3 md:pr-4"
               >
                 <Star className="h-3 w-3 fill-current" aria-hidden />
-                {b}
+                {b === "Recomendada" ? `★ ${b}` : b}
               </Badge>
             ))}
           </div>
@@ -116,7 +101,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <h3 className="min-w-0 flex-1 truncate font-display text-lg font-semibold text-foreground">
             {product.name}
           </h3>
-          <p className="shrink-0 text-lg font-semibold tabular-nums text-primary">
+          <p className="shrink-0 text-xl font-semibold tabular-nums text-primary">
             {formatPriceAr(product.price)}
           </p>
         </div>
@@ -126,49 +111,39 @@ export function ProductCard({ product }: ProductCardProps) {
           </p>
         ) : null}
 
-        <div className="mt-auto flex flex-col gap-2 pb-1 pt-4 sm:flex-row sm:flex-wrap sm:items-center">
-          <div
-            className={cn(
-              "grid overflow-hidden transition-all duration-200 sm:block",
-              controlsOpen
-                ? "grid-rows-[1fr] opacity-100"
-                : "grid-rows-[0fr] opacity-0 sm:opacity-100"
-            )}
-          >
-            <div className="flex min-h-0 items-center rounded-full border border-border bg-background">
-              <button
-                type="button"
-                className="flex h-11 w-11 items-center justify-center rounded-l-full text-primary hover:bg-muted"
-                aria-label="Disminuir cantidad"
-                onClick={dec}
-                disabled={out}
-              >
-                <Minus className="h-4 w-4" aria-hidden />
-              </button>
-              <Input
-                readOnly
-                value={qty}
-                tabIndex={-1}
-                className="h-11 w-12 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums focus-visible:ring-0"
-                aria-label="Cantidad"
-              />
-              <button
-                type="button"
-                className="flex h-11 w-11 items-center justify-center rounded-r-full text-primary hover:bg-muted"
-                aria-label="Aumentar cantidad"
-                onClick={inc}
-                disabled={out}
-              >
-                <Plus className="h-4 w-4" aria-hidden />
-              </button>
-            </div>
+        <div className="mt-3 flex flex-col gap-2 border-t border-border/40 pt-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="flex items-center rounded-full border border-border bg-background">
+            <button
+              type="button"
+              className="flex h-11 w-11 items-center justify-center rounded-l-full text-primary hover:bg-muted"
+              aria-label="Disminuir cantidad"
+              onClick={dec}
+              disabled={out}
+            >
+              <Minus className="h-4 w-4" aria-hidden />
+            </button>
+            <Input
+              readOnly
+              value={qty}
+              tabIndex={-1}
+              className="h-11 w-12 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums focus-visible:ring-0"
+              aria-label="Cantidad"
+            />
+            <button
+              type="button"
+              className="flex h-11 w-11 items-center justify-center rounded-r-full text-primary hover:bg-muted"
+              aria-label="Aumentar cantidad"
+              onClick={inc}
+              disabled={out}
+            >
+              <Plus className="h-4 w-4" aria-hidden />
+            </button>
           </div>
           <Button
             type="button"
-            className="h-11 min-w-[7.5rem] flex-1 rounded-full sm:flex-initial"
+            className="h-11 w-full min-w-[7.5rem] rounded-full sm:flex-1"
             disabled={out}
             onClick={onAdd}
-            aria-expanded={controlsOpen}
           >
             Agregar
           </Button>
