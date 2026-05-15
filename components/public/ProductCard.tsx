@@ -128,7 +128,7 @@ export function ProductCard({ product }: ProductCardProps) {
               readOnly
               value={qty}
               tabIndex={-1}
-              className="h-9 w-9 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums focus-visible:ring-0"
+              className="h-9 w-9 border-0 bg-transparent p-0 text-center text-sm font-medium tabular-nums shadow-none focus-visible:shadow-none focus-visible:ring-0"
               aria-label="Cantidad"
             />
             <button
