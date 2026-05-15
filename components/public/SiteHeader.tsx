@@ -6,11 +6,16 @@ import { Instagram, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 
+import { cartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/stores/use-cart";
 
 const INSTAGRAM_URL = "https://www.instagram.com/dulceantojo.paste";
 
 export function SiteHeader() {
+  const items = useCartStore((s) => s.items);
+  const openCart = useCartStore((s) => s.openCart);
+  const totalItems = cartItemCount(items);
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -72,11 +77,26 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-primary hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="Carrito (próximamente)"
-          onClick={() => toast("Próximamente disponible 🎂")}
+          className="relative flex h-11 w-11 items-center justify-center rounded-full text-primary hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label={
+            totalItems > 0
+              ? `Carrito, ${totalItems} producto${totalItems === 1 ? "" : "s"}`
+              : "Carrito vacío"
+          }
+          onClick={() => {
+            if (totalItems > 0) {
+              openCart();
+            } else {
+              toast("Tu carrito está vacío. Agregá productos desde el menú.");
+            }
+          }}
         >
           <ShoppingCart className="h-5 w-5" aria-hidden />
+          {totalItems > 0 ? (
+            <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold leading-none text-primary-foreground">
+              {totalItems > 99 ? "99+" : totalItems}
+            </span>
+          ) : null}
         </button>
       </div>
     </header>

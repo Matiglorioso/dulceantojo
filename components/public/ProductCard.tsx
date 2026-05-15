@@ -11,13 +11,17 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPriceAr } from "@/lib/format";
 import { PRODUCT_IMAGE_BY_SLUG } from "@/lib/product-images";
+import { showAddedToCartToast } from "@/lib/cart-toast";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/stores/use-cart";
 
 type ProductCardProps = {
   product: ProductRow;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const addItem = useCartStore((s) => s.addItem);
+  const openCart = useCartStore((s) => s.openCart);
   const [qty, setQty] = React.useState(1);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [controlsOpen, setControlsOpen] = React.useState(false);
@@ -34,7 +38,25 @@ export function ProductCard({ product }: ProductCardProps) {
       setControlsOpen(true);
       return;
     }
-    console.log({ productId: product.id, slug: product.slug, qty });
+
+    addItem({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      qty,
+    });
+
+    showAddedToCartToast(
+      { name: product.name, price: product.price },
+      qty,
+      openCart
+    );
+
+    if (isMobile) {
+      setControlsOpen(false);
+      setQty(1);
+    }
   };
 
   return (
