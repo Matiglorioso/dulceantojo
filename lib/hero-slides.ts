@@ -5,7 +5,7 @@ export const HERO_SLIDE_IMAGES = [
   "/img/tartas/choco.jpeg",
   "/img/tartas/frutilla.jpeg",
   "/img/tortas/cheesecake-ny.png",
-  "/img/budines/budines.jpeg",
+  "/img/budines/budines-variedad-nueces-chips.png",
 ] as const;
 
 export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
