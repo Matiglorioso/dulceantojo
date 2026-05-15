@@ -1,11 +1,10 @@
 import type { HeroSlide } from "@/lib/types";
 
-/** Imágenes del hero (reemplazá por /img/hero/slide-*.png cuando estén en public). */
 export const HERO_SLIDE_IMAGES = [
-  "/img/tartas/choco.jpeg",
-  "/img/tartas/frutilla.jpeg",
-  "/img/tortas/cheesecake-ny.png",
-  "/img/budines/budines.jpeg",
+  "/img/hero/slide-chocolate.png",
+  "/img/hero/slide-frutilla.png",
+  "/img/hero/slide-clasicos.png",
+  "/img/hero/slide-compartir.png",
 ] as const;
 
 export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
