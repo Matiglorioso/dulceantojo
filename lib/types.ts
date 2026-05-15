@@ -51,9 +51,10 @@ export type SettingsRow = {
 export type HeroSlide = {
   image: string | null;
   alt: string;
-  title: string;
-  subtitle: string;
-  cta: string;
+  eyebrow: string;
+  headlineBefore: string;
+  headlineEmphasis: string;
+  headlineAfter: string;
 };
 
 export type ShippingInfo = {

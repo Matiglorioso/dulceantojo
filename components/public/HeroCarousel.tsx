@@ -8,7 +8,6 @@ import useEmblaCarousel from "embla-carousel-react";
 
 import type { HeroSlide } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 type HeroCarouselProps = {
   slides: HeroSlide[];
@@ -18,7 +17,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
   const autoplay = React.useMemo(
     () =>
       Autoplay({
-        delay: 5000,
+        delay: 6000,
         stopOnInteraction: true,
         stopOnMouseEnter: true,
       }),
@@ -43,12 +42,8 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
   }, []);
 
   React.useEffect(() => {
-    if (!emblaApi) {
-      return;
-    }
-    const onSelect = () => {
-      setSelected(emblaApi.selectedScrollSnap());
-    };
+    if (!emblaApi) return;
+    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
     onSelect();
     return () => {
@@ -58,35 +53,34 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
 
   return (
     <section className="relative w-full" aria-roledescription="carrusel" aria-label="Destacados">
-      <div className="shadow-soft overflow-hidden bg-card">
+      <div className="relative shadow-soft overflow-hidden bg-card">
         <div ref={emblaRef} className="touch-pan-y">
           <div className="flex">
             {slides.map((slide, index) => (
               <div key={index} className="relative min-w-0 shrink-0 grow-0 basis-full">
-                <div className="relative aspect-[4/3] max-h-[72vh] w-full overflow-hidden bg-primary sm:aspect-[16/7]">
+                <div className="relative aspect-[4/3] max-h-[72vh] w-full overflow-hidden bg-muted sm:aspect-[16/7]">
                   {slide.image ? (
                     <Image
                       src={slide.image}
-                      alt={slide.alt || slide.title}
+                      alt={slide.alt}
                       fill
                       className="object-cover"
                       sizes="100vw"
                       priority={index === 0}
                     />
                   ) : (
-                    <div
-                      className={cn(
-                        "absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary px-6 text-center text-primary-foreground transition-opacity",
-                        selected === index ? "opacity-0" : "opacity-100"
-                      )}
-                      aria-hidden="true"
-                    />
+                    <div className="absolute inset-0 bg-primary" aria-hidden />
                   )}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/20 via-black/5 to-transparent"
+                    aria-hidden
+                  />
+
                   <button
                     type="button"
                     onClick={scrollPrev}
-                    className="absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
+                    className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
                     aria-label="Slide anterior"
                   >
                     <ChevronLeft className="h-5 w-5" aria-hidden />
@@ -94,28 +88,42 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                   <button
                     type="button"
                     onClick={scrollNext}
-                    className="absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
+                    className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/40 sm:flex"
                     aria-label="Slide siguiente"
                   >
                     <ChevronRight className="h-5 w-5" aria-hidden />
                   </button>
-                  <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5 pb-6 text-primary-foreground sm:p-8">
-                    <div>
-                      <p className="text-balance font-display text-2xl font-semibold leading-tight sm:text-3xl">
-                        {slide.title}
-                      </p>
-                      <p className="mt-1 text-sm font-medium tracking-wide text-white/90">
-                        {slide.subtitle}
-                      </p>
-                    </div>
-                    <div className="pointer-events-auto">
-                      <Button
-                        asChild
-                        size="lg"
-                        className="h-11 min-w-[8rem] rounded-full bg-primary-foreground px-6 text-primary hover:bg-primary-foreground/90"
+
+                  <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center gap-2 pb-4 pt-8 sm:pb-5">
+                    {slides.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        aria-label={`Ir al slide ${i + 1}`}
+                        aria-current={selected === i ? "true" : undefined}
+                        className="flex h-8 w-8 items-center justify-center"
+                        onClick={() => emblaApi?.scrollTo(i)}
                       >
-                        <a href="#productos">{slide.cta}</a>
-                      </Button>
+                        <span
+                          className={cn(
+                            "block rounded-full bg-primary transition-all duration-300",
+                            selected === i ? "h-2 w-2" : "h-2 w-2 opacity-35"
+                          )}
+                        />
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="absolute inset-y-0 left-0 z-10 flex w-full items-center px-4 sm:max-w-xl sm:px-8 md:px-10">
+                    <div className="max-w-[min(100%,20rem)] rounded-2xl border border-white/60 bg-background/80 p-5 shadow-soft backdrop-blur-md sm:max-w-md sm:p-8">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs">
+                        {slide.eyebrow}
+                      </p>
+                      <h2 className="mt-2 text-balance font-display text-2xl font-semibold leading-snug text-primary sm:mt-3 sm:text-[1.75rem] sm:leading-tight md:text-3xl">
+                        {slide.headlineBefore}
+                        <em className="font-display italic">{slide.headlineEmphasis}</em>
+                        {slide.headlineAfter}
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -123,36 +131,15 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
             ))}
           </div>
         </div>
-      </div>
 
-      {showSwipeHint ? (
-        <div
-          className="shadow-soft pointer-events-none absolute right-4 top-1/2 z-10 flex -translate-y-1/2 animate-pulse items-center rounded-full bg-background/75 p-2 text-primary backdrop-blur-sm md:hidden"
-          aria-hidden="true"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </div>
-      ) : null}
-
-      <div className="mt-4 flex justify-center gap-3" role="tablist" aria-label="Seleccionar slide">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            role="tab"
-            aria-selected={selected === i}
-            aria-label={`Ir al slide ${i + 1}`}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-primary"
-            onClick={() => emblaApi?.scrollTo(i)}
+        {showSwipeHint ? (
+          <div
+            className="pointer-events-none absolute right-4 top-1/2 z-20 flex -translate-y-1/2 animate-pulse items-center rounded-full bg-background/80 p-2 text-primary shadow-soft backdrop-blur-sm md:hidden"
+            aria-hidden
           >
-            <span
-              className={cn(
-                "block rounded-full transition-all duration-300",
-                selected === i ? "h-1.5 w-6 bg-primary" : "h-1.5 w-3 bg-primary/30"
-              )}
-            />
-          </button>
-        ))}
+            <ChevronRight className="h-5 w-5" />
+          </div>
+        ) : null}
       </div>
     </section>
   );

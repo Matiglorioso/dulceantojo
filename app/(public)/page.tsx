@@ -4,66 +4,39 @@ import { AboutSection } from "@/components/public/AboutSection";
 import { CategoryTabs } from "@/components/public/CategoryTabs";
 import { HeroCarousel } from "@/components/public/HeroCarousel";
 import { HowToOrder } from "@/components/public/HowToOrder";
-import { HERO_IMAGE_FALLBACKS } from "@/lib/product-images";
+import { DEFAULT_HERO_SLIDES, HERO_SLIDE_IMAGES } from "@/lib/hero-slides";
 import { getSiteUrl } from "@/lib/site-url";
 import type { HeroSlide } from "@/lib/types";
 import { getCategories, getProductsByCategory, getSettings } from "@/lib/queries";
 
 export const revalidate = 60;
 
-const HERO_COPY = [
-  {
-    title: "Tartas artesanales",
-    subtitle: "Masa sablée con rellenos únicos",
-    cta: "Ver tartas",
-  },
-  {
-    title: "Tortas de ocasión",
-    subtitle: "Diseñadas especialmente para vos",
-    cta: "Ver tortas",
-  },
-  {
-    title: "Budines de autor",
-    subtitle: "Recetas con ingredientes seleccionados",
-    cta: "Ver budines",
-  },
-  {
-    title: "Especialidades de la casa",
-    subtitle: "Lo mejor de nuestra pastelería",
-    cta: "Ver todo",
-  },
-] as const;
-
-const DEFAULT_HERO: HeroSlide[] = Array.from({ length: 4 }, (_, i) => ({
-  image: HERO_IMAGE_FALLBACKS[i] ?? null,
-  alt: `${HERO_COPY[i]?.title ?? "Dulce Antojo"} — slide ${i + 1}`,
-  title: HERO_COPY[i]?.title ?? "Especialidades de la casa",
-  subtitle: HERO_COPY[i]?.subtitle ?? "Lo mejor de nuestra pastelería",
-  cta: HERO_COPY[i]?.cta ?? "Ver todo",
-}));
-
 function normalizeHeroSlides(raw: unknown): HeroSlide[] {
   if (!Array.isArray(raw) || raw.length === 0) {
-    return DEFAULT_HERO;
+    return DEFAULT_HERO_SLIDES;
   }
+
   const slides: HeroSlide[] = [];
+
   for (const item of raw) {
-    if (!item || typeof item !== "object") {
-      continue;
-    }
+    if (!item || typeof item !== "object") continue;
+
     const o = item as Record<string, unknown>;
     const index = slides.length;
-    const fallback = HERO_IMAGE_FALLBACKS[index] ?? null;
-    const copy = HERO_COPY[index] ?? HERO_COPY[3];
+    const fallbackCopy = DEFAULT_HERO_SLIDES[index] ?? DEFAULT_HERO_SLIDES[3]!;
+    const imageFromDb = typeof o.image === "string" ? o.image : null;
+
     slides.push({
-      image: typeof o.image === "string" ? o.image : fallback,
-      alt: typeof o.alt === "string" ? o.alt : copy.title,
-      title: copy.title,
-      subtitle: copy.subtitle,
-      cta: copy.cta,
+      image: imageFromDb ?? HERO_SLIDE_IMAGES[index] ?? fallbackCopy.image,
+      alt: typeof o.alt === "string" ? o.alt : fallbackCopy.alt,
+      eyebrow: fallbackCopy.eyebrow,
+      headlineBefore: fallbackCopy.headlineBefore,
+      headlineEmphasis: fallbackCopy.headlineEmphasis,
+      headlineAfter: fallbackCopy.headlineAfter,
     });
   }
-  return slides.length > 0 ? slides : DEFAULT_HERO;
+
+  return slides.length > 0 ? slides : DEFAULT_HERO_SLIDES;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

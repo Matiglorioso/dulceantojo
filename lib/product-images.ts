@@ -20,9 +20,4 @@ export const PRODUCT_IMAGE_BY_SLUG: Record<string, string> = {
   "budin-limon-arandanos": "/img/budines/budinglaseado.png",
 };
 
-export const HERO_IMAGE_FALLBACKS = [
-  "/img/tartas/frutilla.jpeg",
-  "/img/budines/budines-variedad-glaseados-marmol-amapola.png",
-  "/img/budines/budines-variedad-nueces-chips.png",
-  "/img/tortas/cheesecake-ny.png",
-] as const;
+export { HERO_SLIDE_IMAGES as HERO_IMAGE_FALLBACKS } from "@/lib/hero-slides";
