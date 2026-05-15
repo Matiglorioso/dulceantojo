@@ -52,22 +52,28 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
   }, [emblaApi]);
 
   return (
-    <section className="relative w-full" aria-roledescription="carrusel" aria-label="Destacados">
-      <div className="relative shadow-soft overflow-hidden bg-card">
-        <div ref={emblaRef} className="touch-pan-y">
+    <section
+      className="relative w-full px-4 pt-3 sm:px-6 sm:pt-4 lg:px-8"
+      aria-roledescription="carrusel"
+      aria-label="Destacados"
+    >
+      <div className="relative overflow-hidden rounded-2xl bg-card shadow-soft sm:rounded-3xl">
+        <div ref={emblaRef} className="touch-pan-y overflow-hidden">
           <div className="flex">
             {slides.map((slide, index) => (
               <div key={index} className="relative min-w-0 shrink-0 grow-0 basis-full">
-                <div className="relative aspect-[4/3] max-h-[72vh] w-full overflow-hidden bg-muted sm:aspect-[16/7]">
+                <div className="relative aspect-[5/4] w-full overflow-hidden bg-muted sm:aspect-[16/9] sm:max-h-[min(62vh,640px)]">
                   {slide.image ? (
-                    <Image
-                      src={slide.image}
-                      alt={slide.alt}
-                      fill
-                      className="object-cover"
-                      sizes="100vw"
-                      priority={index === 0}
-                    />
+                    <div className="absolute -inset-[12%] sm:-inset-[8%]">
+                      <Image
+                        src={slide.image}
+                        alt={slide.alt}
+                        fill
+                        className="object-cover object-center sm:object-[58%_center]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1280px"
+                        priority={index === 0}
+                      />
+                    </div>
                   ) : (
                     <div className="absolute inset-0 bg-primary" aria-hidden />
                   )}
@@ -114,7 +120,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                     ))}
                   </div>
 
-                  <div className="absolute inset-y-0 left-0 z-10 flex w-full items-center px-4 sm:max-w-xl sm:px-8 md:px-10">
+                  <div className="absolute inset-y-0 left-0 z-10 flex w-full max-w-xl items-center px-5 sm:px-10 md:px-14 lg:px-16">
                     <div className="max-w-[min(100%,20rem)] rounded-2xl border border-white/60 bg-background/80 p-5 shadow-soft backdrop-blur-md sm:max-w-md sm:p-8">
                       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs">
                         {slide.eyebrow}
