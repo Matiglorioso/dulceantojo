@@ -83,7 +83,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 className="gap-1 border-0 bg-primary font-semibold text-primary-foreground shadow-md ring-1 ring-white/30 md:rounded-l-none md:rounded-r-full md:pl-3 md:pr-4"
               >
                 <Star className="h-3 w-3 fill-current" aria-hidden />
-                {b === "Recomendada" ? `★ ${b}` : b}
+                {b}
               </Badge>
             ))}
           </div>
