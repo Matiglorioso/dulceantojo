@@ -95,20 +95,20 @@ export function SiteHeader({ announcement }: SiteHeaderProps) {
     <header className="sticky top-0 z-50">
       <div
         className={cn(
-          "grid overflow-hidden bg-primary transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none",
-          announcementVisible ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          "overflow-hidden bg-primary transition-[max-height] duration-300 ease-out motion-reduce:transition-none",
+          announcementVisible ? "max-h-14" : "max-h-0"
         )}
         aria-hidden={!announcementVisible}
       >
-        <div
-          className="min-h-0 px-4 py-2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]"
+        <p
+          className="px-4 py-2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]"
           style={{
             paddingLeft: "max(1rem, env(safe-area-inset-left))",
             paddingRight: "max(1rem, env(safe-area-inset-right))",
           }}
         >
-          <p>{announcement}</p>
-        </div>
+          {announcement}
+        </p>
       </div>
 
       <div
