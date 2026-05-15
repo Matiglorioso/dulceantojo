@@ -37,6 +37,16 @@ export function SiteHeader({ announcement }: SiteHeaderProps) {
   const openCart = useCartStore((s) => s.openCart);
   const totalItems = cartItemCount(items);
   const [activeNav, setActiveNav] = React.useState<NavId>("inicio");
+  const [announcementVisible, setAnnouncementVisible] = React.useState(true);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      setAnnouncementVisible(window.scrollY < 24);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   React.useEffect(() => {
     const sectionIds: NavId[] = ["inicio", "quienes-somos", "productos"];
@@ -84,13 +94,21 @@ export function SiteHeader({ announcement }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50">
       <div
-        className="bg-primary px-4 py-2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]"
-        style={{
-          paddingLeft: "max(1rem, env(safe-area-inset-left))",
-          paddingRight: "max(1rem, env(safe-area-inset-right))",
-        }}
+        className={cn(
+          "grid overflow-hidden bg-primary transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none",
+          announcementVisible ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        )}
+        aria-hidden={!announcementVisible}
       >
-        <p>{announcement}</p>
+        <div
+          className="min-h-0 px-4 py-2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]"
+          style={{
+            paddingLeft: "max(1rem, env(safe-area-inset-left))",
+            paddingRight: "max(1rem, env(safe-area-inset-right))",
+          }}
+        >
+          <p>{announcement}</p>
+        </div>
       </div>
 
       <div
