@@ -58,13 +58,13 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
           <div className="flex">
             {slides.map((slide, index) => (
               <div key={index} className="relative min-w-0 shrink-0 grow-0 basis-full">
-                <div className="relative aspect-[4/3] max-h-[min(75vw,560px)] w-full overflow-hidden sm:max-h-[560px]">
+                <div className="relative aspect-[16/9] max-h-[min(50vw,420px)] w-full overflow-hidden sm:max-h-[420px]">
                   {slide.image ? (
                     <Image
                       src={slide.image}
                       alt={slide.alt}
                       fill
-                      className="object-cover object-center"
+                      className="object-cover object-top"
                       sizes="100vw"
                       priority={index === 0}
                     />
