@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AboutSection } from "@/components/public/AboutSection";
 import { CategoryTabs } from "@/components/public/CategoryTabs";
 import { HeroCarousel } from "@/components/public/HeroCarousel";
 import { HowToOrder } from "@/components/public/HowToOrder";
@@ -140,13 +141,16 @@ export default async function HomePage() {
       <div className="pb-8">
         <h1 className="sr-only">Dulce Antojo — Pastelería artesanal en Córdoba</h1>
 
-        <HeroCarousel slides={heroSlides} />
+        <section id="inicio" className="scroll-mt-0">
+          <HeroCarousel slides={heroSlides} />
+          <HowToOrder />
+        </section>
 
-        <HowToOrder />
+        <AboutSection />
 
-        <div id="productos" className="scroll-mt-24 py-12 md:py-16">
+        <section id="productos" className="scroll-mt-32 py-12 md:py-16">
           <CategoryTabs categories={tabCategories} productsBySlug={productsBySlug} />
-        </div>
+        </section>
       </div>
     </>
   );

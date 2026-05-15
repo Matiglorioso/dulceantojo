@@ -1,7 +1,6 @@
 import { CartUi } from "@/components/public/CartUi";
 import { SiteFooter } from "@/components/public/SiteFooter";
 import { SiteHeader } from "@/components/public/SiteHeader";
-import { Marquee } from "@/components/public/Marquee";
 import { Toaster } from "@/components/ui/sonner";
 import { getSettings } from "@/lib/queries";
 
@@ -21,8 +20,7 @@ export default async function PublicLayout({
 
   return (
     <>
-      <SiteHeader />
-      <Marquee message={opening} />
+      <SiteHeader announcement={opening} />
       {children}
       <SiteFooter whatsappNumber={whatsappNumber} />
       <div role="status" aria-live="polite" className="sr-only" />
