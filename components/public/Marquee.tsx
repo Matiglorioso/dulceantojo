@@ -6,7 +6,7 @@ import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-const ROTATE_MS = 4500;
+const DISPLAY_MS = 4500;
 const SLIDE_MS = 500;
 
 type AnnouncementItem = {
@@ -26,8 +26,8 @@ type MarqueeProps = {
 function AnnouncementSlide({ item }: { item: AnnouncementItem }) {
   const Icon = item.icon;
   return (
-    <div className="flex items-center justify-center gap-1.5 px-3 text-[9px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:text-[10px] sm:tracking-[0.16em]">
-      <Icon className="h-3 w-3 shrink-0 text-primary-foreground/85" aria-hidden />
+    <div className="flex items-center justify-center gap-1.5 px-3 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]">
+      <Icon className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85" aria-hidden />
       <span className="text-center">{item.label}</span>
     </div>
   );
@@ -40,9 +40,14 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
   const [reducedMotion, setReducedMotion] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
 
+  const indexRef = React.useRef(0);
   const active = items[index] ?? items[0];
   const label = items.map((item) => item.label).join(" | ");
   const isAnimating = nextIndex !== null;
+
+  React.useEffect(() => {
+    indexRef.current = index;
+  }, [index]);
 
   React.useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -61,33 +66,48 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
     return () => cancelAnimationFrame(id);
   }, [nextIndex]);
 
-  const startTransition = React.useCallback(() => {
-    if (items.length <= 1 || isAnimating) return;
-    setEnterReady(false);
-    setNextIndex((index + 1) % items.length);
-  }, [index, items.length, isAnimating]);
-
   React.useEffect(() => {
-    if (items.length <= 1 || paused || isAnimating) return;
+    if (items.length <= 1 || paused) return;
 
-    const delay = reducedMotion ? ROTATE_MS : ROTATE_MS + SLIDE_MS;
-    const id = window.setInterval(() => {
-      if (reducedMotion) {
-        setIndex((i) => (i + 1) % items.length);
-      } else {
-        startTransition();
-      }
-    }, delay);
+    let cancelled = false;
+    let waitId = 0;
+    let slideId = 0;
 
-    return () => window.clearInterval(id);
-  }, [items.length, paused, reducedMotion, isAnimating, startTransition]);
+    const scheduleCycle = () => {
+      waitId = window.setTimeout(() => {
+        if (cancelled || paused) return;
 
-  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.propertyName !== "transform" || nextIndex === null) return;
-    setIndex(nextIndex);
-    setNextIndex(null);
-    setEnterReady(false);
-  };
+        if (reducedMotion) {
+          const next = (indexRef.current + 1) % items.length;
+          indexRef.current = next;
+          setIndex(next);
+          scheduleCycle();
+          return;
+        }
+
+        const next = (indexRef.current + 1) % items.length;
+        setEnterReady(false);
+        setNextIndex(next);
+
+        slideId = window.setTimeout(() => {
+          if (cancelled) return;
+          indexRef.current = next;
+          setIndex(next);
+          setNextIndex(null);
+          setEnterReady(false);
+          scheduleCycle();
+        }, SLIDE_MS);
+      }, reducedMotion ? DISPLAY_MS : DISPLAY_MS);
+    };
+
+    scheduleCycle();
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(waitId);
+      window.clearTimeout(slideId);
+    };
+  }, [items.length, paused, reducedMotion]);
 
   return (
     <div
@@ -100,28 +120,28 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
       }}
     >
       <div
-        className="overflow-hidden py-0.5"
+        className="overflow-hidden py-1"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
         <div
-          className="relative h-4 w-full"
+          className="relative h-5 w-full"
           aria-live="polite"
           aria-atomic="true"
         >
           {reducedMotion ? (
-            <AnnouncementSlide item={active!} />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <AnnouncementSlide item={active!} />
+            </div>
           ) : (
             <>
               <div
                 className={cn(
-                  "absolute inset-0 flex items-center justify-center ease-in-out motion-reduce:transition-none",
-                  "transition-transform duration-500",
-                  isAnimating && "-translate-x-full"
+                  "absolute inset-0 flex items-center justify-center ease-in-out",
+                  isAnimating && "transition-transform duration-500 -translate-x-full"
                 )}
-                onTransitionEnd={isAnimating ? handleTransitionEnd : undefined}
               >
                 <AnnouncementSlide item={active!} />
               </div>
@@ -129,7 +149,7 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
               {isAnimating && nextIndex !== null ? (
                 <div
                   className={cn(
-                    "absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-in-out motion-reduce:transition-none",
+                    "absolute inset-0 flex items-center justify-center ease-in-out transition-transform duration-500",
                     enterReady ? "translate-x-0" : "translate-x-full"
                   )}
                 >
