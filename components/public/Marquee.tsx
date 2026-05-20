@@ -4,8 +4,6 @@ import * as React from "react";
 import { Clock, Package } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-
 const ROTATE_MS = 4500;
 const SLIDE_MS = 500;
 
