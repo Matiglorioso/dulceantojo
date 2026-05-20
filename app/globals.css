@@ -74,7 +74,7 @@
   }
 
   .animate-da-marquee {
-    animation: da-marquee 30s linear infinite;
+    animation: da-marquee 24s linear infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {

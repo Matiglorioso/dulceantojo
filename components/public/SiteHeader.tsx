@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
 
+import { Marquee } from "@/components/public/Marquee";
 import { cartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/use-cart";
@@ -79,22 +80,8 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* Fuera del sticky: al hacer scroll sale con la página y no redimensiona el header fijo */}
-      <div className="bg-primary">
-        <p
-          className="flex flex-wrap items-center justify-center px-4 py-2.5 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:tracking-[0.16em]"
-          style={{
-            paddingLeft: "max(1rem, env(safe-area-inset-left))",
-            paddingRight: "max(1rem, env(safe-area-inset-right))",
-          }}
-        >
-          <span>📦 Envíos a Córdoba Capital</span>
-          <span className="mx-3 opacity-40" aria-hidden>
-            ·
-          </span>
-          <span>⏰ Pedidos con 48hs de anticipación</span>
-        </p>
-      </div>
+      {/* Fuera del sticky: marquee fino; al hacer scroll sale con la página */}
+      <Marquee />
 
       <header className="sticky top-0 z-50">
       <div
