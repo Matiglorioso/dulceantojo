@@ -116,8 +116,9 @@ export default async function HomePage() {
 
         <section id="inicio" className="scroll-mt-0">
           <HeroCarousel slides={heroSlides} />
-          <HowToOrder />
         </section>
+
+        <HowToOrder />
 
         <AboutSection />
 

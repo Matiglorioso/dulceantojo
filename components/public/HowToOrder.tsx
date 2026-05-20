@@ -1,3 +1,4 @@
+import * as React from "react";
 import Link from "next/link";
 
 const STEPS = [
@@ -46,24 +47,32 @@ function StepContent({ step }: { step: (typeof STEPS)[number] }) {
 export function HowToOrder() {
   return (
     <section
-      className="mt-5 bg-background px-4 pb-1 pt-2 md:mt-7 md:pb-2"
-      aria-label="Cómo pedir"
+      id="como-pedir"
+      className="mt-6 w-full scroll-mt-32 bg-background py-4 md:mt-8 md:py-5"
+      aria-labelledby="como-pedir-title"
     >
-      <ol className="mx-auto flex max-w-4xl list-none flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-x-2 sm:gap-y-2">
-        {STEPS.map((step, index) => (
-          <li key={step.n} className="flex items-center gap-2 sm:gap-2.5">
-            <StepContent step={step} />
-            {index < STEPS.length - 1 ? (
-              <span
-                className="hidden text-base font-medium text-primary/35 sm:inline"
-                aria-hidden
-              >
-                →
-              </span>
-            ) : null}
-          </li>
-        ))}
-      </ol>
+      <h2 id="como-pedir-title" className="sr-only">
+        Cómo pedir
+      </h2>
+      <div className="w-full px-4 sm:px-6 lg:px-10">
+        <ol className="flex w-full list-none flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+          {STEPS.map((step, index) => (
+            <React.Fragment key={step.n}>
+              <li className="flex w-full justify-center sm:w-auto sm:flex-1">
+                <StepContent step={step} />
+              </li>
+              {index < STEPS.length - 1 ? (
+                <li
+                  aria-hidden
+                  className="hidden shrink-0 items-center justify-center px-1 text-base font-medium text-primary/35 sm:flex"
+                >
+                  →
+                </li>
+              ) : null}
+            </React.Fragment>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }
