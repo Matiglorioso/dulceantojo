@@ -1,18 +1,14 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { Minus, Plus, Star, Utensils } from "lucide-react";
+import { Minus, Plus, Star } from "lucide-react";
 
 import type { ProductRow } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
 import { formatPriceAr } from "@/lib/format";
-import { PRODUCT_IMAGE_BY_SLUG } from "@/lib/product-images";
 import { showAddedToCartToast } from "@/lib/cart-toast";
-import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/use-cart";
 
 type ProductCardProps = {
@@ -23,10 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((s) => s.addItem);
   const openCart = useCartStore((s) => s.openCart);
   const [qty, setQty] = React.useState(1);
-  const [imgLoaded, setImgLoaded] = React.useState(false);
   const out = product.is_out_of_stock;
-  const imageUrl = product.image_url ?? PRODUCT_IMAGE_BY_SLUG[product.slug];
-  const hasImage = Boolean(imageUrl);
 
   const dec = () => setQty((q) => Math.max(1, q - 1));
   const inc = () => setQty((q) => Math.min(20, q + 1));
@@ -46,57 +39,27 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="shadow-soft flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:scale-[1.02] hover:shadow-lg">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
-        {hasImage && imageUrl ? (
-          <>
-            {!imgLoaded && <Skeleton className="absolute inset-0 z-[1] rounded-none" />}
-            <Image
-              src={imageUrl}
-              alt={product.name}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className={cn(
-                "object-cover transition-opacity",
-                imgLoaded ? "opacity-100" : "opacity-0"
-              )}
-              placeholder={product.image_blur_data ? "blur" : "empty"}
-              blurDataURL={product.image_blur_data ?? undefined}
-              onLoad={() => setImgLoaded(true)}
-            />
-          </>
-        ) : (
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary/10"
-            aria-hidden
-          >
-            <Utensils className="h-10 w-10 text-primary/30" />
-            <span className="text-xs text-muted-foreground">Imagen próximamente</span>
-          </div>
-        )}
-
-        {product.badges.length > 0 && (
-          <div className="absolute left-2 top-2 z-[2] flex flex-wrap gap-1 md:left-0 md:top-4">
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        {(product.badges.length > 0 || out) && (
+          <div className="flex flex-wrap items-center gap-1.5">
             {product.badges.map((b) => (
               <Badge
                 key={b}
                 variant="secondary"
-                className="gap-1 border-0 bg-primary font-semibold text-primary-foreground shadow-md ring-1 ring-white/30 md:rounded-l-none md:rounded-r-full md:pl-3 md:pr-4"
+                className="gap-1 border-0 bg-primary font-semibold text-primary-foreground"
               >
                 <Star className="h-3 w-3 fill-current" aria-hidden />
                 {b}
               </Badge>
             ))}
+            {out && (
+              <Badge variant="outline" className="font-semibold uppercase tracking-wide">
+                Agotado
+              </Badge>
+            )}
           </div>
         )}
 
-        {out && (
-          <div className="absolute inset-0 z-[2] flex items-center justify-center bg-background/70 text-sm font-semibold uppercase tracking-wide text-foreground">
-            Agotado
-          </div>
-        )}
-      </div>
-
-      <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex min-w-0 items-baseline justify-between gap-2">
           <h3 className="min-w-0 flex-1 truncate font-display text-xl font-semibold leading-tight text-foreground">
             {product.name}
