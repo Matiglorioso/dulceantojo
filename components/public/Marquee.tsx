@@ -26,11 +26,8 @@ type MarqueeProps = {
 function AnnouncementSlide({ item }: { item: AnnouncementItem }) {
   const Icon = item.icon;
   return (
-    <div className="flex items-center justify-center gap-2 px-4 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]">
-      <Icon
-        className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85 sm:h-4 sm:w-4"
-        aria-hidden
-      />
+    <div className="flex items-center justify-center gap-1.5 px-3 text-[9px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:text-[10px] sm:tracking-[0.16em]">
+      <Icon className="h-3 w-3 shrink-0 text-primary-foreground/85" aria-hidden />
       <span className="text-center">{item.label}</span>
     </div>
   );
@@ -103,14 +100,14 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
       }}
     >
       <div
-        className="w-full overflow-hidden py-1 sm:py-1.5"
+        className="overflow-hidden py-0.5"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
         <div
-          className="relative mx-auto flex h-6 w-full items-center justify-center sm:h-7"
+          className="relative h-4 w-full"
           aria-live="polite"
           aria-atomic="true"
         >
