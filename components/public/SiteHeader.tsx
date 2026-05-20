@@ -80,7 +80,7 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* Fuera del sticky: aviso en marquee; al hacer scroll sale con la página */}
+      {/* Fuera del sticky: avisos rotativos; al hacer scroll sale con la página */}
       <Marquee />
 
       <header className="sticky top-0 z-50">

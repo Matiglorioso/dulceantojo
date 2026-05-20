@@ -6,6 +6,9 @@ import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+const ROTATE_MS = 4500;
+const SLIDE_MS = 500;
+
 type AnnouncementItem = {
   icon: LucideIcon;
   label: string;
@@ -20,81 +23,23 @@ type MarqueeProps = {
   items?: AnnouncementItem[];
 };
 
-const AnnouncementLine = React.forwardRef<
-  HTMLSpanElement,
-  {
-    items: AnnouncementItem[];
-    trailingSeparator?: boolean;
-    className?: string;
-    "aria-hidden"?: boolean;
-  }
->(function AnnouncementLine(
-  { items, trailingSeparator = false, className, "aria-hidden": ariaHidden },
-  ref
-) {
+function AnnouncementSlide({ item }: { item: AnnouncementItem }) {
+  const Icon = item.icon;
   return (
-    <span
-      ref={ref}
-      aria-hidden={ariaHidden}
-      className={cn(
-        "inline-flex shrink-0 items-center gap-2 text-[11px] font-medium leading-none text-primary-foreground sm:text-xs",
-        className
-      )}
-    >
-      {items.map((item, index) => {
-        const Icon = item.icon;
-        return (
-          <React.Fragment key={item.label}>
-            {index > 0 ? (
-              <span className="px-1 font-normal text-primary-foreground/45" aria-hidden>
-                |
-              </span>
-            ) : null}
-            <span className="inline-flex items-center gap-1.5">
-              <Icon className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85" aria-hidden />
-              <span>{item.label}</span>
-            </span>
-          </React.Fragment>
-        );
-      })}
-      {trailingSeparator ? (
-        <span className="px-6 font-normal text-primary-foreground/45" aria-hidden>
-          |
-        </span>
-      ) : null}
-    </span>
+    <div className="flex w-full shrink-0 items-center justify-center gap-1.5 px-4 text-[11px] font-medium leading-none text-primary-foreground sm:text-xs">
+      <Icon className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85" aria-hidden />
+      <span>{item.label}</span>
+    </div>
   );
-});
+}
 
 export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const measureRef = React.useRef<HTMLSpanElement>(null);
-  const [ready, setReady] = React.useState(false);
-  const [needsMarquee, setNeedsMarquee] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
   const [reducedMotion, setReducedMotion] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
 
+  const active = items[index] ?? items[0];
   const label = items.map((item) => item.label).join(" | ");
-  const showScroll = needsMarquee && !reducedMotion;
-
-  const measure = React.useCallback(() => {
-    const container = containerRef.current;
-    const track = measureRef.current;
-    if (!container || !track) return;
-
-    setNeedsMarquee(track.scrollWidth > container.clientWidth + 1);
-    setReady(true);
-  }, []);
-
-  React.useLayoutEffect(() => {
-    measure();
-    const container = containerRef.current;
-    if (!container) return;
-
-    const ro = new ResizeObserver(measure);
-    ro.observe(container);
-    return () => ro.disconnect();
-  }, [measure, items]);
 
   React.useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -103,6 +48,17 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  React.useEffect(() => {
+    if (items.length <= 1 || paused) return;
+
+    const delay = reducedMotion ? ROTATE_MS : ROTATE_MS + SLIDE_MS;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % items.length);
+    }, delay);
+
+    return () => window.clearInterval(id);
+  }, [items.length, paused, reducedMotion]);
 
   return (
     <div
@@ -115,41 +71,34 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
       }}
     >
       <div
-        ref={containerRef}
-        className={cn(
-          "relative overflow-hidden py-1.5",
-          ready && !showScroll && "flex justify-center px-4"
-        )}
-        onMouseEnter={() => showScroll && setPaused(true)}
-        onMouseLeave={() => showScroll && setPaused(false)}
-        onFocusCapture={() => showScroll && setPaused(true)}
-        onBlurCapture={() => showScroll && setPaused(false)}
+        className="overflow-hidden py-1.5"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={() => setPaused(false)}
       >
-        <AnnouncementLine
-          ref={measureRef}
-          items={items}
-          className="pointer-events-none absolute left-0 top-0 -z-10 opacity-0"
-          aria-hidden
-        />
-
-        {!ready ? (
-          <div className="h-5" aria-hidden />
-        ) : reducedMotion || !needsMarquee ? (
-          <AnnouncementLine items={items} />
+        {reducedMotion ? (
+          <div
+            className="flex items-center justify-center px-4"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <AnnouncementSlide item={active!} />
+          </div>
         ) : (
           <div
-            className={cn(
-              "flex w-max animate-da-marquee motion-reduce:animate-none",
-              paused && "![animation-play-state:paused]"
-            )}
+            className="relative h-5 sm:h-[1.375rem]"
+            aria-live="polite"
+            aria-atomic="true"
           >
-            <AnnouncementLine items={items} trailingSeparator className="px-10" />
-            <AnnouncementLine
-              items={items}
-              trailingSeparator
-              className="px-10"
-              aria-hidden
-            />
+            <div
+              className="flex h-full transition-transform duration-500 ease-in-out motion-reduce:transition-none"
+              style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+            >
+              {items.map((item) => (
+                <AnnouncementSlide key={item.label} item={item} />
+              ))}
+            </div>
           </div>
         )}
       </div>
