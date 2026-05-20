@@ -26,27 +26,26 @@ type MarqueeProps = {
 function AnnouncementSlide({ item }: { item: AnnouncementItem }) {
   const Icon = item.icon;
   return (
-    <div className="flex h-6 w-full shrink-0 items-center justify-center gap-2 px-4 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:h-7 sm:text-[11px] sm:tracking-[0.16em]">
-      <Icon className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85 sm:h-4 sm:w-4" aria-hidden />
-      <span>{item.label}</span>
+    <div className="flex items-center justify-center gap-2 px-4 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:text-[11px] sm:tracking-[0.16em]">
+      <Icon
+        className="h-3.5 w-3.5 shrink-0 text-primary-foreground/85 sm:h-4 sm:w-4"
+        aria-hidden
+      />
+      <span className="text-center">{item.label}</span>
     </div>
   );
 }
 
 export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
-  const [slideIndex, setSlideIndex] = React.useState(0);
-  const [noTransition, setNoTransition] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
+  const [nextIndex, setNextIndex] = React.useState<number | null>(null);
+  const [enterReady, setEnterReady] = React.useState(false);
   const [reducedMotion, setReducedMotion] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
 
-  const slides = React.useMemo(
-    () => (items.length > 1 ? [...items, items[0]!] : items),
-    [items]
-  );
-
-  const logicalIndex = slideIndex >= items.length ? 0 : slideIndex;
-  const active = items[logicalIndex] ?? items[0];
+  const active = items[index] ?? items[0];
   const label = items.map((item) => item.label).join(" | ");
+  const isAnimating = nextIndex !== null;
 
   React.useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -57,28 +56,40 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
   }, []);
 
   React.useEffect(() => {
-    if (items.length <= 1 || paused) return;
+    if (nextIndex === null) {
+      setEnterReady(false);
+      return;
+    }
+    const id = requestAnimationFrame(() => setEnterReady(true));
+    return () => cancelAnimationFrame(id);
+  }, [nextIndex]);
+
+  const startTransition = React.useCallback(() => {
+    if (items.length <= 1 || isAnimating) return;
+    setEnterReady(false);
+    setNextIndex((index + 1) % items.length);
+  }, [index, items.length, isAnimating]);
+
+  React.useEffect(() => {
+    if (items.length <= 1 || paused || isAnimating) return;
 
     const delay = reducedMotion ? ROTATE_MS : ROTATE_MS + SLIDE_MS;
     const id = window.setInterval(() => {
       if (reducedMotion) {
-        setSlideIndex((i) => (i + 1) % items.length);
+        setIndex((i) => (i + 1) % items.length);
       } else {
-        setSlideIndex((prev) => (prev >= items.length ? prev : prev + 1));
+        startTransition();
       }
     }, delay);
 
     return () => window.clearInterval(id);
-  }, [items.length, paused, reducedMotion]);
+  }, [items.length, paused, reducedMotion, isAnimating, startTransition]);
 
   const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.propertyName !== "transform" || slideIndex !== items.length) return;
-
-    setNoTransition(true);
-    setSlideIndex(0);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => setNoTransition(false));
-    });
+    if (e.propertyName !== "transform" || nextIndex === null) return;
+    setIndex(nextIndex);
+    setNextIndex(null);
+    setEnterReady(false);
   };
 
   return (
@@ -92,39 +103,45 @@ export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
       }}
     >
       <div
-        className="overflow-hidden py-1 sm:py-1.5"
+        className="w-full overflow-hidden py-1 sm:py-1.5"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
-        {reducedMotion ? (
-          <div
-            className="flex items-center justify-center"
-            aria-live="polite"
-            aria-atomic="true"
-          >
+        <div
+          className="relative mx-auto flex h-6 w-full items-center justify-center sm:h-7"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {reducedMotion ? (
             <AnnouncementSlide item={active!} />
-          </div>
-        ) : (
-          <div className="relative h-4" aria-live="polite" aria-atomic="true">
-            <div
-              className={cn(
-                "flex h-full ease-in-out motion-reduce:transition-none",
-                !noTransition && "transition-transform duration-500"
-              )}
-              style={{ transform: `translate3d(-${slideIndex * 100}%, 0, 0)` }}
-              onTransitionEnd={handleTransitionEnd}
-            >
-              {slides.map((item, i) => (
-                <AnnouncementSlide
-                  key={`${item.label}-${i}`}
-                  item={item}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+          ) : (
+            <>
+              <div
+                className={cn(
+                  "absolute inset-0 flex items-center justify-center ease-in-out motion-reduce:transition-none",
+                  "transition-transform duration-500",
+                  isAnimating && "-translate-x-full"
+                )}
+                onTransitionEnd={isAnimating ? handleTransitionEnd : undefined}
+              >
+                <AnnouncementSlide item={active!} />
+              </div>
+
+              {isAnimating && nextIndex !== null ? (
+                <div
+                  className={cn(
+                    "absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-in-out motion-reduce:transition-none",
+                    enterReady ? "translate-x-0" : "translate-x-full"
+                  )}
+                >
+                  <AnnouncementSlide item={items[nextIndex]!} />
+                </div>
+              ) : null}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
