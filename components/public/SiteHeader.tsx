@@ -33,16 +33,6 @@ export function SiteHeader() {
   const openCart = useCartStore((s) => s.openCart);
   const totalItems = cartItemCount(items);
   const [activeNav, setActiveNav] = React.useState<NavId>("inicio");
-  const [announcementVisible, setAnnouncementVisible] = React.useState(true);
-
-  React.useEffect(() => {
-    const onScroll = () => {
-      setAnnouncementVisible(window.scrollY < 24);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   React.useEffect(() => {
     const sectionIds: NavId[] = ["inicio", "quienes-somos", "productos"];
@@ -88,14 +78,9 @@ export function SiteHeader() {
   const goHome = () => onNavClick("inicio", "#inicio");
 
   return (
-    <header className="sticky top-0 z-50">
-      <div
-        className={cn(
-          "overflow-hidden bg-primary transition-[max-height] duration-300 ease-out motion-reduce:transition-none",
-          announcementVisible ? "max-h-16" : "max-h-0"
-        )}
-        aria-hidden={!announcementVisible}
-      >
+    <>
+      {/* Fuera del sticky: al hacer scroll sale con la página y no redimensiona el header fijo */}
+      <div className="bg-primary">
         <p
           className="flex flex-wrap items-center justify-center px-4 py-2.5 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.12em] text-primary-foreground sm:tracking-[0.16em]"
           style={{
@@ -111,6 +96,7 @@ export function SiteHeader() {
         </p>
       </div>
 
+      <header className="sticky top-0 z-50">
       <div
         className="border-b border-border/70 bg-background/98 shadow-soft backdrop-blur-sm"
         style={{
@@ -170,6 +156,7 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
+    </>
   );
 }
 
