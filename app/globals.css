@@ -58,29 +58,9 @@
   }
 }
 
-/* Marquee: pista duplicada + translate -50%; el componente Marquee aplicará la clase */
-@keyframes da-marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
 @layer utilities {
   .shadow-soft {
     box-shadow: var(--shadow-soft);
-  }
-
-  .animate-da-marquee {
-    animation: da-marquee 24s linear infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-da-marquee {
-      animation: none;
-    }
   }
 
   .scrollbar-hide {

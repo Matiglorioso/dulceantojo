@@ -1,106 +1,49 @@
-"use client";
+import { Clock, Package } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-import * as React from "react";
+type AnnouncementItem = {
+  icon: LucideIcon;
+  label: string;
+};
 
-const DEFAULT_ITEMS = [
-  "📦 Envíos a Córdoba Capital",
-  "⏰ Pedidos con 48hs de anticipación",
+const DEFAULT_ITEMS: AnnouncementItem[] = [
+  { icon: Package, label: "Envíos a Córdoba capital" },
+  { icon: Clock, label: "Pedidos con 48 h de anticipación" },
 ];
 
 type MarqueeProps = {
-  items?: string[];
+  items?: AnnouncementItem[];
 };
 
-function MarqueeTrack({ items }: { items: string[] }) {
-  return (
-    <span className="inline-flex shrink-0 items-center gap-4 px-8 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary-foreground sm:tracking-[0.18em]">
-      {items.map((item, index) => (
-        <React.Fragment key={item}>
-          {index > 0 ? (
-            <span className="opacity-40" aria-hidden>
-              ·
-            </span>
-          ) : null}
-          <span>{item}</span>
-        </React.Fragment>
-      ))}
-      <span className="px-4 opacity-40" aria-hidden>
-        ·
-      </span>
-    </span>
-  );
-}
-
 export function Marquee({ items = DEFAULT_ITEMS }: MarqueeProps) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [ready, setReady] = React.useState(false);
-  const [reducedMotion, setReducedMotion] = React.useState(false);
-
-  React.useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) {
-      return;
-    }
-    const ro = new ResizeObserver(() => {
-      if (el.offsetWidth > 0) {
-        setReady(true);
-      }
-    });
-    ro.observe(el);
-    if (el.offsetWidth > 0) {
-      setReady(true);
-    }
-    return () => ro.disconnect();
-  }, []);
-
-  React.useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  const label = items.join(" · ");
+  const label = items.map((item) => item.label).join(" | ");
 
   return (
     <div
-      ref={ref}
-      className="bg-primary text-primary-foreground"
+      className="border-b border-border/60 bg-secondary text-primary"
       role="region"
       aria-label={label}
       style={{
-        paddingLeft: "max(0px, env(safe-area-inset-left))",
-        paddingRight: "max(0px, env(safe-area-inset-right))",
+        paddingLeft: "max(1rem, env(safe-area-inset-left))",
+        paddingRight: "max(1rem, env(safe-area-inset-right))",
       }}
     >
-      {ready ? (
-        reducedMotion ? (
-          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-0.5 px-4 py-1 text-center text-[10px] font-bold uppercase leading-none tracking-[0.14em] sm:tracking-[0.18em]">
-            {items.map((item, index) => (
-              <React.Fragment key={item}>
-                {index > 0 ? (
-                  <span className="opacity-40" aria-hidden>
-                    ·
-                  </span>
-                ) : null}
-                <span>{item}</span>
-              </React.Fragment>
-            ))}
-          </p>
-        ) : (
-          <div className="overflow-hidden py-1">
-            <div className="flex w-max animate-da-marquee">
-              <MarqueeTrack items={items} />
-              <span aria-hidden>
-                <MarqueeTrack items={items} />
-              </span>
-            </div>
-          </div>
-        )
-      ) : (
-        <div className="h-6" aria-hidden />
-      )}
+      <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 text-center text-[11px] font-medium leading-snug sm:gap-x-2.5 sm:text-xs">
+        {items.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <span key={item.label} className="inline-flex items-center gap-1.5">
+              {index > 0 ? (
+                <span className="px-0.5 font-normal text-primary/35" aria-hidden>
+                  |
+                </span>
+              ) : null}
+              <Icon className="h-3.5 w-3.5 shrink-0 text-primary/70" aria-hidden />
+              <span>{item.label}</span>
+            </span>
+          );
+        })}
+      </p>
     </div>
   );
 }
