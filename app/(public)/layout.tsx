@@ -9,7 +9,10 @@ export default async function PublicLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const whatsappNumberRaw = await getSettings("whatsapp_number");
+  const [whatsappNumberRaw, businessLocation] = await Promise.all([
+    getSettings("whatsapp_number"),
+    getSettings("business_location"),
+  ]);
   const whatsappNumber =
     whatsappNumberRaw ?? process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
@@ -17,7 +20,10 @@ export default async function PublicLayout({
     <>
       <SiteHeader />
       {children}
-      <SiteFooter whatsappNumber={whatsappNumber} />
+      <SiteFooter
+        whatsappNumber={whatsappNumber}
+        businessLocation={businessLocation}
+      />
       <div role="status" aria-live="polite" className="sr-only" />
       <Toaster position="top-center" />
       <CartUi whatsappNumber={whatsappNumber} />
